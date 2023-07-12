@@ -1,7 +1,29 @@
+using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.Entities.Concrete;
+using FluentValidation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+
+
+
+#region FluentValidation
+builder.Services.AddTransient<IValidator<Event>, EventValidator>();
+builder.Services.AddTransient<IValidator<Invitation>, InvitationValidator>();
+builder.Services.AddTransient<IValidator<Location>, LocationValidator>();
+builder.Services.AddTransient<IValidator<Notification>, NotificationValidator>();
+builder.Services.AddTransient<IValidator<Role>, RoleValidator>();
+builder.Services.AddTransient<IValidator<UserDetail>, UserDetailValidator>();
+builder.Services.AddTransient<IValidator<UserInvitationMapping>, UserInvitationMappingValidator>();
+builder.Services.AddTransient<IValidator<User>, UserValidator>();
+
+#endregion
+
 
 var app = builder.Build();
 

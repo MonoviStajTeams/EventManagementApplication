@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Abstract
 {
-    public interface IInvitationService : : IGenericService<Invitation>
+    public interface IInvitationService : IGenericService<Invitation>
     {
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.DataAccess.Configurations
 {
-    internal class InvitationConfiguration : IEntityTypeConfiguration<Invitation>
+    public class InvitationConfiguration : IEntityTypeConfiguration<Invitation>
     {
         public void Configure(EntityTypeBuilder<Invitation> builder)
         {
