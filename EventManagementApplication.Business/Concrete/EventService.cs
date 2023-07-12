@@ -10,29 +10,45 @@ namespace EventManagementApplication.Business.Concrete
 {
     public class EventService : IEventService
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public EventService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public void Create(Event entity)
         {
-            throw new NotImplementedException();
+
+            _unitOfWork.Events.Add(entity);
+            _unitOfWork.Save();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var events = _unitOfWork.Events.GetById(id);
+            if (events != null)
+            {
+                _unitOfWork.Events.Remove(events);
+                _unitOfWork.Save();
+            }
         }
 
         public IEnumerable<Event> GetAll()
         {
-            throw new NotImplementedException();
+            return _unitOfWork.Events.GetAll();
         }
 
         public Event GetById(int id)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.Events.GetById(id);
+
         }
 
         public void Update(Event entity)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Events.Update(entity);
+            _unitOfWork.Save();
         }
     }
 }

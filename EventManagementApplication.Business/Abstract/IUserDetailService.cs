@@ -9,5 +9,10 @@ namespace EventManagementApplication.Business.Abstract
 {
     public interface IUserDetailService : IGenericService<UserDetail>
     {
+        IEnumerable<UserDetail> GetAll();
+        UserDetail GetById(int id);
+        void Create(UserDetail entity);
+        void Update(UserDetail entity);
+        void Delete(int id);
     }
 }
