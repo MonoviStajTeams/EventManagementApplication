@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Entities.Concrete
 {
-    public class UserInvatationMapping: BaseEntity
+    public class UserInvitationMapping: BaseEntity
     {
         public int InvitedId { get; set; }
         public User User { get; set; }

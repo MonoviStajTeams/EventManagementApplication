@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.DataAccess.Concrete
 {
-    public class UserInvitationMappingRepository : GenericRepository<UserInvatationMapping>, IUserInvitationMappingRepository
+    public class UserInvitationMappingRepository : GenericRepository<UserInvitationMapping>, IUserInvitationMappingRepository
     {
         public UserInvitationMappingRepository(EventManagementDbContext dbContext) : base(dbContext)
         {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventManagementApplication.DataAccess.Abstract
+namespace EventManagementApplication.Business.Abstract
 {
-    public interface IUserInvitationMappingRepository : IGenericRepository<UserInvitationMapping>
+    public interface ILocationService : IGenericService<Location>
     {
     }
 }
