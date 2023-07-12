@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aspects\" />
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
+    <PackageReference Include="PostSharp" Version="2023.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EventManagementApplication.Business\EventManagementApplication.Business.csproj" />
   </ItemGroup>
 
 </Project>
