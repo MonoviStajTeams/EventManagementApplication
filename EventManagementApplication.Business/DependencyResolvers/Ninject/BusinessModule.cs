@@ -27,7 +27,7 @@ namespace EventManagementApplication.Business.DependencyResolvers.Ninject
             Bind<IEventService>().To<EventService>().InSingletonScope();// Değiştirilecek
             Bind<INotificationRepository>().To<NotificationRepository>().InSingletonScope();
 
-            Bind<IEventService>().To<EventService>().InSingletonScope();// Değiştirilecek
+            Bind<IRoleService>().To<RoleService>().InSingletonScope();// Değiştirilecek
             Bind<IRoleRepository>().To<RoleRepository>().InSingletonScope();
 
             Bind<IEventService>().To<EventService>().InSingletonScope();// Değiştirilecek
