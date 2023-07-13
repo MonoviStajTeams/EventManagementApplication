@@ -58,8 +58,9 @@ namespace EventManagementApplication.Business.Concrete
         {
             return _unitOfWork.Events.GetAll().Where(e => e.UserId == userId && !e.Status);
         }
+      
+        
         // reactivate events
-
         public void ActivateEvent(int eventId, DateTime newDate, string newStartTime, string newEndTime)
         {
             var existingEvent = _unitOfWork.Events.GetById(eventId);

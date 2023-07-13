@@ -55,5 +55,24 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Notifications.Update(entity);
             _unitOfWork.Save();
         }
+
+
+        public void SendInvitationNotification(Invitation invitation, User user)
+        {
+
+            var notification = new Notification
+            {
+                InvitationId = invitation.Id,
+                Invitation = invitation,
+                ReceivingId = user.Id,
+                User = user,
+
+            };
+
+            _unitOfWork.Notifications.Add(notification);
+            _unitOfWork.Save();
+
+        }
+
     }
 }
