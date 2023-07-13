@@ -4,6 +4,8 @@ using EventManagementApplication.Business.ValidationRules.FluentValidation;
 using EventManagementApplication.DataAccess.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using FluentValidation;
+using log4net;
+using log4net.Config;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var logRepository = LogManager.GetRepository(System.Reflection.Assembly.GetEntryAssembly());
+XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
 
 builder.Services.AddDbContext<EventManagementDbContext>(options =>
