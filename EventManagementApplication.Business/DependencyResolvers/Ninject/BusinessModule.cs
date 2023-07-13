@@ -21,22 +21,22 @@ namespace EventManagementApplication.Business.DependencyResolvers.Ninject
             Bind<ILocationService>().To<LocationService>().InSingletonScope();
             Bind<ILocationRepository>().To<LocationRepository>().InSingletonScope();
 
-            Bind<IEventService>().To<EventService>().InSingletonScope(); // Değiştirilecek
+            Bind<IInvitationService>().To<InvitationService>().InSingletonScope(); 
             Bind<IInvitationRepository>().To<InvitationRepository>().InSingletonScope();
 
-            Bind<IEventService>().To<EventService>().InSingletonScope();// Değiştirilecek
+            Bind<INotificationService>().To<NotificationService>().InSingletonScope();
             Bind<INotificationRepository>().To<NotificationRepository>().InSingletonScope();
 
             Bind<IRoleService>().To<RoleService>().InSingletonScope();
             Bind<IRoleRepository>().To<RoleRepository>().InSingletonScope();
 
-            Bind<IEventService>().To<EventService>().InSingletonScope();// Değiştirilecek
+            Bind<IUserDetailService>().To<UserDetailService>().InSingletonScope();
             Bind<IUserDetailRepository>().To<UserDetailRepository>().InSingletonScope();
 
-            Bind<IEventService>().To<EventService>().InSingletonScope();// Değiştirilecek
+            Bind<IUserInvitationMappingService>().To<UserInvitationMappingService>().InSingletonScope();
             Bind<IUserInvitationMappingRepository>().To<UserInvitationMappingRepository>().InSingletonScope();
 
-            Bind<IUserService>().To<UserService>().InSingletonScope();// Değiştirilecek
+            Bind<IUserService>().To<UserService>().InSingletonScope();
             Bind<IUserRepository>().To<UserRepository>().InSingletonScope();
 
         }
