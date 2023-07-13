@@ -1,6 +1,8 @@
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.DataAccess.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,11 @@ builder.Services.AddControllersWithViews();
 
 
 
+builder.Services.AddDbContext<EventManagementDbContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlServer(connectionString);
+});
 
 
 
