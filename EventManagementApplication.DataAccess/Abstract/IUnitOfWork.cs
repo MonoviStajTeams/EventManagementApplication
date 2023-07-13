@@ -14,7 +14,7 @@ namespace EventManagementApplication.DataAccess.Abstract
         INotificationRepository Notifications { get; }
         IRoleRepository Roles { get; }
         IUserDetailRepository UserDetails { get; }
-        IUserInvitationMappingRepository UserInvatationMappings { get; }
+        IUserInvitationMappingRepository UserInvitationMappings { get; }
         IUserRepository Users { get; }
 
         void Save();

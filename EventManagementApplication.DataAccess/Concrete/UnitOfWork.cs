@@ -19,7 +19,7 @@ namespace EventManagementApplication.DataAccess.Concrete
             Invitations = new InvitationRepository(_dbContext);
             Locations = new LocationRepository(_dbContext);
             Roles = new RoleRepository(_dbContext);
-            UserInvatationMappings = new UserInvitationMappingRepository(_dbContext);
+            UserInvitationMappings = new UserInvitationMappingRepository(_dbContext);
             UserDetails = new UserDetailRepository(_dbContext);
             Users = new UserRepository(_dbContext);
 
@@ -39,7 +39,7 @@ namespace EventManagementApplication.DataAccess.Concrete
 
         public IUserDetailRepository UserDetails { get; }
 
-        public IUserInvitationMappingRepository UserInvatationMappings { get; }
+        public IUserInvitationMappingRepository UserInvitationMappings { get; }
 
         public IUserRepository Users { get; }
 
