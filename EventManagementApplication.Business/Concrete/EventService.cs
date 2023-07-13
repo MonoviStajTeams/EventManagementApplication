@@ -1,4 +1,5 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
 using System.Collections.Generic;
