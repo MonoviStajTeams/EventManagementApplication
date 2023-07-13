@@ -1,6 +1,10 @@
+using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.DataAccess.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +13,25 @@ builder.Services.AddControllersWithViews();
 
 
 
+builder.Services.AddDbContext<EventManagementDbContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlServer(connectionString);
+});
 
+
+#region Business Classes
+
+builder.Services.AddTransient(typeof(IEventService), typeof(EventService));
+builder.Services.AddTransient(typeof(ILocationService), typeof(LocationService));
+builder.Services.AddTransient(typeof(INotificationService), typeof(NotificationService));
+builder.Services.AddTransient(typeof(IRoleService), typeof(RoleService));
+builder.Services.AddTransient(typeof(IUserDetailService), typeof(UserDetailService));
+builder.Services.AddTransient(typeof(IUserInvitationMappingService), typeof(UserInvitationMapping));
+builder.Services.AddTransient(typeof(IUserService), typeof(UserService));
+builder.Services.AddTransient(typeof(IInvitationService), typeof(InvitationService));
+
+#endregion
 
 
 #region FluentValidation

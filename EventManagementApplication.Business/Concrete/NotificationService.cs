@@ -55,5 +55,88 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Notifications.Update(entity);
             _unitOfWork.Save();
         }
+
+
+        public void SendInvitationNotification(Invitation invitation, User user)
+        {
+
+            var notification = new Notification
+            {
+                InvitationId = invitation.Id,
+                Invitation = invitation,
+                ReceivingId = user.Id,
+                User = user,
+
+            };
+
+            _unitOfWork.Notifications.Add(notification);
+            _unitOfWork.Save();
+
+        }
+
+        public void SendReminderNotifications()
+        {
+            DateTime reminderTime = DateTime.Now.AddHours(2);
+
+            var events = _unitOfWork.Events.GetAll()
+                .Where(e => e.Date > DateTime.Now && e.Date < reminderTime)
+                .ToList();
+
+            foreach (var ev in events)
+            {
+                var invitations = _unitOfWork.Invitations.GetAll()
+                    .Where(i => i.EventId == ev.Id)
+                    .ToList();
+
+                var acceptedUsers = _unitOfWork.UserInvitationMappings.GetAll()
+                    .Where(m => invitations.Any(i => i.Id == m.InvitationId) && m.Status == true)
+                    .Select(m => m.User)
+                    .ToList();
+
+                foreach (var user in acceptedUsers)
+                {
+                    SendInvitationReminder(ev, user);
+                }
+            }
+        }
+
+        private void SendInvitationReminder(Event ev, User user)
+        {
+            var invitation = _unitOfWork.Invitations.GetAll()
+                .FirstOrDefault(i => i.EventId == ev.Id && i.UserId == user.Id);
+
+            if (invitation != null)
+            {
+                var notification = new Notification
+                {
+                    InvitationId = invitation.Id,
+                    Invitation = invitation,
+                    ReceivingId = user.Id,
+                    User = user,
+                };
+
+                _unitOfWork.Notifications.Add(notification);
+                _unitOfWork.Save();
+
+                SendNotificationToUserByMail(user, GetReminderNotificationContent(ev));
+            }
+        }
+
+        private string GetReminderNotificationContent(Event ev)
+        {
+            return $"Etkinlik: {ev.Title}\n" +
+                   $"Tarih: {ev.Date}\n" +
+                   $"Saat: {ev.StartTime}\n" +
+                   $"Etkinlik 2 saat içinde baþlayacak.";
+        }
+
+        private void SendNotificationToUserByMail(User user, string notificationContent)
+        {
+            // Bildirim gönderme iþlemi burada mail ile yapýlabilir hem uygulama için hemde mail ile olmuþ olur
+        }
+
+
+
+
     }
 }
