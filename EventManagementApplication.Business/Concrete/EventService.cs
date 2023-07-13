@@ -51,12 +51,15 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Events.Update(entity);
             _unitOfWork.Save();
         }
+      
+        
         // list past events by user
         public IEnumerable<Event> GetInactiveEventsByUserId(int userId)
         {
             return _unitOfWork.Events.GetAll().Where(e => e.UserId == userId && !e.Status);
         }
         // reactivate events
+
         public void ActivateEvent(int eventId, DateTime newDate, string newStartTime, string newEndTime)
         {
             var existingEvent = _unitOfWork.Events.GetById(eventId);
