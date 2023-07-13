@@ -20,9 +20,9 @@ namespace EventManagementApplication.Business.Concrete
 
         public void Create(Event entity)
         {
-
             _unitOfWork.Events.Add(entity);
             _unitOfWork.Save();
+
         }
 
         public void Delete(int id)
