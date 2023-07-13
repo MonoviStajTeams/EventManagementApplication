@@ -12,6 +12,7 @@ namespace EventManagementApplication.Entities.Concrete
         public int InvitedId { get; set; }
         public User User { get; set; }
 
+        public bool Status { get; set; }
         public int InvitationId { get; set; }
         public Invitation Invitation { get; set; }
     }
