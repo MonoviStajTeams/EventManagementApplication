@@ -36,5 +36,6 @@ namespace EventManagementApplication.DataAccess.Concrete
         public DbSet<User> Users { set; get; }
         public DbSet<Invitation> Invitations { set; get; }
         public DbSet<Notification> Notifications { set; get; }
+        public DbSet<Log> Logs { set; get; }
     }
 }

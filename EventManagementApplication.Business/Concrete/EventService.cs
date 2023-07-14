@@ -1,5 +1,7 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Core.Aspects.LogAspects;
 using EventManagementApplication.Core.Aspects.TransactionAspects;
+using EventManagementApplication.Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -20,7 +22,6 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
-        [TransactionScopeAspect]
         public void Create(Event entity)
         {
             _unitOfWork.Events.Add(entity);
@@ -38,6 +39,8 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+
+        
         public IEnumerable<Event> GetAll()
         {
             return _unitOfWork.Events.GetAll();
