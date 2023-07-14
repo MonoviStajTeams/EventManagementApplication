@@ -1,4 +1,5 @@
 using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Core.Aspects.TransactionAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -18,6 +19,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
+        [TransactionScopeAspect]
         public void Create(UserDetail entity)
         {
 
@@ -25,6 +27,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Save();
         }
 
+        [TransactionScopeAspect]
         public void Delete(int id)
         {
             var userDetail = _unitOfWork.UserDetails.GetById(id);
@@ -35,17 +38,20 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+        [TransactionScopeAspect]
         public IEnumerable<UserDetail> GetAll()
         {
             return _unitOfWork.UserDetails.GetAll();
         }
 
+        [TransactionScopeAspect]
         public UserDetail GetById(int id)
         {
             return _unitOfWork.UserDetails.GetById(id);
 
         }
 
+        [TransactionScopeAspect]
         public void Update(UserDetail entity)
         {
             _unitOfWork.UserDetails.Update(entity);

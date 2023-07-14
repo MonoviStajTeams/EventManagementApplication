@@ -1,4 +1,5 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Core.Aspects.TransactionAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -18,6 +19,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
+        [TransactionScopeAspect]
         public void Create(UserInvitationMapping entity)
         {
 
@@ -25,6 +27,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Save();
         }
 
+        [TransactionScopeAspect]
         public void Delete(int id)
         {
             var userInvitation = _unitOfWork.UserInvitationMappings.GetById(id);
@@ -35,17 +38,20 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+        [TransactionScopeAspect]
         public IEnumerable<UserInvitationMapping> GetAll()
         {
             return _unitOfWork.UserInvitationMappings.GetAll();
         }
 
+        [TransactionScopeAspect]
         public UserInvitationMapping GetById(int id)
         {
             return _unitOfWork.UserInvitationMappings.GetById(id);
 
         }
 
+        [TransactionScopeAspect]
         public void Update(UserInvitationMapping entity)
         {
             _unitOfWork.UserInvitationMappings.Update(entity);
