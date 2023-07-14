@@ -1,6 +1,6 @@
 namespace EventManagementApplication.Tests
 {
-    public class EventTests
+    public class UserTests
     {
         [Fact]
         public void Test1()

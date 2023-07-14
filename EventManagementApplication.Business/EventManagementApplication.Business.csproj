@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.6.0" />
+    <PackageReference Include="log4net" Version="2.0.15" />
     <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="PostSharp" Version="2023.0.6" />
   </ItemGroup>
 
   <ItemGroup>
