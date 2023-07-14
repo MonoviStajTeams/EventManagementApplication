@@ -11,7 +11,7 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace EventManagementApplication.Tests
 {
-    public class RoleServiceTests
+    public class RoleTests
     {
         [ExpectedException(typeof(ValidationException))]
         [Fact]

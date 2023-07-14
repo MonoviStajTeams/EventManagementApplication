@@ -8,6 +8,99 @@ namespace EventManagementApplication.Tests
     public class EventTests
     {
         [Fact]
+        public void Create_AddsEventToUnitOfWorkAndSaves()
+        {
+            // Arrange
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var eventRepositoryMock = new Mock<IEventRepository>();
+            var eventToCreate = new Event();
+
+            unitOfWorkMock.SetupGet(uow => uow.Events).Returns(eventRepositoryMock.Object);
+
+            var eventService = new EventService(unitOfWorkMock.Object);
+
+            // Act
+            eventService.Create(eventToCreate);
+
+            // Assert
+            eventRepositoryMock.Verify(repo => repo.Add(eventToCreate), Times.Once);
+            unitOfWorkMock.Verify(uow => uow.Save(), Times.Once);
+        }
+
+        [Fact]
+        public void Update_UpdatesEventInUnitOfWorkAndSaves()
+        {
+            // Arrange
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var eventRepositoryMock = new Mock<IEventRepository>();
+            var eventToUpdate = new Event();
+
+            unitOfWorkMock.SetupGet(uow => uow.Events).Returns(eventRepositoryMock.Object);
+
+            var eventService = new EventService(unitOfWorkMock.Object);
+
+            // Act
+            eventService.Update(eventToUpdate);
+
+            // Assert
+            eventRepositoryMock.Verify(repo => repo.Update(eventToUpdate), Times.Once);
+            unitOfWorkMock.Verify(uow => uow.Save(), Times.Once);
+        }
+
+        [Fact]
+        public void ActivateEvent_DoesNotUpdateEvent_WhenEventDoesNotExist()
+        {
+            // Arrange
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var eventRepositoryMock = new Mock<IEventRepository>();
+            var eventId = 1;
+            var newDate = DateTime.Now.AddDays(1);
+            var newStartTime = "9:00 AM";
+            var newEndTime = "11:00 AM";
+
+            eventRepositoryMock.Setup(repo => repo.GetById(eventId)).Returns((Event)null);
+            unitOfWorkMock.SetupGet(uow => uow.Events).Returns(eventRepositoryMock.Object);
+
+            var eventService = new EventService(unitOfWorkMock.Object);
+
+            // Act
+            eventService.ActivateEvent(eventId, newDate, newStartTime, newEndTime);
+
+            // Assert
+            eventRepositoryMock.Verify(repo => repo.Update(It.IsAny<Event>()), Times.Never);
+            unitOfWorkMock.Verify(uow => uow.Save(), Times.Never);
+        }
+
+        [Fact]
+        public void ActivateEvent_UpdatesExistingEventAndSaves()
+        {
+            // Arrange
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var eventRepositoryMock = new Mock<IEventRepository>();
+            var eventId = 1;
+            var existingEvent = new Event { Id = eventId };
+            var newDate = DateTime.Now.AddDays(1);
+            var newStartTime = "9:00 AM";
+            var newEndTime = "11:00 AM";
+
+            eventRepositoryMock.Setup(repo => repo.GetById(eventId)).Returns(existingEvent);
+            unitOfWorkMock.SetupGet(uow => uow.Events).Returns(eventRepositoryMock.Object);
+
+            var eventService = new EventService(unitOfWorkMock.Object);
+
+            // Act
+            eventService.ActivateEvent(eventId, newDate, newStartTime, newEndTime);
+
+            // Assert
+            Assert.Equal(newDate, existingEvent.Date);
+            Assert.Equal(newStartTime, existingEvent.StartTime);
+            Assert.Equal(newEndTime, existingEvent.EndTime);
+            Assert.True(existingEvent.Status);
+            eventRepositoryMock.Verify(repo => repo.Update(existingEvent), Times.Once);
+            unitOfWorkMock.Verify(uow => uow.Save(), Times.Once);
+        }
+
+        [Fact]
         public void CreateEvent_ValidEvent_SuccessfullyCreated()
         {
             // Arrange
