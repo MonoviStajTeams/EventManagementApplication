@@ -16,79 +16,20 @@ namespace EventManagementApplication.Tests
         {
             Mock<IUnitOfWork> mockUnitOfWork = new Mock<IUnitOfWork>();
 
+            INotificationRepository notificationRepository = new Mock<INotificationRepository>().Object;
+            mockUnitOfWork.Setup(uow => uow.Notifications).Returns(notificationRepository);
+
             NotificationService notificationService = new NotificationService(mockUnitOfWork.Object);
 
-
-
-            Role roleCustomer = new Role
-            {
-                Id = 2,
-                Name = "Customer",
-            };
-
-            User invitedUser = new User
-            {
-                Id = 1,
-                FullName = "Oðuzhan Müþteri",
-                Mail = "oguzhanagir@gmail.com",
-                Password = "password",
-                ConfirmPassword = "password",
-                RoleId = 1,
-                Role = roleCustomer
-            };
-
-
-            Role role = new Role
-            {
-                Id = 1,
-                Name = "Admin",
-            };
-
-            User user = new User
-            {
-                Id = 1,
-                FullName = "Oðuzhan AÐIR",
-                Mail = "oguzhanagir@gmail.com",
-                Password = "password",
-                ConfirmPassword = "password",
-                RoleId = 1,
-                Role = role
-            };
-
-
-
-            Invitation invitation = new Invitation
-            {
-                Id = 1,
-                Title = "Test Invitation",
-                Description = "Invitation description",
-                UserId = 1,
-                User = invitedUser,
-                EventId = 2,
-                Event = new Event
-                {
-                    Id = 1,
-                    Title = "Event Title",
-                    Description = "Event Description",
-                    Date = DateTime.Now,
-                    Type = "Event Type",
-                    Status = true,
-                    StartTime = "10:00 AM",
-                    EndTime = "12:00 PM",
-                    UserId = user.Id,
-                    User = user
-
-                }
-            };
 
 
             notificationService.Create(new Notification
             {
                 Id= 1,
-                InvitationId= invitation.Id,
-                Invitation = invitation,
-                ReceivingId = user.Id,
-                User = user,
+                InvitationId= 1,
+                Invitation = new Invitation(),
+                ReceivingId = 1,
+                User = new User(),
             });
          
         }
