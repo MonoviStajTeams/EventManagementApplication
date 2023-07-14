@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventManagementApplication.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventManagementApplication.MAUI", "EventManagementApplication.MAUI\EventManagementApplication.MAUI.csproj", "{2EEBB75A-DF4E-4B88-AEFB-754F5670210E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagementApplication.Tests", "EventManagementApplication.Tests\EventManagementApplication.Tests.csproj", "{3AF78723-5734-44C7-A332-EDED498B7909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventManagementApplication.Tests", "EventManagementApplication.Tests\EventManagementApplication.Tests.csproj", "{3AF78723-5734-44C7-A332-EDED498B7909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
