@@ -78,7 +78,7 @@ namespace EventManagementApplication.Business.Concrete
                             var mailMessage = new MailMessage();
                             mailMessage.Subject = subject;
                             mailMessage.Body = body;
-                            mailMessage.To.Add(selectedUser.Email)
+                            mailMessage.To.Add(selectedUser.Mail);
                             smtpClient.Send(mailMessage);
                         }
                     
