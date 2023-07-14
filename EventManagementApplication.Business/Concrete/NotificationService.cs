@@ -1,9 +1,11 @@
 using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.Core.Aspects.ValidationAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,8 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
+
+        [FluentValidateAspect(typeof(NotificationValidator))]
         public void Create(Notification entity)
         {
 
