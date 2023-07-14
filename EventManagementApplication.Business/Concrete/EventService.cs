@@ -21,14 +21,14 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-
+        [TransactionScopeAspect]
         public void Create(Event entity)
         {
             _unitOfWork.Events.Add(entity);
             _unitOfWork.Save();
 
         }
-
+        [TransactionScopeAspect]
         public void Delete(int id)
         {
             var events = _unitOfWork.Events.GetById(id);
@@ -39,34 +39,37 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-
-        
+        [TransactionScopeAspect]
         public IEnumerable<Event> GetAll()
         {
             return _unitOfWork.Events.GetAll();
         }
 
+        [TransactionScopeAspect]
         public Event GetById(int id)
         {
             return _unitOfWork.Events.GetById(id);
 
         }
 
+        [TransactionScopeAspect]
         public void Update(Event entity)
         {
             _unitOfWork.Events.Update(entity);
             _unitOfWork.Save();
         }
-      
-        
+
+
         // list past events by user
+        [TransactionScopeAspect]
         public IEnumerable<Event> GetInactiveEventsByUserId(int userId)
         {
             return _unitOfWork.Events.GetAll().Where(e => e.UserId == userId && !e.Status);
         }
-      
-        
+
+
         // reactivate events
+        [TransactionScopeAspect]
         public void ActivateEvent(int eventId, DateTime newDate, string newStartTime, string newEndTime)
         {
             var existingEvent = _unitOfWork.Events.GetById(eventId);

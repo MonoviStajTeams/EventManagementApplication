@@ -1,5 +1,6 @@
 using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.Core.Aspects.TransactionAspects;
 using EventManagementApplication.Core.Aspects.ValidationAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
@@ -22,7 +23,7 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
-
+        [TransactionScopeAspect]
         [FluentValidateAspect(typeof(NotificationValidator))]
         public void Create(Notification entity)
         {
@@ -31,7 +32,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Save();
         }
 
-
+        [TransactionScopeAspect]
         public void Delete(int id)
         {
             var notification = _unitOfWork.Notifications.GetById(id);
@@ -42,25 +43,26 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-
+        [TransactionScopeAspect]
         public IEnumerable<Notification> GetAll()
         {
             return _unitOfWork.Notifications.GetAll();
         }
 
+        [TransactionScopeAspect]
         public Notification GetById(int id)
         {
             return _unitOfWork.Notifications.GetById(id);
         }
 
-
+        [TransactionScopeAspect]
         public void Update(Notification entity)
         {
             _unitOfWork.Notifications.Update(entity);
             _unitOfWork.Save();
         }
 
-
+        [TransactionScopeAspect]
         public void SendInvitationNotification(Invitation invitation, User user)
         {
 
@@ -78,6 +80,7 @@ namespace EventManagementApplication.Business.Concrete
 
         }
 
+        [TransactionScopeAspect]
         public void SendReminderNotifications()
         {
             DateTime reminderTime = DateTime.Now.AddHours(2);
@@ -104,6 +107,7 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+        [TransactionScopeAspect]
         private void SendInvitationReminder(Event ev, User user)
         {
             var invitation = _unitOfWork.Invitations.GetAll()
@@ -126,6 +130,7 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+        [TransactionScopeAspect]
         private string GetReminderNotificationContent(Event ev)
         {
             return $"Etkinlik: {ev.Title}\n" +

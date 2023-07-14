@@ -6,6 +6,7 @@ using System.Net.Mail;
 using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.DataAccess.Abstract;
+using EventManagementApplication.Core.Aspects.TransactionAspects;
 
 namespace EventManagementApplication.Business.Concrete
 {
@@ -18,12 +19,14 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
+        [TransactionScopeAspect]
         public void Create(Invitation entity)
         {
             _unitOfWork.Invitations.Add(entity);
             _unitOfWork.Save();
         }
 
+        [TransactionScopeAspect]
         public void Delete(int id)
         {
             var invitation = _unitOfWork.Invitations.GetById(id);
@@ -34,22 +37,26 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+        [TransactionScopeAspect]
         public IEnumerable<Invitation> GetAll()
         {
             return _unitOfWork.Invitations.GetAll();
         }
 
+        [TransactionScopeAspect]
         public Invitation GetById(int id)
         {
             return _unitOfWork.Invitations.GetById(id);
         }
 
+        [TransactionScopeAspect]
         public void Update(Invitation entity)
         {
             _unitOfWork.Invitations.Update(entity);
             _unitOfWork.Save();
         }
 
+        [TransactionScopeAspect]
         public void SendInvitationMail(int invitationId)  //maile gönderme
         {
             var invitation = _unitOfWork.Invitations.GetById(invitationId);
