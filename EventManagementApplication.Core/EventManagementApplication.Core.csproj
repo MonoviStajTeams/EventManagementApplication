@@ -14,8 +14,4 @@
     <PackageReference Include="System.Runtime.Caching" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\EventManagementApplication.Business\EventManagementApplication.Business.csproj" />
-  </ItemGroup>
-
 </Project>

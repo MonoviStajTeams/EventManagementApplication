@@ -75,11 +75,11 @@ namespace EventManagementApplication.Business.Concrete
                             smtpClient.Credentials = new System.Net.NetworkCredential("test@yipadanismanlik.com", "monovi1234");
 
 
-                            var mailMessage = new MailMessage();
-                            mailMessage.Subject = subject;
-                            mailMessage.Body = body;
-                            mailMessage.To.Add(selectedUser.Mail);
-                            smtpClient.Send(mailMessage);
+                            //var mailMessage = new MailMessage();
+                            //mailMessage.Subject = subject;
+                            //mailMessage.Body = body;
+                            //mailMessage.To.Add(selectedUser);
+                            //smtpClient.Send(mailMessage);
                         }
                     
                 }

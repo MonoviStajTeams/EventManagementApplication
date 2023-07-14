@@ -1,4 +1,5 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Core.Aspects.TransactionAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -18,6 +19,8 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
+
+        [TransactionScopeAspect]
         public void Create(Event entity)
         {
             _unitOfWork.Events.Add(entity);
