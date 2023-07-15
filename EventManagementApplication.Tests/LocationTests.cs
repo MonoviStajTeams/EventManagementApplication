@@ -65,7 +65,7 @@ namespace EventManagementApplication.Tests
 
             var locationService = new LocationService(unitOfWorkMock.Object);
             
-            locationService.Delete(locationToDelete);
+            
            
             locationRepositoryMock.Verify(repo => repo.Delete(locationToDelete), Times.Once);
 
