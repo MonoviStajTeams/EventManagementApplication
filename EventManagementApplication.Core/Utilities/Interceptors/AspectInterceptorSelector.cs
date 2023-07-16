@@ -4,8 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Castle.DynamicProxy;
-using Core.Aspects.Autofac.Exception;
-using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
+using EventManagementApplication.Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 
 namespace EventManagementApplication.Core.Utilities.Interceptors
 {
@@ -18,7 +17,7 @@ namespace EventManagementApplication.Core.Utilities.Interceptors
             var methodAttributes = type.GetMethod(method.Name)
                 .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
             classAttributes.AddRange(methodAttributes);
-            classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
+            //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }

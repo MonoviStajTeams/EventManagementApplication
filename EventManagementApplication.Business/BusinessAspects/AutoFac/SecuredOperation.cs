@@ -1,4 +1,5 @@
-﻿using EventManagementApplication.Core.Utilities.Interceptors;
+﻿using Castle.DynamicProxy;
+using EventManagementApplication.Core.Utilities.Interceptors;
 using Microsoft.AspNetCore.Http;
 using PostSharp.Extensibility;
 using System;
@@ -16,7 +17,7 @@ namespace EventManagementApplication.Business.BusinessAspects.AutoFac
 
         public SecuredOperation(string roles)
         {
-            _roles = roles.Split(',');
+            _roles = roles.Split(',');//metni karaktere göre ayırıyor
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
 
         }
