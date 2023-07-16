@@ -17,5 +17,10 @@ namespace EventManagementApplication.Entities.Concrete
 
         public int RoleId { get; set; }
         public Role Role { get; set; }
+
+
+
+
+
     }
 }
