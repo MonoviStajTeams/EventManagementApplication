@@ -42,7 +42,7 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult UpdateUserDetail(UserDetail userDetail)
         {
-            _userDetailService.Create(userDetail);
+            _userDetailService.Update(userDetail);
             return RedirectToAction("UserDetailList", controllerName: "UserDetail");
         }
 

@@ -30,7 +30,7 @@ namespace EventManagementApplication.WebUI.Controllers
         public IActionResult AddRole(Notification notification)
         {
             _notificationService.Create(notification);
-            return RedirectToAction("Index", "Notification");
+            return RedirectToAction("NotificationList", "Notification");
         }
 
         [HttpGet]
@@ -42,14 +42,14 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult UpdateRole(Notification notification)
         {
-            _notificationService.Create(notification);
-            return RedirectToAction("Index", "Notification");
+            _notificationService.Update(notification);
+            return RedirectToAction("NotificationList", "Notification");
         }
 
         public IActionResult DeleteRole(int id)
         {
             _notificationService.Delete(id);
-            return RedirectToAction("Index", "Notification");
+            return RedirectToAction("NotificationList", "Notification");
         }
     }
 }
