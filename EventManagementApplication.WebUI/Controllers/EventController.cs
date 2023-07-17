@@ -1,4 +1,5 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +16,17 @@ namespace EventManagementApplication.WebUI.Controllers
 
         public IActionResult GetAll()
         {
-            return View();
+            var eventList = _eventService.GetAll();
+            return View(eventList);
         }
+
+        [HttpGet]
+        public IActionResult EventSingle(int id)
+        {
+            var eventById = _eventService.GetById(id);
+            return View(eventById);
+        }
+
 
         [HttpGet]
         public IActionResult AddEvent()
@@ -50,5 +60,13 @@ namespace EventManagementApplication.WebUI.Controllers
             _eventService.Delete(id);
             return RedirectToAction("Index", "Event");
         }
+
+        public IActionResult GetInactiveEventsByUserId(int id)
+        {
+            var eventList = _eventService.GetInactiveEventsByUserId(id);
+            return View(eventList);
+        }
+
+    
     }
 }

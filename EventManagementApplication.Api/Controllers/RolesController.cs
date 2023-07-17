@@ -1,4 +1,5 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,16 @@ namespace EventManagementApplication.Api.Controllers
         }
 
 
+        [HttpGet]
+        [Route("GetRoleById{id}")]
+        public IActionResult GetRoleById(int id)
+        {
+            var role = _roleService.GetById(id);
+            return Ok(role);
+        }
+
+
+
         [HttpPost]
         [Route("AddRole")]
         public IActionResult AddRole(Role role)
@@ -41,5 +52,14 @@ namespace EventManagementApplication.Api.Controllers
             _roleService.Update(role);
             return Ok();
         }
+
+        [HttpDelete]
+        public IActionResult DeleteEvent(int id)
+        {
+            _roleService.Delete(id);
+            return Ok();
+        }
+
+
     }
 }

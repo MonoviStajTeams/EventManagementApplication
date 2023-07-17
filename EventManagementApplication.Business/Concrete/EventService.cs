@@ -62,6 +62,8 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
+
+
         // list past events by user
         public IEnumerable<Event> GetInactiveEventsByUserId(int userId)
         {
