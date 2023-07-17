@@ -2,7 +2,7 @@
 
 namespace EventManagementApplication.WebUI.Controllers
 {
-    public class LocationServiceController : Controller
+    public class LocationController : Controller
     {
         public IActionResult Index()
         {

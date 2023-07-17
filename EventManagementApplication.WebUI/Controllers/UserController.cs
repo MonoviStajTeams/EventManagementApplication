@@ -2,7 +2,7 @@
 
 namespace EventManagementApplication.WebUI.Controllers
 {
-    public class UserDetailServiceController : Controller
+    public class UserController : Controller
     {
         public IActionResult Index()
         {

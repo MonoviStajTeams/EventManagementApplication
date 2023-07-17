@@ -2,7 +2,7 @@
 
 namespace EventManagementApplication.WebUI.Controllers
 {
-    public class UserInvitationMappingServiceController : Controller
+    public class InvitationController : Controller
     {
         public IActionResult Index()
         {
