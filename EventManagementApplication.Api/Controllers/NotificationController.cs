@@ -1,11 +1,13 @@
 ﻿using EventManagementApplication.Business.Abstract;
-using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventManagementApplication.WebUI.Controllers
+namespace EventManagementApplication.Api.Controllers
 {
-    public class NotificationController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class NotificationController : ControllerBase
     {
         private readonly INotificationService _notificationService;
 
@@ -14,42 +16,34 @@ namespace EventManagementApplication.WebUI.Controllers
             _notificationService = notificationService;
         }
 
+        [HttpGet]
+        [Route("NotificationList")]
         public IActionResult NotificationList()
         {
-            var notifications = _notificationService.GetAll();
-            return View(notifications);
+            var notificationList = _notificationService.GetAll();
+            return Ok(notificationList);
         }
 
-        [HttpGet]
-        public IActionResult AddNotification()
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult AddNotification(Notification notification)
         {
             _notificationService.Create(notification);
-            return RedirectToAction("NotificationList", "Notification");
-        }
-
-        [HttpGet]
-        public IActionResult UpdateNotification()
-        {
-            return View();
+            return Ok();
         }
 
         [HttpPost]
         public IActionResult UpdateNotification(Notification notification)
         {
             _notificationService.Update(notification);
-            return RedirectToAction("NotificationList", "Notification");
+            return Ok();
         }
 
+        [HttpDelete]
         public IActionResult DeleteNotification(int id)
         {
             _notificationService.Delete(id);
-            return RedirectToAction("NotificationList", "Notification");
+            return Ok();
         }
     }
 }

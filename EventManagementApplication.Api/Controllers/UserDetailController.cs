@@ -1,11 +1,13 @@
 ﻿using EventManagementApplication.Business.Abstract;
-using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventManagementApplication.WebUI.Controllers
+namespace EventManagementApplication.Api.Controllers
 {
-    public class UserDetailController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserDetailController : ControllerBase
     {
         private readonly IUserDetailService _userDetailService;
 
@@ -14,42 +16,34 @@ namespace EventManagementApplication.WebUI.Controllers
             _userDetailService = userDetailService;
         }
 
+        [HttpGet]
+        [Route("UserDetailList")]
         public IActionResult UserDetailList()
         {
-            var userDetails = _userDetailService.GetAll();
-            return View(userDetails);
+            var userDetailList = _userDetailService.GetAll();
+            return Ok(userDetailList);
         }
 
-        [HttpGet]
-        public IActionResult AddUserDetail()
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult AddUserDetail(UserDetail userDetail)
         {
             _userDetailService.Create(userDetail);
-            return RedirectToAction("UserDetailList", controllerName: "UserDetail");
-        }
-
-        [HttpGet]
-        public IActionResult UpdateUserDetail()
-        {
-            return View();
+            return Ok();
         }
 
         [HttpPost]
         public IActionResult UpdateUserDetail(UserDetail userDetail)
         {
             _userDetailService.Update(userDetail);
-            return RedirectToAction("UserDetailList", controllerName: "UserDetail");
+            return Ok();
         }
 
-        public IActionResult DeleteRole(int id)
+        [HttpDelete]
+        public IActionResult DeleteUserDetail(int id)
         {
             _userDetailService.Delete(id);
-            return RedirectToAction("UserDetailList", controllerName: "UserDetail");
+            return Ok();
         }
     }
 }
