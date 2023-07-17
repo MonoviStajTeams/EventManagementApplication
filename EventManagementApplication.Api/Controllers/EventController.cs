@@ -1,4 +1,5 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,16 @@ namespace EventManagementApplication.Api.Controllers
         }
 
 
+        [HttpGet]
+        [Route("GetEventyId{id}")]
+        public IActionResult GetEventById(int id)
+        {
+            var role = _eventService.GetById(id);
+            return Ok(role);
+        }
+
+
+
         [HttpPost]
         public IActionResult AddEvent(Event entity)
         {
@@ -45,5 +56,16 @@ namespace EventManagementApplication.Api.Controllers
             _eventService.Delete(id);
             return Ok();
         }
+
+
+        [HttpGet]
+        [Route("GetInactiveEvents{id}")]
+        public IActionResult GetInactiveEventsByUserId(int id)
+        {
+            var eventList = _eventService.GetInactiveEventsByUserId(id);
+            return Ok(eventList);
+        }
+
+       
     }
 }

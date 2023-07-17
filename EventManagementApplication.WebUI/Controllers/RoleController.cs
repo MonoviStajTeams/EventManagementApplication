@@ -20,6 +20,7 @@ namespace EventManagementApplication.WebUI.Controllers
             return View(roles);
         }
 
+
         [HttpGet]
         public IActionResult AddRole()
         {
