@@ -1,17 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace EventManagementApplication.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class EventServiceController : Controller
     {
-
         public IActionResult Index()
         {
             return View();
         }
-
-
-
     }
 }
