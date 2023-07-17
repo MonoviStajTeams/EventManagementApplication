@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagementApplication.Api.Controllers
@@ -7,5 +9,46 @@ namespace EventManagementApplication.Api.Controllers
     [ApiController]
     public class InvitationController : ControllerBase
     {
+        private readonly IInvitationService _invitationService;
+
+        public InvitationController(IInvitationService invitationService)
+        {
+            _invitationService = invitationService;
+        }
+
+        public IActionResult GetAllInvitation()
+        {
+            var invitationList = _invitationService.GetAll();
+            return Ok(invitationList);
+        }
+
+        [HttpGet]
+        public IActionResult InvitationSingle(int id)
+        {
+            var invitatiın = _invitationService.GetById(id);
+            return Ok(invitatiın);
+        }
+
+        [HttpPost]
+        public IActionResult AddInvitation(Invitation entity)
+        {
+            _invitationService.Create(entity);
+            return Ok();
+        }
+
+
+        [HttpPost]
+        public IActionResult UpdateEvent(Invitation entity)
+        {
+            _invitationService.Update(entity);
+            return Ok();
+        }
+
+
+        public IActionResult DeleteInvitation(int id)
+        {
+            _invitationService.Delete(id);
+            return Ok();
+        }
     }
 }
