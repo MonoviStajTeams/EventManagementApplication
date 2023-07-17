@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
-    [TransactionScopeAspect]
 
     public class RoleService : IRoleService
     {

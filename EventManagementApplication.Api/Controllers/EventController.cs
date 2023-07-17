@@ -1,10 +1,13 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventManagementApplication.WebUI.Controllers
+namespace EventManagementApplication.Api.Controllers
 {
-    public class EventController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EventController : ControllerBase
     {
         private readonly IEventService _eventService;
 
@@ -13,42 +16,34 @@ namespace EventManagementApplication.WebUI.Controllers
             _eventService = eventService;
         }
 
-        public IActionResult GetAll()
+        [HttpGet]
+        [Route("EventList")]
+        public IActionResult EventList()
         {
-            return View();
+            var eventList = _eventService.GetAll();
+            return Ok(eventList);
         }
 
-        [HttpGet]
-        public IActionResult AddEvent()
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult AddEvent(Event entity)
         {
             _eventService.Create(entity);
-            return RedirectToAction("Index","Event");
-        }
-
-        [HttpGet]
-        public IActionResult UpdateEvent()
-        {
-            return View();
+            return Ok();
         }
 
         [HttpPost]
         public IActionResult UpdateEvent(Event entity)
         {
             _eventService.Update(entity);
-            return RedirectToAction("Index", "Event");
+            return Ok();
         }
 
-     
+        [HttpDelete]
         public IActionResult DeleteEvent(int id)
         {
             _eventService.Delete(id);
-            return RedirectToAction("Index", "Event");
+            return Ok();
         }
     }
 }
