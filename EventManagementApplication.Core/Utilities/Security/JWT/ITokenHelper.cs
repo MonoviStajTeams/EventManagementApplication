@@ -1,4 +1,4 @@
-﻿using EventManagementApplication.Core.Entities.Concrete;
+﻿using EventManagementApplication.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;

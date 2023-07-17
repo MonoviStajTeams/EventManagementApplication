@@ -9,5 +9,8 @@ namespace EventManagementApplication.DataAccess.Abstract
 {
     public interface IUserRepository : IGenericRepository<User>
     {
+        List<OperationClaim> GetClaims(User user);
+
+
     }
 }

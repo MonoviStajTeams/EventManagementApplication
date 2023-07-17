@@ -1,4 +1,4 @@
-﻿namespace EventManagementApplication.Core.Entities.Concrete
+﻿namespace EventManagementApplication.Entities.Concrete
 {
     public class OperationClaim
     {

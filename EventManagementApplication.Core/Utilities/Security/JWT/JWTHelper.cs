@@ -1,6 +1,7 @@
-﻿using EventManagementApplication.Core.Entities.Concrete;
+﻿using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.Core.Extensions;
 using EventManagementApplication.Core.Utilities.Security.Encrypton;
+using EventManagementApplication.Entities.Concrete;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -22,9 +23,11 @@ namespace EventManagementApplication.Core.Utilities.Security.JWT
         public JwtHelper(IConfiguration configuration)
         {
             Configuration = configuration;
-            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();//get methodu binder ile çalışıyor
+            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>()!;//get methodu binder ile çalışıyor
 
         }
+    
+        
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
@@ -60,7 +63,7 @@ namespace EventManagementApplication.Core.Utilities.Security.JWT
         {
             var claims = new List<Claim>();
             claims.AddNameIdentifier(user.Id.ToString());
-            claims.AddEmail(user.Email);
+            claims.AddEmail(user.Mail);
             claims.AddName($"{user.FirstName} {user.LastName}");
             claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
 

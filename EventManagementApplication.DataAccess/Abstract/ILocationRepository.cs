@@ -9,6 +9,5 @@ namespace EventManagementApplication.DataAccess.Abstract
 {
     public interface ILocationRepository : IGenericRepository<Location>
     {
-        void Delete(Location locationToDelete);
     }
 }
