@@ -1,6 +1,7 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
 using EventManagementApplication.Core.Aspects.TransactionAspects;
+using EventManagementApplication.Core.Aspects.ValidationAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
+    [TransactionScopeAspect]
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,14 +22,14 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(User))]
         public void Create(User user)
         {
             _unitOfWork.Users.Add(user);
             _unitOfWork.Save();
         }
 
-        [TransactionScopeAspect]
+      
         public void Delete(int id)
         {
             var user = _unitOfWork.Users.GetById(id);
@@ -38,19 +40,18 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-        [TransactionScopeAspect]
+      
         public IEnumerable<User> GetAll()
         {
             return _unitOfWork.Users.GetAll();
         }
 
-        [TransactionScopeAspect]
         public User GetById(int id)
         {
             return _unitOfWork.Users.GetById(id);
         }
 
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(User))]
         public void Update(User entity)
         {
             _unitOfWork.Users.Update(entity);

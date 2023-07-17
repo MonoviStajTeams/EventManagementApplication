@@ -67,7 +67,7 @@ namespace EventManagementApplication.Tests
             
             
            
-            locationRepositoryMock.Verify(repo => repo.Delete(locationToDelete), Times.Once);
+            locationRepositoryMock.Verify(repo => repo.Remove(locationToDelete), Times.Once);
 
             unitOfWorkMock.Verify(uow => uow.Save(), Times.Once);
         }

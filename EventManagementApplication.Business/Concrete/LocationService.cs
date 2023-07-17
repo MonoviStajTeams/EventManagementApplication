@@ -1,6 +1,7 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
 using EventManagementApplication.Core.Aspects.TransactionAspects;
+using EventManagementApplication.Core.Aspects.ValidationAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
+
+    [TransactionScopeAspect]
     public class LocationService : ILocationService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,7 +23,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(LocationValidator))]
         public void Create(Location entity)
         {
 
@@ -28,7 +31,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Save();
         }
 
-        [TransactionScopeAspect]
+    
         public void Delete(int id)
         {
             var location = _unitOfWork.Locations.GetById(id);
@@ -39,19 +42,19 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-        [TransactionScopeAspect]
+     
         public IEnumerable<Location> GetAll()
         {
             return _unitOfWork.Locations.GetAll();
         }
 
-        [TransactionScopeAspect]
+    
         public Location GetById(int id)
         {
             return _unitOfWork.Locations.GetById(id);
         }
 
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(LocationValidator))]
         public void Update(Location entity)
         {
             _unitOfWork.Locations.Update(entity);

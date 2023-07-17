@@ -7,9 +7,12 @@ using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Core.Aspects.TransactionAspects;
+using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.Core.Aspects.ValidationAspects;
 
 namespace EventManagementApplication.Business.Concrete
 {
+    [TransactionScopeAspect]
     public class InvitationService : IInvitationService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -19,14 +22,14 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        [TransactionScopeAspect]
+
+        [FluentValidateAspect(typeof(InvitationValidator))]
         public void Create(Invitation entity)
         {
             _unitOfWork.Invitations.Add(entity);
             _unitOfWork.Save();
         }
 
-        [TransactionScopeAspect]
         public void Delete(int id)
         {
             var invitation = _unitOfWork.Invitations.GetById(id);
@@ -37,26 +40,22 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-        [TransactionScopeAspect]
         public IEnumerable<Invitation> GetAll()
         {
             return _unitOfWork.Invitations.GetAll();
         }
 
-        [TransactionScopeAspect]
         public Invitation GetById(int id)
         {
             return _unitOfWork.Invitations.GetById(id);
         }
-
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(InvitationValidator))]
         public void Update(Invitation entity)
         {
             _unitOfWork.Invitations.Update(entity);
             _unitOfWork.Save();
         }
 
-        [TransactionScopeAspect]
         public void SendInvitationMail(int invitationId)  //maile gönderme
         {
             var invitation = _unitOfWork.Invitations.GetById(invitationId);
@@ -82,12 +81,10 @@ namespace EventManagementApplication.Business.Concrete
                             smtpClient.Credentials = new System.Net.NetworkCredential("test@yipadanismanlik.com", "monovi1234");
 
 
-                            //var mailMessage = new MailMessage();
-                            //mailMessage.Subject = subject;
-                            //mailMessage.Body = body;
-                            //mailMessage.To.Add(selectedUser);
-                            //smtpClient.Send(mailMessage);
-                        }
+                        var mailMessage = new MailMessage("test@yipadanismanlik.com", "test@yipadanismanlik.com", subject,body);
+              
+                        smtpClient.Send(mailMessage);
+                    }
                     
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
 using EventManagementApplication.Core.Aspects.TransactionAspects;
+using EventManagementApplication.Core.Aspects.ValidationAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
+    [TransactionScopeAspect]
+
     public class RoleService : IRoleService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -19,15 +22,13 @@ namespace EventManagementApplication.Business.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(RoleValidator))]
         public void Create(Role role)
         {
             _unitOfWork.Roles.Add(role);
             _unitOfWork.Save();
         }
 
-        [TransactionScopeAspect]
         public void Delete(int id)
         {
             var user = _unitOfWork.Roles.GetById(id);
@@ -38,19 +39,18 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-        [TransactionScopeAspect]
         public IEnumerable<Role> GetAll()
         {
             return _unitOfWork.Roles.GetAll();
         }
 
-        [TransactionScopeAspect]
         public Role GetById(int id)
         {
             return _unitOfWork.Roles.GetById(id);
         }
 
-        [TransactionScopeAspect]
+
+        [FluentValidateAspect(typeof(RoleValidator))]
         public void Update(Role role)
         {
             _unitOfWork.Roles.Update(role);

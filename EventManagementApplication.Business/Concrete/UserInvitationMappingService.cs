@@ -1,5 +1,7 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Business.ValidationRules.FluentValidation;
 using EventManagementApplication.Core.Aspects.TransactionAspects;
+using EventManagementApplication.Core.Aspects.ValidationAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
 using System;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
+    [TransactionScopeAspect]
     public class UserInvitationMappingService : IUserInvitationMappingService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -18,8 +21,7 @@ namespace EventManagementApplication.Business.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(UserInvitationMappingValidator))]
         public void Create(UserInvitationMapping entity)
         {
 
@@ -27,7 +29,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Save();
         }
 
-        [TransactionScopeAspect]
+       
         public void Delete(int id)
         {
             var userInvitation = _unitOfWork.UserInvitationMappings.GetById(id);
@@ -38,20 +40,20 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-        [TransactionScopeAspect]
+     
         public IEnumerable<UserInvitationMapping> GetAll()
         {
             return _unitOfWork.UserInvitationMappings.GetAll();
         }
 
-        [TransactionScopeAspect]
+    
         public UserInvitationMapping GetById(int id)
         {
             return _unitOfWork.UserInvitationMappings.GetById(id);
 
         }
 
-        [TransactionScopeAspect]
+        [FluentValidateAspect(typeof(UserInvitationMappingValidator))]
         public void Update(UserInvitationMapping entity)
         {
             _unitOfWork.UserInvitationMappings.Update(entity);
