@@ -17,6 +17,10 @@ namespace EventManagementApplication.DataAccess.Concrete
 
         }
 
+        public EventManagementDbContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new EventConfiguration());
