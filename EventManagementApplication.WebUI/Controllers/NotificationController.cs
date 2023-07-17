@@ -27,26 +27,26 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRole(Notification notification)
+        public IActionResult AddNotification(Notification notification)
         {
             _notificationService.Create(notification);
             return RedirectToAction("NotificationList", "Notification");
         }
 
         [HttpGet]
-        public IActionResult UpdateRole()
+        public IActionResult UpdateNotification()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult UpdateRole(Notification notification)
+        public IActionResult UpdateNotification(Notification notification)
         {
             _notificationService.Update(notification);
             return RedirectToAction("NotificationList", "Notification");
         }
 
-        public IActionResult DeleteRole(int id)
+        public IActionResult DeleteNotification(int id)
         {
             _notificationService.Delete(id);
             return RedirectToAction("NotificationList", "Notification");
