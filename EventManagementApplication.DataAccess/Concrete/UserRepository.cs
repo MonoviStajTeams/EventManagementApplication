@@ -14,5 +14,10 @@ namespace EventManagementApplication.DataAccess.Concrete
         {
 
         }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

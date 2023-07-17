@@ -14,9 +14,10 @@ namespace EventManagementApplication.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.FullName).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.FirstName).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.LastName).IsRequired().HasMaxLength(100);
             builder.Property(x => x.Mail).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Password).IsRequired();
+            builder.Property(x => x.PasswordSalt).IsRequired();
             builder.Property(x => x.ConfirmPassword).IsRequired();
         }
     }
