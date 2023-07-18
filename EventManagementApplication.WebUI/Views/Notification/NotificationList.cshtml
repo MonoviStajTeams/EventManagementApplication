@@ -1,7 +1,38 @@
-﻿@{
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Notification>
+
+@{
     ViewData["Title"] = "NotificationList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>NotificationList</h1>
+<h1>Notification List</h1>
 
+@if (Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Event Title</th>
+                <th>Receiving User</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var notification in Model)
+            {
+                <tr>
+                    <td>@notification.Invitation.Event.Title</td>
+                    <td>@notification.User.FirstName @notification.User.LastName</td>
+                    <td>
+                        <a href="@Url.Action("UpdateNotification", "Admin", new { id = notification.Id })">Update</a>
+                        <a href="@Url.Action("DeleteNotification", "Admin", new { id = notification.Id })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No notifications found.</p>
+}
