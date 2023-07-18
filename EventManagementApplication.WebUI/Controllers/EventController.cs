@@ -42,9 +42,17 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult UpdateEvent()
+        public IActionResult UpdateEventUser(int id)
         {
-            return View();
+            var events = _eventService.GetById(id);
+            return View(events);
+        }
+
+        [HttpGet]
+        public IActionResult UpdateEventAdmin(int id)
+        {
+            var events = _eventService.GetById(id);
+            return View(events);
         }
 
         [HttpPost]

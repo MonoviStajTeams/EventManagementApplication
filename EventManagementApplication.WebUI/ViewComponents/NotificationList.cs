@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagementApplication.WebUI.ViewComponents
 {
-    public class Notifications : ViewComponent
+    public class NotificationList : ViewComponent
     {
         private readonly INotificationService _notificationService;
 
-        public Notifications (INotificationService notificationService)
+        public NotificationList (INotificationService notificationService)
         {
             _notificationService = notificationService;
         }

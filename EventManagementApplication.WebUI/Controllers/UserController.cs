@@ -8,5 +8,11 @@ namespace EventManagementApplication.WebUI.Controllers
         {
             return View();
         }
+
+
+        public IActionResult UserDashboard()
+        {
+            return View();
+        }
     }
 }
