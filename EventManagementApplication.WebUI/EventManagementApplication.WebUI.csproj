@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="log4net.config" />
   </ItemGroup>
 
@@ -35,6 +31,10 @@
   <ItemGroup>
     <ProjectReference Include="..\EventManagementApplication.Business\EventManagementApplication.Business.csproj" />
     <ProjectReference Include="..\EventManagementApplication.Entities\EventManagementApplication.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
