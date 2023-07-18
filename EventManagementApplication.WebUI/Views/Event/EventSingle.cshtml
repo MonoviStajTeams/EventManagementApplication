@@ -4,5 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>EventSingle</h1>
+<h1>Event Details</h1>
+
+
+<div>
+    <h2>@Model.Title</h2>
+    <p>@Model.Description</p>
+    <p>Date: @Model.Date.ToShortDateString()</p>
+    <p>Time: @Model.StartTime - @Model.EndTime</p>
+    <p>Type: @Model.Type</p>
+    <p>Status: @((Model.Status) ? "Active" : "Inactive")</p>
+    <p>Organizer: @Model.User.FirstName @Model.User.LastName</p>
+</div>
 
