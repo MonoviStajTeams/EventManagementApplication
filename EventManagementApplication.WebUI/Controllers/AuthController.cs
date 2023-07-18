@@ -23,12 +23,27 @@ namespace EventManagementApplication.WebUI.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Register(User user)
         {
+            if (false) // Mail Kontrolü Yapılacak
+            {
+                ModelState.AddModelError("Email", "Bu e-posta adresi zaten kullanılıyor.");
+                ViewBag.ErrorMessage = "Bu e-posta adresi zaten kullanılıyor.";
+                return View(user);
+            }
+            else if (false) // User Register İşlemi Yapılacak
+            {
+               
+                return RedirectToAction("Login", "Auth");
+            }
 
             return View();
+
         }
+
+
 
     }
 }

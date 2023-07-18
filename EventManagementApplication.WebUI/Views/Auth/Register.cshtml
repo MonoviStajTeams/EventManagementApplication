@@ -1,6 +1,189 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<section class="vh-100  " style="background-color: #eee;">
+    <div class="container p-4 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-md-12">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 col-lg-8 col-xl-5 order-2 order-lg-1">
+
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Kayıt Ol</p>
+
+                                <form method="post" action="@Url.Action("Register","Auth")" class="mx-1 mx-md-4">
+
+                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label">Ad</label>
+                                            <input type="text" name="FirstName" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label">Soyad</label>
+                                            <input type="text" name="LastName" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label">Mail</label>
+                                            <input type="email" name="Mail" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label">Şifre</label>
+                                            <input type="password" name="Password" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" name="ConfirmPassword">Şifre Tekrar</label>
+                                            <input type="password" class="form-control" name="ConfirmPassword" required />
+                                        </div>
+                                    </div>
+                     
+
+                                    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                                    {
+                                        <div class="alert alert-danger">
+                                            @ViewBag.ErrorMessage
+                                        </div>
+                                    }
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <span id="password-mismatch-msg" class="text-danger d-none">Şifreler eşleşmiyor. Lütfen tekrar deneyin.</span>
+                                        <span id="password-match-msg" class="text-success d-none">Şifreler eşleşiyor.</span>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary btn-lg custom-btn-primary" id="register-button" disabled>Kayıt Ol</button>
+                                    </div>
+
+                                </form>
+                             
+                                
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img src="https://monovi.com.tr/img/logo/monovi-logo-grey.png" class="img-fluid" alt="Monovi Image">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    .custom-form-outline {
+        position: relative;
+    }
+
+        .custom-form-outline input.form-control {
+            background-color: #f8f9fa;
+            border-color: #6c757d;
+            border-radius: 12px;
+            padding: 10px 15px;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+            .custom-form-outline input.form-control:focus {
+                border-color: #28a745;
+                box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+            }
+
+    .custom-btn-primary {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        border-radius: 20px;
+        padding: 12px 20px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+        .custom-btn-primary:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .custom-btn-primary:focus {
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.5);
+        }
+
+
+        .custom-btn-primary:active {
+            background-color: #8b0000 !important;
+            border-color: #8b0000;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+</style>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        function showPasswordMismatchMsg() {
+            $('#password-match-msg').addClass('d-none');
+            $('#password-mismatch-msg').removeClass('d-none').addClass('show');
+            $('#register-button').prop('disabled', true); // Butonu pasif yap
+        }
+
+        function showPasswordMatchMsg() {
+            $('#password-mismatch-msg').addClass('d-none');
+            $('#password-match-msg').removeClass('d-none').addClass('show');
+            $('#register-button').prop('disabled', false); // Butonu aktif yap
+        }
+
+        function hideMessages() {
+            $('#password-mismatch-msg').addClass('d-none');
+            $('#password-match-msg').addClass('d-none');
+        }
+
+        // Şifre alanlarından herhangi biri değiştiğinde kontrolü yap
+        $('input[name="Password"], input[name="ConfirmPassword"]').on('input', function () {
+            var password = $('input[name="Password"]').val();
+            var confirmPassword = $('input[name="ConfirmPassword"]').val();
+
+            if (password !== confirmPassword) {
+                showPasswordMismatchMsg();
+            } else {
+                showPasswordMatchMsg();
+            }
+        });
+
+        // Form gönderildiğinde tekrar kontrol yap
+        $('#register-form').submit(function (e) {
+            var password = $('input[name="Password"]').val();
+            var confirmPassword = $('input[name="ConfirmPassword"]').val();
+
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                showPasswordMismatchMsg();
+            } else {
+                hideMessages();
+            }
+        });
+    });
+</script>
+
 
