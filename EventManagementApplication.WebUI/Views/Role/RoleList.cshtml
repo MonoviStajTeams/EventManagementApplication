@@ -6,3 +6,23 @@
 
 <h1>RoleList</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th>Role Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.RoleName</td>
+                <td>
+                    <a href="@Url.Action("UpdateRole", "Role", new { id = role.Id })">Edit</a>
+                    <a href="@Url.Action("DeleteRole", "Role", new { id = role.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
