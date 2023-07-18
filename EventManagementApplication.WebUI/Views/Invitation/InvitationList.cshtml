@@ -1,0 +1,29 @@
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Invitation>
+
+@{
+    ViewData["Title"] = "InvitationList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>All Invitations</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Invitation Title</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invitation in Model)
+        {
+            <tr>
+                <td>@invitation.Title</td>
+                <td>
+                    <a href="@Url.Action("InvitationSingle", "Invitation", new { id = invitation.Id })">View</a>
+                    <a href="@Url.Action("UpdateInvitation", "Invitation", new { id = invitation.Id })">Edit</a>
+                    <a href="@Url.Action("DeleteInvitation", "Invitation", new { id = invitation.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
