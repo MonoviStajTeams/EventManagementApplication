@@ -20,11 +20,7 @@ namespace EventManagementApplication.WebUI.Controllers
             return View(notifications);
         }
 
-        [HttpGet]
-        public IActionResult AddNotification()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         public IActionResult AddNotification(Notification notification)
@@ -33,11 +29,6 @@ namespace EventManagementApplication.WebUI.Controllers
             return RedirectToAction("NotificationList", "Notification");
         }
 
-        [HttpGet]
-        public IActionResult UpdateNotification()
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult UpdateNotification(Notification notification)

@@ -2,7 +2,7 @@
 
 namespace EventManagementApplication.Business.Abstract
 {
-    public interface IDataResult<out T> : IResult
+    public interface IDataResult<T> : IResult
     {
         T Data { get; }
     }

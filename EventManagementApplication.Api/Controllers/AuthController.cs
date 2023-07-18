@@ -9,11 +9,16 @@ namespace EventManagementApplication.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        [HttpPost]
+        [Route("Login")]
         public IActionResult Login(LoginViewModel loginViewModel)
         {
             return Ok();
         }
 
+
+        [HttpPost]
+        [Route("Register")]
         public IActionResult Register(User user)
         {
             return Ok();
