@@ -1,6 +1,7 @@
 ﻿using EventManagementApplication.Core.Utilities.Results;
 using EventManagementApplication.Core.Utilities.Security.JWT;
 using EventManagementApplication.Entities.Concrete;
+using EventManagementApplication.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

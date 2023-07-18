@@ -10,6 +10,7 @@ namespace EventManagementApplication.DataAccess.Concrete
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
+
         public UserRepository(EventManagementDbContext dbContext) : base(dbContext)
         {
 

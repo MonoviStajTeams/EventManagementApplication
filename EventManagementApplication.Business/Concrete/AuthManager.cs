@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
-    public class AuthManager 
+    public class AuthManager : IAuthService
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
@@ -37,7 +37,7 @@ namespace EventManagementApplication.Business.Concrete
                 PasswordSalt = passwordSalt,
                 Status = true
             };
-            _userService.Add(user);
+            _userService.Create(user);
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 

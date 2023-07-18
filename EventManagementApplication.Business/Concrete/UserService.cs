@@ -51,6 +51,16 @@ namespace EventManagementApplication.Business.Concrete
             return _unitOfWork.Users.GetById(id);
         }
 
+        public User GetByMail(string mail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         [FluentValidateAspect(typeof(User))]
         public void Update(User entity)
         {

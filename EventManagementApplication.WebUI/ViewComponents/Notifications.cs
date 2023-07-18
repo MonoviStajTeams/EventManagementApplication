@@ -8,8 +8,7 @@ namespace EventManagementApplication.WebUI.ViewComponents
     {
         private readonly INotificationService _notificationService;
 
-        public Notifications
-            (INotificationService notificationService)
+        public Notifications (INotificationService notificationService)
         {
             _notificationService = notificationService;
         }
