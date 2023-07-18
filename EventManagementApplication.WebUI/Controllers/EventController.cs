@@ -50,17 +50,9 @@ namespace EventManagementApplication.WebUI.Controllers
             return View(events);
         }
 
-        [HttpGet]
-        public IActionResult UpdateEventAdmin(int id)
-        {
-            var events = _eventService.GetById(id);
-            return View(events);
-        }
-
         [HttpPost]
         public IActionResult UpdateEvent(Event entity)
         {
-            //User ıd si gönderilecektir 
             _eventService.Update(entity);
             return RedirectToAction("Index", "Event");
         }
