@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 namespace EventManagementApplication.Business.Concrete
 {
 
-    [TransactionScopeAspect]
     public class NotificationService : INotificationService
     {
         private readonly IUnitOfWork _unitOfWork;

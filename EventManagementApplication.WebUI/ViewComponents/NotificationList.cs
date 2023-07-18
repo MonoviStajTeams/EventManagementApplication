@@ -15,8 +15,9 @@ namespace EventManagementApplication.WebUI.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var notifications = _notificationService.GetAll();
-            return View(notifications);
+            //var notifications = _notificationService.GetAll();
+            //return View(notifications);
+            return View();
         }
     }
 }
