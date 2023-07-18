@@ -3,5 +3,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>AddUserDetail</h1>
+<h1>Add User Detail</h1>
 
+<form method="post" asp-controller="UserDetail" asp-action="AddUserDetail">
+    <div>
+        <label>Phone Number:</label>
+        <input type="text" name="PhoneNumber" required />
+    </div>
+    <div>
+        <label>Profile Image Path:</label>
+        <input type="text" name="ProfileImagePath" />
+    </div>
+    <button type="submit">Add User Detail</button>
+</form>

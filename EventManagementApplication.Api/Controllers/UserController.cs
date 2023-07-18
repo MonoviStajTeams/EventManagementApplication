@@ -1,11 +1,14 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventManagementApplication.WebUI.Controllers
+namespace EventManagementApplication.Api.Controllers
 {
-    public class UserController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
 
@@ -14,46 +17,45 @@ namespace EventManagementApplication.WebUI.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        [Route("UserList")]
         public IActionResult UserList()
         {
-            var user = _userService.GetAll();
-            return View(user);
+            var userList = _userService.GetAll();
+            return Ok(userList);
         }
 
+
         [HttpGet]
-        public IActionResult AddUser()
+        [Route("GetUserId{id}")]
+        public IActionResult GetUserById(int id)
         {
-            return View();
+            var user = _userService.GetById(id);
+            return Ok(user);
         }
+
+
 
         [HttpPost]
         public IActionResult AddUser(User user)
         {
             _userService.Create(user);
-            return RedirectToAction("UserList", controllerName: "User");
-        }
-
-        [HttpGet]
-        public IActionResult UpdateUser()
-        {
-            return View();
+            return Ok();
         }
 
         [HttpPost]
         public IActionResult UpdateUser(User user)
         {
             _userService.Update(user);
-            return RedirectToAction("UserList", controllerName: "User");
+            return Ok();
         }
 
+        [HttpDelete]
         public IActionResult DeleteUser(int id)
         {
             _userService.Delete(id);
-            return RedirectToAction("UserList", controllerName: "User");
+            return Ok();
         }
-        public IActionResult UserDashboard()
-        {
-            return View();
-        }
+
     }
 }

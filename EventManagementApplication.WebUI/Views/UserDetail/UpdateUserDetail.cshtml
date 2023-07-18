@@ -5,3 +5,14 @@
 
 <h1>UpdateUserDetail</h1>
 
+<form method="post" asp-controller="UserDetail" asp-action="AddUserDetail">
+    <div>
+        <label>Phone Number:</label>
+        <input type="text" name="PhoneNumber" required />
+    </div>
+    <div>
+        <label>Profile Image Path:</label>
+        <input type="text" name="ProfileImagePath" />
+    </div>
+    <button type="submit">Update User Detail</button>
+</form>

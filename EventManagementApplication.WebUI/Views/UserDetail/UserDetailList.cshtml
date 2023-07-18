@@ -5,3 +5,25 @@
 
 <h1>UserDetailList</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th>Phone Number</th>
+            <th>Profile Image Path</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var userDetail in Model)
+        {
+            <tr>
+                <td>@userDetail.PhoneNumber</td>
+                <td>@userDetail.ProfileImagePath</td>
+                <td>
+                    <a href="@Url.Action("UpdateUserDetail", "UserDetail", new { id = userDetail.Id })">Edit</a>
+                    <a href="@Url.Action("DeleteUserDetail", "UserDetail", new { id = userDetail.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
