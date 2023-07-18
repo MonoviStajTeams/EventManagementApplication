@@ -10,6 +10,7 @@ namespace EventManagementApplication.Business.Abstract
     public interface IUserService : IGenericService<User>
     {
         List<OperationClaim> GetClaims(User user);
+        
         User GetByMail(string mail);
     }
 }

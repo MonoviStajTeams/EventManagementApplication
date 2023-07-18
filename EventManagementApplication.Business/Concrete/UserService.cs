@@ -14,7 +14,10 @@ namespace EventManagementApplication.Business.Concrete
 {
     public class UserService : IUserService
     {
+
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserService _userService;
+        
 
         public UserService(IUnitOfWork unitOfWork)
         {
@@ -57,7 +60,7 @@ namespace EventManagementApplication.Business.Concrete
 
         public List<OperationClaim> GetClaims(User user)
         {
-            throw new NotImplementedException();
+            return _userService.GetClaims(user);
         }
 
         [FluentValidateAspect(typeof(User))]
