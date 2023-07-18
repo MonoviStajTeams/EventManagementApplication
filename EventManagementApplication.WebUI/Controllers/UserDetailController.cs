@@ -46,7 +46,7 @@ namespace EventManagementApplication.WebUI.Controllers
             return RedirectToAction("UserDetailList", controllerName: "UserDetail");
         }
 
-        public IActionResult DeleteRole(int id)
+        public IActionResult DeleteUserDetail(int id)
         {
             _userDetailService.Delete(id);
             return RedirectToAction("UserDetailList", controllerName: "UserDetail");

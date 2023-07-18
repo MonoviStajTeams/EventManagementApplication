@@ -4,18 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagementApplication.WebUI.ViewComponents
 {
-    public class FinishedEventList : ViewComponent
+    public class NewlyEventList : ViewComponent
     {
         private readonly IEventService _eventService;
 
-        public FinishedEventList(IEventService eventService)
+        public NewlyEventList(IEventService eventService)
         {
             _eventService = eventService;
         }
 
         public IViewComponentResult Invoke()
         {
-            var eventList = _eventService.GetAll().Where(e => !e.Status);
+            var eventList = _eventService.GetAll().Where(e => e.Status);
             return View(eventList);
         }
     }
