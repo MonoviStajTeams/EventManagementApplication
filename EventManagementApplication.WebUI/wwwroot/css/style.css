@@ -63,13 +63,10 @@ body {
 
 /* Sidebar styles */
 .sidebar {
- 
     width: 280px;
-    height:100%;
-
+    height: 100%;
     background-color: #394867;
     color: #fff;
-    
 }
 
     .sidebar h1 {
@@ -184,3 +181,83 @@ body {
         transform: translateY(0);
         box-shadow: none;
     }
+
+
+
+/*    Event Card Start*/
+
+.event-card {
+    position: relative;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+    .event-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .event-card .card-body {
+        padding: 15px;
+    }
+
+    .event-card:hover {
+        transform: scale(1.05);
+        z-index: 1;
+    }
+
+  
+
+
+.owl-slider-icons {
+    color: #FFF !important;
+    font-size: 22px !important;
+    margin: -40px !important;
+    padding: 14px 15px;
+    background: #001C30 !important;
+    display: inline-block ;
+    cursor: pointer;
+    border-radius: 3px ;
+}
+
+.owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.owl-prev,
+.owl-next {
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px; /* Daha yuvarlak köþeler */
+    cursor: pointer;
+}
+
+.owl-prev {
+    margin-left: 20px;
+}
+
+.owl-next {
+    margin-right: 20px;
+}
+
+/* Adjust navigation icon position on smaller screens */
+@media (max-width: 576px) {
+    .owl-nav {
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .owl-prev,
+    .owl-next {
+        margin: 0 5px;
+    }
+}

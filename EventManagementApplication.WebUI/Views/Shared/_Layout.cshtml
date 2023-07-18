@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Event Management App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="img/logo.png" alt="Logo" width="80">
@@ -40,12 +42,11 @@
     <!-- Sayfa içeriği burada yer alır -->
     <div class="container mt-4">
         <!-- Sayfa içeriği -->
-        <h1>Hoş Geldiniz</h1>
-        <p>Sayfa içeriği buraya gelecektir.</p>
+        @RenderBody()
     </div>
-
+   
     <!-- Footer bölümü -->
-    <footer class="bg-light py-4 mt-auto">
+    <footer class="py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -68,7 +69,6 @@
 
 
 
-    @RenderBody()
 
 
 
@@ -81,6 +81,8 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 
