@@ -1,8 +1,152 @@
-﻿
-@{
-    ViewData["Title"] = "UpdateEventUser";
+﻿@{
+    ViewData["Title"] = "Update Event User";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>UpdateEventUser</h1>
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-8">
+            <h1 class="text-center mb-4 text-darkblue">Update Event</h1>
+            <form method="post" action="@Url.Action("UpdateEventUser", "EventController")">
+                <div class="form-group">
+                    <label for="event-title" class="text-darkblue">Event Title</label>
+                    <input type="text" id="event-title" name="Title" class="form-control mt-3" required />
+                </div>
 
+                <div class="form-group mt-3">
+                    <label for="event-description" class="text-darkblue">Event Description</label>
+                    <textarea id="event-description" name="Description" class="form-control mt-3" rows="3"></textarea>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="form-group col-lg-6">
+                        <label for="event-date" class="text-darkblue">Event Date</label>
+                        <input type="date" id="event-date" name="Date" class="form-control mt-3" required />
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="event-type" class="text-darkblue">Event Type</label>
+                        <input type="text" id="event-type" name="Type" class="form-control mt-3" required />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    
+                    <div class="form-group col-lg-6">
+                        <label for="event-start-time" class="text-darkblue">Event Start Time</label>
+                        <input type="time" id="event-start-time" name="StartTime" class="form-control mt-3" required />
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="event-end-time" class="text-darkblue">Event End Time</label>
+                        <input type="time" id="event-end-time" name="EndTime" class="form-control mt-3" required />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="form-group col-lg-6">
+                        <label for="event-status" class="text-darkblue">Event Status</label>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="radio" name="Status" id="status-active" value="true" required>
+                            <label class="form-check-label text-darkblue" for="status-active">
+                                Active
+                            </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="radio" name="Status" id="status-inactive" value="false" required>
+                            <label class="form-check-label text-darkblue" for="status-inactive">
+                                Inactive
+                            </label>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <!-- Diğer User'a ait bilgileri de ekleyebilirsiniz -->
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary mt-5">Update Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #C5DFF8;
+     
+    }
+
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+    .form-control {
+        border: 2px solid #7895CB;
+        border-radius: 8px;
+        transition: border-color 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #4A55A2;
+            box-shadow: 0 0 0 0.25rem rgba(74, 85, 162, 0.25);
+        }
+
+    .form-check-input:checked + .form-check-label::before {
+        border-color: #7895CB;
+        background-color: #7895CB;
+    }
+
+    .form-check-input:checked + .form-check-label::after {
+        border-color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #4A55A2;
+        border-color: #4A55A2;
+        border-radius: 20px;
+        padding: 12px 20px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #7895CB;
+            border-color: #7895CB;
+        }
+
+        .btn-primary:focus {
+            box-shadow: 0 0 0 0.25rem rgba(120, 149, 203, 0.5);
+        }
+
+        .btn-primary:active {
+            background-color: #A0BFE0 !important;
+            border-color: #A0BFE0;
+            box-shadow: none;
+        }
+
+    .mt-5 {
+        margin-top: 2rem;
+    }
+
+    .mt-3 {
+        margin-top: 1.5rem;
+    }
+
+    .mb-5 {
+        margin-bottom: 2rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-darkblue {
+        color: #001C30!important;
+    }
+</style>

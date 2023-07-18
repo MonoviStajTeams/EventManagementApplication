@@ -20,7 +20,7 @@ namespace EventManagementApplication.WebUI.Controllers
             return View(eventList);
         }
 
-        [HttpGet]
+     
         public IActionResult EventSingle(int id)
         {
             var eventById = _eventService.GetById(id);
@@ -41,6 +41,8 @@ namespace EventManagementApplication.WebUI.Controllers
             return RedirectToAction("Index","Event");
         }
 
+
+
         [HttpGet]
         public IActionResult UpdateEventUser(int id)
         {
@@ -58,6 +60,7 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult UpdateEvent(Event entity)
         {
+            //User ıd si gönderilecektir 
             _eventService.Update(entity);
             return RedirectToAction("Index", "Event");
         }
