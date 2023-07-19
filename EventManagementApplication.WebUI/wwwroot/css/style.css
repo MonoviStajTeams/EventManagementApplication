@@ -1211,6 +1211,38 @@ ol {
 .owl-next {
     margin-right: 20px;
 }
+/* wwwroot/css/site.css */
+
+/* Style for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style for table header */
+thead th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Style for table cells */
+tbody td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Style for table actions (links) */
+td a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
 
 /* Adjust navigation icon position on smaller screens */
 @media (max-width: 576px) {
