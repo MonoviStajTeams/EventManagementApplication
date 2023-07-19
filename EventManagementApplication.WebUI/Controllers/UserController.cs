@@ -55,5 +55,10 @@ namespace EventManagementApplication.WebUI.Controllers
         {
             return View();
         }
+
+        public IActionResult ProfileSettings()
+        {
+            return View();
+        }
     }
 }

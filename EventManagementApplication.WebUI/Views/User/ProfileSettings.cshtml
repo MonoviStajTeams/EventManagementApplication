@@ -1,9 +1,8 @@
-﻿@{
-    ViewData["Title"] = "UserDashboard";
+﻿
+@{
+    ViewData["Title"] = "ProfileSettings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 
 <section class="dashboard section">
@@ -15,7 +14,7 @@
                     <div class="user-image">
                         <img src="https://via.placeholder.com/300x300" alt="#">
                         <h3>
-                            FirstName Lastname
+                           FirstName Lastname
                             <span><a href="javascript:void(0)">mail</a></span>
                         </h3>
                     </div>
@@ -30,7 +29,7 @@
                             </li>
                             <li><a href="/Event/AcceptedEventList"><i class="lni lni-bolt-alt"></i> My Events</a></li>
                             <li><a href="/Invitation/InvitationList"><i class="lni lni-heart"></i> My Invitations</a></li>
-
+       
                         </ul>
                         <div class="button">
                             <a class="btn" href="javascript:void(0)">Logout</a>
@@ -39,7 +38,7 @@
                 </div>
                 <!-- Start Dashboard Sidebar -->
             </div>
-            <h2>Content</h2>
+            @await Component.InvokeAsync("Settings")
         </div>
     </div>
 </section>
