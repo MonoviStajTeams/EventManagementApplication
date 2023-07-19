@@ -14,7 +14,7 @@ namespace EventManagementApplication.WebUI.Controllers
             _invitationService = invitationService;
         }
 
-        public IActionResult GetAllInvitation()
+        public IActionResult InvitationList()
         {
             var invitationList = _invitationService.GetAll();
             return View(invitationList);

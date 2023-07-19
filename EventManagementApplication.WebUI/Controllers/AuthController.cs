@@ -18,7 +18,7 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserForLoginDto userForLoginDto)
+        public IActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
@@ -36,7 +36,7 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserForRegisterDto userForRegisterDto)
+        public IActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = _authService.UserExists(userForRegisterDto.Email);
             if (!userExists.Success)
