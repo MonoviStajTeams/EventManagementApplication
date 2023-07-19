@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
-    [TransactionScopeAspect]
+    //[TransactionScopeAspect]
     public class UserDetailService : IUserDetailService
     {
         private readonly IUnitOfWork _unitOfWork;

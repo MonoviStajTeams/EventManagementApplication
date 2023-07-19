@@ -4,5 +4,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Login</h1>
+<div class="card mx-auto" style="width: 400px; ">
+    <div class="card-body">
+        <h2 class="text-center mb-5">Welcome, please login</h2>
 
+   @*    
+            <div class='alert-warning alert-dismissible fade show' role=" alert">
+                <strong></strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>*@
+
+  @*
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <strong></strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>*@
+        
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input class="form-control" asp-formaction="Email">
+                <span  class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" type="password" asp-formaction="Password">
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <div class="col d-grid">
+                    <button type="submit" class="btn btn-primary">Login</button>
+
+                </div>
+                <div class="col d-grid">
+                    <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+                </div>
+            </div>
+            <a class="btn btn-Link" href="/Pages/ForgotPassword" role="button">Reset password</a>
+
+        </form>
+    </div>
+</div>

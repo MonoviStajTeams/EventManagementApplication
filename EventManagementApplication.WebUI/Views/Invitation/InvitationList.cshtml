@@ -1,29 +1,67 @@
-﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Invitation>
-
+﻿
 @{
     ViewData["Title"] = "InvitationList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>All Invitations</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>Invitation Title</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var invitation in Model)
-        {
-            <tr>
-                <td>@invitation.Title</td>
-                <td>
-                    <a href="@Url.Action("InvitationSingle", "Invitation", new { id = invitation.Id })">View</a>
-                    <a href="@Url.Action("UpdateInvitation", "Invitation", new { id = invitation.Id })">Edit</a>
-                    <a href="@Url.Action("DeleteInvitation", "Invitation", new { id = invitation.Id })">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3" style="padding-left:0px">
+            <div class="d-flex flex-column flex-shrink-0 p-3 sidebar " style="height: 100vh;">
+                <a href="/User/UserDashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                    <h1>Kullanıcı Kontrol Paneli</h1>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" aria-current="page">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                            Profile Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                            My Events
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                            My Invitations
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                            Accepted Events
+                        </a>
+                    </li>
+
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center nav-link  link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://avatars.githubusercontent.com/u/90545225?v=4" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong style="color:#F1F6F9 ">O.A.</strong>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 mt-5">
+            @await Component.InvokeAsync("InvitationList")
+        </div>
+    </div>
+</div>
+
+
+
