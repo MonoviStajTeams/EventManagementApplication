@@ -71,13 +71,13 @@ namespace EventManagementApplication.WebUI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet]
-        public IActionResult ResetPassword()
+        public IActionResult ForgotPassword()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult ResetPassword(ResetPasswordDto resetPasswordDto)
+        public IActionResult ForgotPassword(ResetPasswordDto resetPasswordDto)
         {
             // You should implement the logic to reset the password here.
             // Use _authService to handle the password reset process.
