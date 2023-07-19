@@ -11,6 +11,7 @@ namespace EventManagementApplication.Entities.Concrete
     {
         public string Title { get; set; }
         public string Description { get; set; }
+        public string SubContent { get; set; }
         public DateTime Date { get; set; }
 
         public string Type { get; set; }

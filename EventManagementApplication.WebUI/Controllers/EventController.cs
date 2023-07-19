@@ -14,13 +14,17 @@ namespace EventManagementApplication.WebUI.Controllers
             _eventService = eventService;
         }
 
-        public IActionResult GetAll()
+        public IActionResult Index()
         {
             var eventList = _eventService.GetAll();
             return View(eventList);
         }
 
-     
+        public IActionResult Pagination(int page)
+        {
+            return ViewComponent("EventList", new { page });
+        }
+
         public IActionResult EventSingle(int id)
         {
             var eventById = _eventService.GetById(id);
