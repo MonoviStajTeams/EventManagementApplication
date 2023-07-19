@@ -1,5 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Invitation>
+
 @{
+    ViewData["Title"] = "UpdateInvitation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Update Invitation</h2>
+
+<form asp-action="UpdateInvitation" method="post">
+
+    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+            <label class="form-label">Başlık</label>
+            <input type="text" name="Title" class="form-control" required />
+        </div>
+    </div>
+    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+            <label class="form-label">Açıklama</label>
+            <input type="text" name="Description" class="form-control" required />
+        </div>
+    </div>
+    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+            <label class="form-label">Davetliler</label>
+            <input type="text" name="User" class="form-control" required />
+        </div>
+    </div>
+    <button type="submit">Update Invitation</button>
+</form>
