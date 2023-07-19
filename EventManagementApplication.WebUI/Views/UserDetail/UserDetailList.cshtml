@@ -1,13 +1,16 @@
-﻿@{
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.UserDetail>;
+    @{
     ViewData["Title"] = "UserDetailList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>UserDetailList</h1>
+<h1>User Detail List</h1>
 
 <table>
     <thead>
         <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Phone Number</th>
             <th>Profile Image Path</th>
             <th>Action</th>
@@ -17,8 +20,11 @@
         @foreach (var userDetail in Model)
         {
             <tr>
+                <td>@userDetail.User.FirstName</td>
+                <td>@userDetail.User.LastName</td>
                 <td>@userDetail.PhoneNumber</td>
                 <td>@userDetail.ProfileImagePath</td>
+
                 <td>
                     <a href="@Url.Action("UpdateUserDetail", "UserDetail", new { id = userDetail.Id })">Edit</a>
                     <a href="@Url.Action("DeleteUserDetail", "UserDetail", new { id = userDetail.Id })">Delete</a>
