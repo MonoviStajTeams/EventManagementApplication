@@ -72,5 +72,40 @@ namespace EventManagementApplication.Business.Concrete
             var accessToken = _tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
+        public IDataResult<bool> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var user = _userService.GetByMail(resetPasswordDto.Email);
+            if (user == null)
+            {
+                return new ErrorDataResult<bool>("User not found.");
+            }
+
+            if (!VerifyResetToken(user, resetPasswordDto.Token))
+            {
+                return new ErrorDataResult<bool>("Invalid reset token.");
+            }
+
+            if (resetPasswordDto.NewPassword != resetPasswordDto.ConfirmPassword)
+            {
+                return new ErrorDataResult<bool>("Passwords do not match.");
+            }
+
+            // If everything is valid, update the user's password
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(resetPasswordDto.NewPassword, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            _userService.Update(user);
+            return new SuccessDataResult<bool>(true, "Password reset successful.");
+        }
+
+        private bool VerifyResetToken(User user, string token)
+        {
+            // Implement token verification logic here, e.g., check against user's stored reset token.
+            // You can use libraries like JWT or Identity for token management.
+
+            // Example (simplified for illustration purposes):
+            return user.ResetToken == token && user.ResetTokenExpiration > DateTime.Now;
+        }
     }
 }

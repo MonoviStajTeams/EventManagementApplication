@@ -16,5 +16,7 @@ namespace EventManagementApplication.Business.Abstract
         IDataResult<User> Login(UserForLoginDto userForLoginDto);
         IResult UserExists(string email);
         IDataResult<AccessToken> CreateAccessToken(User user);
+        IDataResult<bool> ResetPassword(ResetPasswordDto resetPasswordDto);
+
     }
 }
