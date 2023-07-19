@@ -1,49 +1,57 @@
-﻿using EventManagementApplication.Entities.Concrete;
+﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Entities.Concrete;
+using EventManagementApplication.Entities.Dtos;
 using EventManagementApplication.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagementApplication.WebUI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : Controller
     {
+        private IAuthService _authService;
 
-        [HttpGet]
-        public IActionResult Login()
+        public AuthController(IAuthService authService)
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Login(LoginViewModel loginViewModel)
-        {
-            return View();
+            _authService = authService;
         }
 
-        [HttpGet]
-        public IActionResult Register()
+        [HttpPost("login")]
+        public ActionResult Login(UserForLoginDto userForLoginDto)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Register(User user)
-        {
-            if (false) // Mail Kontrolü Yapılacak
+            var userToLogin = _authService.Login(userForLoginDto);
+            if (!userToLogin.Success)
             {
-                ModelState.AddModelError("Email", "Bu e-posta adresi zaten kullanılıyor.");
-                ViewBag.ErrorMessage = "Bu e-posta adresi zaten kullanılıyor.";
-                return View(user);
-            }
-            else if (false) // User Register İşlemi Yapılacak
-            {
-               
-                return RedirectToAction("Login", "Auth");
+                return BadRequest(userToLogin.Message);
             }
 
-            return View();
+            var result = _authService.CreateAccessToken(userToLogin.Data);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
 
+            return BadRequest(result.Message);
         }
 
+        [HttpPost("register")]
+        public ActionResult Register(UserForRegisterDto userForRegisterDto)
+        {
+            var userExists = _authService.UserExists(userForRegisterDto.Email);
+            if (!userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
 
+            var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
+            var result = _authService.CreateAccessToken(registerResult.Data);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
 
+            return BadRequest(result.Message);
+        }
     }
 }
