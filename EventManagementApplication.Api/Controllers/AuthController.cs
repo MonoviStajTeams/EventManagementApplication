@@ -1,4 +1,6 @@
-﻿using EventManagementApplication.Entities.Concrete;
+﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Entities.Concrete;
+using EventManagementApplication.Entities.Dtos;
 using EventManagementApplication.WebUI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,21 +9,50 @@ namespace EventManagementApplication.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : Controller
     {
-        [HttpPost]
-        [Route("Login")]
-        public IActionResult Login(LoginViewModel loginViewModel)
+        private IAuthService _authService;
+
+        public AuthController(IAuthService authService)
         {
-            return Ok();
+            _authService = authService;
         }
 
-
-        [HttpPost]
-        [Route("Register")]
-        public IActionResult Register(User user)
+        [HttpPost("login")]
+        public ActionResult Login(UserForLoginDto userForLoginDto)
         {
-            return Ok();
+            var userToLogin = _authService.Login(userForLoginDto);
+            if (!userToLogin.Success)
+            {
+                return BadRequest(userToLogin.Message);
+            }
+
+            var result = _authService.CreateAccessToken(userToLogin.Data);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.Message);
+        }
+
+        [HttpPost("register")]
+        public ActionResult Register(UserForRegisterDto userForRegisterDto)
+        {
+            var userExists = _authService.UserExists(userForRegisterDto.Email);
+            if (!userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
+
+            var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
+            var result = _authService.CreateAccessToken(registerResult.Data);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.Message);
         }
     }
 }
