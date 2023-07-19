@@ -17,7 +17,7 @@ namespace EventManagementApplication.WebUI.Controllers
             _authService = authService;
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
@@ -35,12 +35,14 @@ namespace EventManagementApplication.WebUI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = _authService.UserExists(userForRegisterDto.Email);
             if (!userExists.Success)
             {
+                ModelState.AddModelError("Email", "Bu e-posta adresi zaten kullanılıyor.");
+                ViewBag.ErrorMessage = "Bu e-posta adresi zaten kullanılıyor.";
                 return BadRequest(userExists.Message);
             }
 
