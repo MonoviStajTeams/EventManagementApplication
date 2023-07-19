@@ -1,3 +1,215 @@
-﻿
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Event>
+<section class="section event-grid-page">
+    <div class="container-fluid" id="events">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-12">
+                <div class="row" id="eventContainer">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <!-- Start Single event Grid -->
+                            <div class="single-event-grid">
+                                <div class="event-img">
+                                    <a href="/Event/EventSingle/@item.Id">
+                                        <img src="https://via.placeholder.com/500x310" alt="#">
+                                    </a>
+                                </div>
+                                <div class="event-content">
+                                    <div class="meta-info">
+                                        <a class="date" href="/Event/EventSingle/@item.Id">
+                                            <i class="lni lni-timer"></i> @item.Date  @item.StartTime - @item.EndTime
+                                        </a>
+                                        <a class="author" href="javascript:void(0)">
+                                            <i class="lni lni-user"></i> @item.User.FirstName @item.User.LastName
+                                        </a>
+                                    </div>
+                                    <h4>
+                                        <a href="/Event/EventSingle/@item.Id">
+                                            @item.Title
+                                        </a>
+                                    </h4>
+                                    <p>
+                                        @item.SubContent
+                                    </p>
+                                    <div class="button">
+                                        <a href="/Event/EventSingle/@item.Id" class="btn">Daha Fazla</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single event Grid -->
+                        </div>
+                    }
 
-<h1>Event List</h1>
+                </div>
+                <!-- Pagination -->
+                <div class="pagination left" id="paginationContainer">
+                    <ul class="pagination-list">
+                        <li><a href="javascript:void(0)">Prev</a></li>
+                        <li><a href="javascript:void(0)">1</a></li>
+                        <li><a href="javascript:void(0)">2</a></li>
+                        <li><a href="javascript:void(0)">3</a></li>
+                        <li><a href="javascript:void(0)">4</a></li>
+                        <li><a href="javascript:void(0)">Next</a></li>
+                    </ul>
+                </div>
+                <!--/ End Pagination -->
+            </div>
+            <aside class="col-lg-4 col-md-12 col-12">
+                <div class="sidebarEvent">
+                    <!-- Start Single Widget -->
+                    <div class="widget search-widget">
+                        <h5 class="widget-title">Search This Site</h5>
+                        <form action="#">
+                            <input type="text" placeholder="Search ...">
+                            <button type="submit"><i class="lni lni-search-alt"></i></button>
+                        </form>
+                    </div>
+                    <!-- End Single Widget -->
+                    <!-- Start Single Widget -->
+                    <div class="widget popular-feeds">
+                        <h5 class="widget-title">Trending Events</h5>
+                        <div class="popular-feed-loop">
+                            <div class="single-popular-feed">
+                                <div class="feed-desc">
+                                    <h6 class="post-title">
+                                        <a href="">
+                                            Event-Title
+                                        </a>
+                                    </h6>
+                                    <span class="time"><i class="lni lni-calendar"></i> Event Date</span>
+                                </div>
+                            </div>
+                            <div class="single-popular-feed">
+                                <div class="feed-desc">
+                                    <h6 class="post-title">
+                                        <a href="">
+                                            Event-Title
+                                        </a>
+                                    </h6>
+                                    <span class="time"><i class="lni lni-calendar"></i> Event Date</span>
+                                </div>
+                            </div>
+                            <div class="single-popular-feed">
+                                <div class="feed-desc">
+                                    <h6 class="post-title">
+                                        <a href="">
+                                            Event-Title
+                                        </a>
+                                    </h6>
+                                    <span class="time"><i class="lni lni-calendar"></i> Event Date</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget -->
+                    <!-- Start Single Widget -->
+                    <div class="widget categories-widget">
+                        <h5 class="widget-title">Categories</h5>
+                        <ul class="custom">
+                            <li>
+                                <a href="javascript:void(0)">Category</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Category</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Category</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Category</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Category</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Single Widget -->
+                    <!-- Start Single Widget -->
+                    <div class="widget popular-tag-widget">
+                        <h5 class="widget-title">Popular Tags</h5>
+                        <div class="tags">
+                            <a href="javascript:void(0)">Tag</a>
+                            <a href="javascript:void(0)">Tag</a>
+                            <a href="javascript:void(0)">Tag</a>
+                            <a href="javascript:void(0)">Tag</a>
+                            <a href="javascript:void(0)">Tag</a>
+                            <a href="javascript:void(0)">Tag</a>
+                            <a href="javascript:void(0)">Tag</a>
+                            <a href="javascript:void(0)">Tag</a>
+                        </div>
+                    </div>
+                    <!-- End Single Widget -->
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        // Sayfalamayı başlatan fonksiyon
+        function loadExpertise(page) {
+            $.ajax({
+                url: '/Event/Pagination', // Kontrolör adını ve aksiyon adını uygun şekilde değiştirin
+                type: 'GET',
+                data: { page: page },
+                success: function (data) {
+                    var newData = $(data);
+                    var newEventContainer = newData.find('#eventContainer').html();
+                    var newPaginationContainer = newData.find('#paginationContainer').html();
+
+                    $('#eventContainer').html(newEventContainer);
+                    $('#paginationContainer').html(newPaginationContainer);
+
+                    // Aktif sayfa bağlantısını belirleme
+                    $('.pagination-list li').removeClass('active');
+                    $('.pagination-list li').filter(function () {
+                        return $(this).find('.page-link').text() === page;
+                    }).addClass('active');
+
+                    $('html, body').animate({
+                        scrollTop: $('#events').offset().top
+                    }, 500);
+                },
+                error: function () {
+                    alert('Bir hata oluştu. Sayfa yeniden yükleniyor...');
+                    window.location.reload();
+                }
+            });
+        }
+
+        // Sayfalar arasında geçiş yapma
+        $(document).on('click', '.page-link', function (e) {
+            e.preventDefault();
+            var page = $(this).text();
+            loadExpertise(page);
+
+            // Tıklanan sayfa numarasını aktif yapma
+            $('.pagination-list li').removeClass('active');
+            $(this).closest('li').addClass('active');
+        });
+
+        $(document).on('click', '.prev-page', function (e) {
+            e.preventDefault();
+            var currentPage = parseInt($('.pagination-list .active .page-link').text());
+            if (currentPage > 1) {
+                var prevPage = currentPage - 1;
+                loadExpertise(prevPage);
+            }
+        });
+
+        $(document).on('click', '.next-page', function (e) {
+            e.preventDefault();
+            var currentPage = parseInt($('.pagination-list .active .page-link').text());
+            var nextPage = currentPage + 1;
+            loadExpertise(nextPage);
+        });
+
+        // İlk sayfa yüklenirken ilk sayfa numarasını aktif yapma
+        $('.pagination-list li').eq(1).addClass('active');
+    });
+
+</script>

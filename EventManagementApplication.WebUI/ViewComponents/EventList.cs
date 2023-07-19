@@ -12,9 +12,11 @@ namespace EventManagementApplication.WebUI.ViewComponents
             _eventService = eventService;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int page)
         {
-            var eventList = _eventService.GetAll();
+
+            int pageSize = 8; // Her sayfada gösterilecek blog sayısı
+            var eventList = _eventService.GetAll().Skip((page - 1) * pageSize).Take(pageSize).ToList();
             return View(eventList);
         }
     }
