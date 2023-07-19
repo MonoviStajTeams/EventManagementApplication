@@ -1,6 +1,7 @@
 using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.Core.Utilities.Security.JWT;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.DataAccess.Concrete;
 using EventManagementApplication.Entities.Concrete;
@@ -32,6 +33,8 @@ builder.Services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
 #region Business Classes
 
 builder.Services.AddTransient(typeof(IEventService), typeof(EventService));
+builder.Services.AddTransient(typeof(IAuthService), typeof(AuthManager));
+builder.Services.AddTransient(typeof(ITokenHelper), typeof(JwtHelper));
 builder.Services.AddTransient(typeof(ILocationService), typeof(LocationService));
 builder.Services.AddTransient(typeof(INotificationService), typeof(NotificationService));
 builder.Services.AddTransient(typeof(IRoleService), typeof(RoleService));

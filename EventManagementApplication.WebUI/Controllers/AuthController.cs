@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagementApplication.WebUI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+   
     public class AuthController : Controller
     {
         private IAuthService _authService;
@@ -15,6 +14,12 @@ namespace EventManagementApplication.WebUI.Controllers
         public AuthController(IAuthService authService)
         {
             _authService = authService;
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -34,6 +39,15 @@ namespace EventManagementApplication.WebUI.Controllers
 
             return BadRequest(result.Message);
         }
+  
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+
 
         [HttpPost]
         public IActionResult Register(UserForRegisterDto userForRegisterDto)
