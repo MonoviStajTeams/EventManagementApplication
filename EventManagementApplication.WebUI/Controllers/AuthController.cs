@@ -78,19 +78,12 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult ForgotPassword(ResetPasswordDto resetPasswordDto)
         {
-            // You should implement the logic to reset the password here.
-            // Use _authService to handle the password reset process.
-            // The resetPasswordDto contains the necessary data for the reset process.
-
-            // Example:
             var resetResult = _authService.ResetPassword(resetPasswordDto);
             if (resetResult.Success)
             {
-                // Password reset successful, redirect to login page or show a success message.
                 return RedirectToAction("Login");
             }
 
-            // Password reset failed, display an error message or redirect to an error page.
             ModelState.AddModelError("", resetResult.Message);
             return View();
         }

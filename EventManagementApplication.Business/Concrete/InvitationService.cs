@@ -12,7 +12,6 @@ using EventManagementApplication.Core.Aspects.ValidationAspects;
 
 namespace EventManagementApplication.Business.Concrete
 {
-    [TransactionScopeAspect]
     public class InvitationService : IInvitationService
     {
         private readonly IUnitOfWork _unitOfWork;
