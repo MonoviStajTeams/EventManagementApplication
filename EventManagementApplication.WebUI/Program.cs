@@ -1,6 +1,7 @@
 using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.Core.Utilities.Security.Encrypton;
 using EventManagementApplication.Core.Utilities.Security.JWT;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.DataAccess.Concrete;
@@ -8,7 +9,9 @@ using EventManagementApplication.Entities.Concrete;
 using FluentValidation;
 using log4net;
 using log4net.Config;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,37 @@ builder.Services.AddDbContext<EventManagementDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
+
+
+
+
+#region JWT Options
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowOrigin",
+        builder => builder.WithOrigins("http://localhost:3000"));
+});
+
+var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidIssuer = tokenOptions.Issuer,
+            ValidAudience = tokenOptions.Audience,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+        };
+    });
+
+
+#endregion
 
 builder.Services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
 

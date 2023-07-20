@@ -74,6 +74,10 @@ namespace EventManagementApplication.WebUI.Controllers
             return View(eventList);
         }
 
+        public IActionResult AcceptedEventViewUser()
+        {
+            return View();
+        }
     
     }
 }
