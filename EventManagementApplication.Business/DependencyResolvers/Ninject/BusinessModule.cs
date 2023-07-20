@@ -1,7 +1,9 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.Concrete;
+using EventManagementApplication.Core.Utilities.Security.JWT;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.DataAccess.Concrete;
+using Microsoft.AspNetCore.Http;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -38,6 +40,15 @@ namespace EventManagementApplication.Business.DependencyResolvers.Ninject
 
             Bind<IUserService>().To<UserService>().InSingletonScope();
             Bind<IUserRepository>().To<UserRepository>().InSingletonScope();
+
+
+            Bind<IAuthService>().To<AuthManager>().InSingletonScope();
+            Bind<ITokenHelper>().To<JwtHelper>().InSingletonScope();
+            Bind<IHttpContextAccessor>().To<HttpContextAccessor>().InSingletonScope();
+
+
+
+
 
         }
     }

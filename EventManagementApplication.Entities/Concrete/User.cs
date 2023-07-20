@@ -21,6 +21,8 @@ namespace EventManagementApplication.Entities.Concrete
         public int RoleId { get; set; }
         public Role Role { get; set; }
 
+        public string ResetToken { get; set; }
+        public DateTime ResetTokenExpiration { get; set; }
 
 
 

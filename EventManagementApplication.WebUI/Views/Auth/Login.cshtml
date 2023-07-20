@@ -24,13 +24,13 @@
         <form method="post">
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input class="form-control" asp-formaction="Email">
+                <input class="form-control" required asp-formaction="Email">
                 <span  class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input class="form-control" type="password" asp-formaction="Password">
+                <input class="form-control" required type="password" asp-formaction="Password">
                 <span class="text-danger"></span>
             </div>
 
@@ -39,11 +39,14 @@
                     <button type="submit" class="btn btn-primary">Login</button>
 
                 </div>
+            </div>
+                <div class="mb-3">
+
                 <div class="col d-grid">
                     <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
                 </div>
             </div>
-            <a class="btn btn-Link" href="/Pages/ForgotPassword" role="button">Reset password</a>
+            <a class="btn btn-Link" href="/Auth/ForgotPassword" role="button">Reset password</a>
 
         </form>
     </div>
