@@ -10,11 +10,11 @@ namespace EventManagementApplication.DataAccess.Concrete
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-       
+        private readonly EventManagementDbContext _dbContext;
 
         public UserRepository(EventManagementDbContext dbContext) : base(dbContext)
         {
-
+            _dbContext = dbContext;
         }
 
         public List<OperationClaim> GetClaims(User user)
@@ -30,5 +30,14 @@ namespace EventManagementApplication.DataAccess.Concrete
 
             }
         }
-    }
+    
+
+        public User GetUserByMail(string mail)
+        {
+            var userMail = _dbContext.Users.Where(x => x.Mail == mail).FirstOrDefault();
+            return userMail!;
+        }
+
+
+ }
 }

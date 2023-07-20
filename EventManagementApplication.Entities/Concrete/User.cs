@@ -12,10 +12,8 @@ namespace EventManagementApplication.Entities.Concrete
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Mail { get; set; }
-        public string Password { get; set; }
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
-        public string ConfirmPassword { get; set; }
 
         public bool Status { get; set; }
         public int RoleId { get; set; }
@@ -24,7 +22,10 @@ namespace EventManagementApplication.Entities.Concrete
         public string ResetToken { get; set; }
         public DateTime ResetTokenExpiration { get; set; }
 
-
+        public User()
+        {
+            RoleId = 1;
+        }
 
 
     }

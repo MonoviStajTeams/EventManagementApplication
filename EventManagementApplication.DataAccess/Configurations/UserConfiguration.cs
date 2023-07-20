@@ -18,7 +18,6 @@ namespace EventManagementApplication.DataAccess.Configurations
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(100);
             builder.Property(x => x.Mail).IsRequired().HasMaxLength(100);
             builder.Property(x => x.PasswordSalt).IsRequired();
-            builder.Property(x => x.ConfirmPassword).IsRequired();
         }
     }
 }

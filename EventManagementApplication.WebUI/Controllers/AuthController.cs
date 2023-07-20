@@ -1,5 +1,4 @@
 ﻿using EventManagementApplication.Business.Abstract;
-using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.Entities.Dtos;
 using EventManagementApplication.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;

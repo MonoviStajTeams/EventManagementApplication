@@ -16,7 +16,7 @@ namespace EventManagementApplication.Business.Concrete
     {
 
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IUserService _userService;
+        
         
 
         public UserService(IUnitOfWork unitOfWork)
@@ -24,7 +24,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        [FluentValidateAspect(typeof(User))]
+      
         public void Create(User user)
         {
             _unitOfWork.Users.Add(user);
@@ -55,12 +55,12 @@ namespace EventManagementApplication.Business.Concrete
 
         public User GetByMail(string mail)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.Users.GetUserByMail(mail);
         }
 
         public List<OperationClaim> GetClaims(User user)
         {
-            return _userService.GetClaims(user);
+            return _unitOfWork.Users.GetClaims(user);
         }
 
         [FluentValidateAspect(typeof(User))]
