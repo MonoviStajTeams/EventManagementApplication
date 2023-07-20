@@ -33,8 +33,4 @@
     <ProjectReference Include="..\EventManagementApplication.Entities\EventManagementApplication.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>
