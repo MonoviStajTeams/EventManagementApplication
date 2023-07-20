@@ -1,4 +1,5 @@
-﻿@{
+﻿@model EventManagementApplication.Entities.Concrete.Event
+@{
     ViewData["Title"] = "Update Event User";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,25 +8,34 @@
     <div class="row d-flex justify-content-center align-items-center">
         <div class="col-lg-8">
             <h1 class="text-center mb-4 text-darkblue">Update Event</h1>
-            <form method="post" action="@Url.Action("UpdateEventUser", "EventController")">
+            <form method="post" action="@Url.Action("UpdateEvent", "Event")">
                 <div class="form-group">
+                    <input type="hidden" id="event-id" name="Id" value="@Model.Id" />
+                    <input type="hidden" id="event-id" name="UserId" value="@Model.UserId" />
                     <label for="event-title" class="text-darkblue">Event Title</label>
-                    <input type="text" id="event-title" name="Title" class="form-control mt-3" required />
+                    @Html.TextBox("Title", null, new { @type = "text", @id = "event-title", @class = "form-control mt-3", @required = "required" })
                 </div>
-
+                <div class="form-group mt-3">
+                    <label for="event-title" class="text-darkblue">Event SubContent</label>
+                    @Html.TextBox("SubContent", null, new { @type = "text", @id = "event-subcontent", @class = "form-control mt-3", @required = "required" })
+                </div>
                 <div class="form-group mt-3">
                     <label for="event-description" class="text-darkblue">Event Description</label>
-                    <textarea id="event-description" name="Description" class="form-control mt-3" rows="3"></textarea>
+                    @Html.TextArea("Description", null, new { @id = "event-description", @class = "form-control mt-3", @rows = "3" })
+
                 </div>
 
                 <div class="row mt-3">
                     <div class="form-group col-lg-6">
                         <label for="event-date" class="text-darkblue">Event Date</label>
-                        <input type="date" id="event-date" name="Date" class="form-control mt-3" required />
+                        @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { @type = "date", @id = "event-date", @class = "form-control mt-3", @required = "required" })
+
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="event-type" class="text-darkblue">Event Type</label>
-                        <input type="text" id="event-type" name="Type" class="form-control mt-3" required />
+                        @Html.DropDownList("Type", ViewBag.TypeList as SelectList, "Choose Type", new { @class = "form-control mt-3", @required = "required" })
+
+
                     </div>
                 </div>
 
@@ -33,11 +43,11 @@
                     
                     <div class="form-group col-lg-6">
                         <label for="event-start-time" class="text-darkblue">Event Start Time</label>
-                        <input type="time" id="event-start-time" name="StartTime" class="form-control mt-3" required />
+                        @Html.TextBoxFor(model => model.StartTime, new { @type = "time", @id = "event-start-time", @class = "form-control mt-3", @required = "required" })
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="event-end-time" class="text-darkblue">Event End Time</label>
-                        <input type="time" id="event-end-time" name="EndTime" class="form-control mt-3" required />
+                        @Html.TextBoxFor(model => model.EndTime, new { @type = "time", @id = "event-end-time", @class = "form-control mt-3", @required = "required" })
                     </div>
                 </div>
 
@@ -45,13 +55,13 @@
                     <div class="form-group col-lg-6">
                         <label for="event-status" class="text-darkblue">Event Status</label>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="Status" id="status-active" value="true" required>
+                            @Html.RadioButton("Status", "true", true, new { @class = "form-check-input", @id = "status-active", @required = "required" })
                             <label class="form-check-label text-darkblue" for="status-active">
                                 Active
                             </label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="Status" id="status-inactive" value="false" required>
+                            @Html.RadioButton("Status", "false", false, new { @class = "form-check-input", @id = "status-inactive", @required = "required" })
                             <label class="form-check-label text-darkblue" for="status-inactive">
                                 Inactive
                             </label>

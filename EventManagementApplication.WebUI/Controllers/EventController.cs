@@ -2,6 +2,7 @@
 using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EventManagementApplication.WebUI.Controllers
 {
@@ -42,7 +43,7 @@ namespace EventManagementApplication.WebUI.Controllers
         public IActionResult AddEvent(Event entity)
         {
             _eventService.Create(entity);
-            return RedirectToAction("Index","Event");
+            return RedirectToAction("Index", "Event");
         }
 
 
@@ -51,6 +52,16 @@ namespace EventManagementApplication.WebUI.Controllers
         public IActionResult UpdateEventUser(int id)
         {
             var events = _eventService.GetById(id);
+            var typeList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "option1", Text = "Option 1" },
+                new SelectListItem { Value = "option2", Text = "Option 2" },
+                new SelectListItem { Value = "option3", Text = "Option 3" }
+            };
+
+            // ViewBag içinde TypeList'i ekleyin.
+            ViewBag.TypeList = new SelectList(typeList, "Value", "Text");
+
             return View(events);
         }
 
@@ -61,7 +72,7 @@ namespace EventManagementApplication.WebUI.Controllers
             return RedirectToAction("Index", "Event");
         }
 
-     
+
         public IActionResult DeleteEvent(int id)
         {
             _eventService.Delete(id);
@@ -78,6 +89,6 @@ namespace EventManagementApplication.WebUI.Controllers
         {
             return View();
         }
-    
+
     }
 }

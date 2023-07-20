@@ -44,17 +44,16 @@ namespace EventManagementApplication.Business.Concrete
 
         public IEnumerable<Event> GetAll()
         {
-            return _unitOfWork.Events.GetAll();
+            return _unitOfWork.Events.GetAllWithIncludes(x=>x.User);
         }
 
         public Event GetById(int id)
         {
-            return _unitOfWork.Events.GetById(id);
+            return _unitOfWork.Events.GetByIdWithIncludes(id,x=>x.User);
 
         }
 
 
-        [FluentValidateAspect(typeof(EventValidator))]
         public void Update(Event entity)
         {
             _unitOfWork.Events.Update(entity);
