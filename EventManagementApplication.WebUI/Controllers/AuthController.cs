@@ -47,8 +47,7 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
 
-
-
+     
         [HttpPost]
         public IActionResult Register(UserForRegisterDto userForRegisterDto)
         {
