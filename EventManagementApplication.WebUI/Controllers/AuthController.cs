@@ -56,17 +56,17 @@ namespace EventManagementApplication.WebUI.Controllers
             {
                 ModelState.AddModelError("Email", "Bu e-posta adresi zaten kullanılıyor.");
                 ViewBag.ErrorMessage = "Bu e-posta adresi zaten kullanılıyor.";
-                return BadRequest(userExists.Message);
+                return RedirectToAction("Register", "Auth");
             }
 
             var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
             var result = _authService.CreateAccessToken(registerResult.Data);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return RedirectToAction("Login", "Auth");
             }
 
-            return BadRequest(result.Message);
+            return RedirectToAction("Register", "Auth");
         }
        
         [HttpGet]

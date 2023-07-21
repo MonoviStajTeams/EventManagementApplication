@@ -32,8 +32,10 @@ namespace EventManagementApplication.Core.Utilities.Security.JWT
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
+
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
+
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var token = jwtSecurityTokenHandler.WriteToken(jwt);
 
