@@ -28,16 +28,16 @@ namespace EventManagementApplication.WebUI.Controllers
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
             {
-                return BadRequest(userToLogin.Message);
+                return RedirectToAction("Index", "Home");
             }
 
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return RedirectToAction("Index", "Home");
             }
 
-            return BadRequest(result.Message);
+            return RedirectToAction("Login", "Auth");
         }
   
         [HttpGet]

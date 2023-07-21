@@ -4,94 +4,76 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-<section class=" ">
-    <div class="container-fluid p-4 h-100">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-lg-12 col-md-12">
-                <div class="card text-black" style="border-radius: 25px;">
-                    <div class="card-body p-md-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8 col-lg-8 col-xl-5 order-2 order-lg-1">
-
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Kayıt Ol</p>
-
-                                <form method="post" action="@Url.Action("Register","Auth")" class="mx-1 mx-md-4">
-
-                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label">Ad</label>
-                                            <input type="text" name="FirstName" class="form-control" required />
-                                        </div>
+<div class="account-login section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+                <form class="card login-form inner-content" action="@Url.Action("Register","Auth")" method="post">
+                    <div class="card-body">
+                        <div class="title">
+                            <h3>Sign Up Now</h3>
+                        </div>
+                       
+                       
+                        <div class="input-head">
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group input-group">
+                                        <label><i class="lni lni-user"></i></label>
+                                        <input class="form-control" name="FirstName" type="text" placeholder="First Name" required>
                                     </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label">Soyad</label>
-                                            <input type="text" name="LastName" class="form-control" required />
-                                        </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group input-group">
+                                        <label><i class="lni lni-user"></i></label>
+                                        <input class="form-control" type="text" name="LastName" placeholder="Last Name" required>
                                     </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label">Mail</label>
-                                            <input type="email" name="Email" class="form-control" required />
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label">Şifre</label>
-                                            <input type="password" name="Password" class="form-control" required />
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" name="ConfirmPassword">Şifre Tekrar</label>
-                                            <input type="password" class="form-control" name="ConfirmPassword" required />
-                                        </div>
-                                    </div>
-                     
-
-                                    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-                                    {
-                                        <div class="alert alert-danger">
-                                            @ViewBag.ErrorMessage
-                                        </div>
-                                    }
-
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <span id="password-mismatch-msg" class="text-danger d-none">Şifreler eşleşmiyor. Lütfen tekrar deneyin.</span>
-                                        <span id="password-match-msg" class="text-success d-none">Şifreler eşleşiyor.</span>
-                                    </div>
-
-
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-primary btn-lg custom-btn-primary" id="register-button" disabled >Kayıt Ol</button>
-                                    </div>
-
-                                </form>
-                             
-                                
+                                </div>
                             </div>
-                            <div class="col-md-4 col-lg-4 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                                <img src="https://monovi.com.tr/img/logo/monovi-logo-grey.png" class="img-fluid" alt="Monovi Image">
-
+                            <div class="col-lg-12 col-12">
+                                <div class="form-group input-group">
+                                    <label><i class="lni lni-envelope"></i></i></label>
+                                    <input class="form-control" name="Email" type="email" placeholder="First Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group input-group">
+                                <label><i class="lni lni-lock-alt"></i></label>
+                                <input class="form-control" type="password" name="Password" placeholder="Your password" required>
+                            </div>
+                            <div class="form-group input-group">
+                                <label><i class="lni lni-lock-alt"></i></label>
+                                <input class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm password" required>
                             </div>
                         </div>
+
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                            <div class="alert alert-danger">
+                                @ViewBag.ErrorMessage
+                            </div>
+                        }
+
+
+                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                            <span id="password-mismatch-msg" class="text-danger d-none">Şifreler eşleşmiyor. Lütfen tekrar deneyin.</span>
+                            <span id="password-match-msg" class="text-success d-none">Şifreler eşleşiyor.</span>
+                        </div>
+
+                        <div class="button">
+                            <button class="btn" disabled type="submit" id="register-button">Create Account</button>
+                        </div>
+                        <h4 class="create-account">
+                            Already have an account? <a href="signin.html">Sign In</a>
+                        </h4>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+
+
 
 
 
@@ -146,3 +128,207 @@
 </script>
 
 
+<style>
+
+    .account-login {
+        background-color: #F4F7FA;
+    }
+
+        .account-login .inner-content {
+            border-radius: 8px;
+            overflow: hidden;
+            -webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.075);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.075);
+        }
+
+        .account-login .login-form {
+            padding: 60px 70px;
+            background-color: #fff;
+            border: none;
+        }
+
+
+
+            .account-login .login-form .card-body {
+                padding: 0;
+            }
+
+            .account-login .login-form .title {
+                margin-bottom: 45px;
+                text-align: center;
+            }
+
+
+
+                .account-login .login-form .title h3 {
+                    font-size: 25px;
+                    font-weight: 700;
+                    color: #081828;
+                    margin-bottom: 8px;
+                }
+
+
+
+        .account-login .bottom-content {
+            margin-top: 25px;
+        }
+
+        .account-login .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+            .account-login .form-group label {
+                position: absolute;
+                left: 20px;
+                top: 50%;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                z-index: 9;
+            }
+
+            .account-login .form-group .form-control {
+                padding: 0 18px;
+                -webkit-transition: all 0.4s ease;
+                transition: all 0.4s ease;
+                border: 1px solid #eee;
+                background-color: #F4F7FA;
+                color: #505050;
+                font-size: 15px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                height: 52px;
+                border-radius: 30px !important;
+                overflow: hidden;
+                width: 100%;
+                padding-left: 55px;
+            }
+
+                .account-login .form-group .form-control:focus {
+                    border-color: #7E57FF;
+                    -webkit-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.233);
+                    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.233);
+                }
+
+        .account-login .lost-pass {
+            color: #888;
+        }
+
+            .account-login .lost-pass:hover {
+                color: #7E57FF;
+            }
+
+        .account-login .button {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+
+
+            .account-login .button .btn {
+                padding: 14px 40px;
+                margin-right: 20px;
+                width: 100%;
+            }
+
+                .account-login .button .btn:last-child {
+                    margin: 0;
+                }
+
+        .account-login .or {
+            position: relative;
+            text-align: center;
+            margin: 30px 0;
+            z-index: 0;
+        }
+
+            .account-login .or span {
+                text-align: center;
+                font-size: 16px;
+                background-color: #fff;
+                padding: 5px 12px;
+            }
+
+            .account-login .or::before {
+                position: absolute;
+                content: "";
+                left: 0;
+                top: 50%;
+                margin-top: -1px;
+                background-color: #e8e8e8;
+                height: 1px;
+                width: 100%;
+                z-index: -1;
+            }
+
+        .account-login .alt-option {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+            .account-login .alt-option .small-title {
+                margin-bottom: 15px;
+                text-align: center;
+                display: block;
+            }
+
+            .account-login .alt-option .option-button {
+                padding: 14px 25px 14px 15px;
+                border: 1px solid #eee;
+                border-radius: 30px;
+                display: inline-block;
+                text-align: center;
+                color: #727272;
+            }
+
+                .account-login .alt-option .option-button img {
+                    display: inline-block;
+                    margin-right: 15px;
+                }
+
+
+
+            .account-login .alt-option li {
+                font-weight: 500;
+                display: inline-block;
+                margin-right: 15px;
+            }
+
+
+
+                .account-login .alt-option li span {
+                    color: #727272;
+                    display: inline-block;
+                }
+
+                .account-login .alt-option li:last-child {
+                    margin: 0;
+                }
+
+                .account-login .alt-option li a {
+                    color: #7E57FF;
+                }
+
+                    .account-login .alt-option li a:hover {
+                        color: #081828;
+                    }
+
+        .account-login .create-account {
+            font-weight: 500;
+            color: #081828;
+            text-align: center;
+            margin-top: 35px;
+            font-size: 14px;
+            display: block;
+        }
+
+            .account-login .create-account a {
+                color: #7E57FF;
+            }
+
+                .account-login .create-account a:hover {
+                    text-decoration: underline;
+                }
+
+</style>
