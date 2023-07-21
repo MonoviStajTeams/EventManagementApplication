@@ -5,30 +5,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Invitation</h2>
+<div class="container m-auto ">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-12 p-5">
+            <h3 class="mb-5">Add Invitation</h3>
+            <form asp-action="AddInvitation" method="post">
 
-<form asp-action="AddInvitation" method="post">
+                <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label">Başlık</label>
+                        <input type="text" name="Title" class="form-control" required />
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label">Açıklama</label>
+                        <textarea type="text" name="Description" class="form-control" required></textarea>
+                    </div>
+                </div>
 
-    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-        <div class="form-outline flex-fill mb-0">
-            <label class="form-label">Başlık</label>
-            <input type="text" name="Title" class="form-control" required />
+                <div class="button text-center">
+                    <button class="btn" type="submit" >Add Invitation</button>
+                </div>
+            </form>
         </div>
+
+        
+
     </div>
-    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-        <div class="form-outline flex-fill mb-0">
-            <label class="form-label">Açıklama</label>
-            <input type="text" name="Description" class="form-control" required />
-        </div>
-    </div>
-    <div class="d-flex flex-row align-items-center mb-4 custom-form-outline">
-        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-        <div class="form-outline flex-fill mb-0">
-            <label class="form-label">Davetliler</label>
-            <input type="text" name="User" class="form-control" required />
-        </div>
-    </div>
-    <button type="submit">Add Invitation</button>
-</form>
+</div>
+
+<style>
+  
+    .custom-form-outline textarea.form-control {
+        background-color: #F8F6F4;
+        border-color: #6c757d;
+        border-radius: 12px;
+        padding: 10px 15px;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+        .custom-form-outline textarea.form-control:focus {
+            border-color: #7E57FF;
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        }
+</style>
+
+
+

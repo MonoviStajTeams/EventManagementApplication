@@ -9,5 +9,6 @@ namespace EventManagementApplication.DataAccess.Abstract
 {
     public interface IInvitationRepository : IGenericRepository<Invitation>
     {
+        int GetLastInvitationId();
     }
 }

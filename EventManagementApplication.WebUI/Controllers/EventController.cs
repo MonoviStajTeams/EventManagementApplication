@@ -36,6 +36,15 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpGet]
         public IActionResult AddEvent()
         {
+            var typeList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "option1", Text = "Option 1" },
+                new SelectListItem { Value = "option2", Text = "Option 2" },
+                new SelectListItem { Value = "option3", Text = "Option 3" }
+            };
+
+            // ViewBag içinde TypeList'i ekleyin.
+            ViewBag.TypeList = new SelectList(typeList, "Value", "Text");
             return View();
         }
 

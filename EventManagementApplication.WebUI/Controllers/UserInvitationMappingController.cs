@@ -1,6 +1,7 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
+using EventManagementApplication.Entities.dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagementApplication.WebUI.Controllers
@@ -28,24 +29,29 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult AddUserInvitationMapping()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public IActionResult AddUserInvitationMapping(UserInvitationMapping userInvitationMapping)
+        public IActionResult AddUserInvitationMapping([FromBody] AddUserInvitationMappingModel model)
         {
-            _userInvitationMappingService.Create(userInvitationMapping);
-            return RedirectToAction("Index", "UserInvitationMapping");
+            if (model == null || model.UserIds == null || model.UserIds.Length == 0 || model.InvitationId == 0)
+            {
+                ViewBag.Error = "Seçilen kullanıcılar geçerli değil.";
+                return RedirectToAction("AddUserInvitationMapping");
+            }
+
+            foreach (var userId in model.UserIds)
+            {
+                var userInvitationMapping = new UserInvitationMapping
+                {
+                    InvitedId = userId,
+                    InvitationId = model.InvitationId
+                };
+                _userInvitationMappingService.Create(userInvitationMapping);
+            }
+
+            ViewBag.SuccessMessage = "Kullanıcılar başarıyla davet edildi.";
+            return RedirectToAction("InvitationList","Invitation");
         }
 
-        [HttpGet]
-        public IActionResult UpdateUserInvitationMapping()
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult UpdateUserInvitationMapping(UserInvitationMapping

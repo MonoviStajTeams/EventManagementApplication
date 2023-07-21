@@ -37,14 +37,18 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult AddInvitation(Invitation entity)
         {
+            var lastInvitationId = _invitationService.GetLastInvitationId();
+            entity.Id = lastInvitationId;
             _invitationService.Create(entity);
-            return RedirectToAction("GetAllInvitation", "GetAllInvitation");
+            
+            return RedirectToAction("AddUsersInvitation", "Invitation" , new {id = lastInvitationId });
         }
 
         [HttpGet]
-        public IActionResult UpdateInvitation()
+        public IActionResult UpdateInvitation(int id)
         {
-            return View();
+            var invitation = _invitationService.GetById(id);
+            return View(invitation);
         }
 
         [HttpPost]
@@ -60,5 +64,13 @@ namespace EventManagementApplication.WebUI.Controllers
             _invitationService.Delete(id);
             return RedirectToAction("GetAllInvitation", "GetAllInvitation");
         }
+
+        public IActionResult AddUsersInvitation(int id)
+        {
+            ViewBag.InvitationId = id;
+            ViewBag.Users = _invitationService.GetUsers();
+            return View();
+        }
+      
     }
 }

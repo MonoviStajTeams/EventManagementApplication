@@ -89,5 +89,24 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+        public int GetLastInvitationId()
+        {
+            int lastUsedId = _unitOfWork.Invitations.GetLastInvitationId();
+            if (lastUsedId == null)
+            {
+                lastUsedId = 10;
+            }
+
+            int newId = lastUsedId + 1;
+
+            return newId;
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+            var users = _unitOfWork.Users.GetAll();
+            return users;
+        }
+
     }
 }

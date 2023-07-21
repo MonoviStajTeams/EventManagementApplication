@@ -1115,9 +1115,11 @@ ol {
     }
 
         .custom-form-outline input.form-control:focus {
-            border-color: #28a745;
+            border-color: #7E57FF;
             box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
         }
+
+
 
 /* Custom primary button styles */
 .custom-btn-primary {

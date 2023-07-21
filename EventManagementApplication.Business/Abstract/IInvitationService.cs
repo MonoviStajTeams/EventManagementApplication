@@ -9,5 +9,7 @@ namespace EventManagementApplication.Business.Abstract
 {
     public interface IInvitationService : IGenericService<Invitation>
     {
+        int GetLastInvitationId();
+        IEnumerable<User> GetUsers();
     }
 }

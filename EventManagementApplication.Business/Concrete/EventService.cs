@@ -24,7 +24,6 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        [FluentValidateAspect(typeof(EventValidator))]
         public void Create(Event entity)
         {
             _unitOfWork.Events.Add(entity);
