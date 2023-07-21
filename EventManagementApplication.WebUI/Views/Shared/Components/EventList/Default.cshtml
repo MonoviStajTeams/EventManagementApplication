@@ -16,9 +16,10 @@
                                 </div>
                                 <div class="event-content">
                                     <div class="meta-info">
-                                        <a class="date" href="/Event/EventSingle/@item.Id">
-                                            <i class="lni lni-timer"></i> @item.Date  @item.StartTime - @item.EndTime
+                                        <a class="date mb-3" href="/Event/EventSingle/@item.Id">
+                                            <i class="lni lni-timer"></i> @item.Date.ToString("dd.MM.yyyy")  @item.StartTime - @item.EndTime
                                         </a>
+                                        <br>
                                         <a class="author" href="javascript:void(0)">
                                             <i class="lni lni-user"></i> @item.User.FirstName @item.User.LastName
                                         </a>

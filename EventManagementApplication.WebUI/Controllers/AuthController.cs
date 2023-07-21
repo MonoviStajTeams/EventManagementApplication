@@ -68,6 +68,7 @@ namespace EventManagementApplication.WebUI.Controllers
 
             return BadRequest(result.Message);
         }
+       
         [HttpGet]
         public IActionResult ForgotPassword()
         {
