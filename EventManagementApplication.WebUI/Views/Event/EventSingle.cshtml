@@ -6,17 +6,21 @@
 
 <div class="container mt-4">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-primary text-white">
             <h1 class="text-center">Event Details</h1>
         </div>
         <div class="card-body">
-            <h2 class="card-title">@Model.Title</h2>
-            <p class="card-text">@Model.Description</p>
-            <p class="card-text">Date: @Model.Date.ToShortDateString()</p>
-            <p class="card-text">Time: @Model.StartTime - @Model.EndTime</p>
-            <p class="card-text">Type: @Model.Type</p>
-            <p class="card-text">Status: @((Model.Status) ? "Active" : "Inactive")</p>
-            <p class="card-text">Organizer: @Model.User.FirstName @Model.User.LastName</p>
+            <h2 class="card-title">Title</h2>
+            <p class="card-text">Description</p>
+            <p class="card-text">Date: Date</p>
+            <p class="card-text">Time: StartTime - EndTime</p>
+            <p class="card-text">Type: Type</p>
+            <p class="card-text">
+                Status: <span class="((Status) ? 'text-success font-weight-bold' : 'text-danger font-weight-bold')">
+                    ((Status) ? 'Active' : 'Inactive')
+                </span>
+            </p>
+            <p class="card-text">Organizer: FirstName LastName</p>
         </div>
     </div>
 </div>
