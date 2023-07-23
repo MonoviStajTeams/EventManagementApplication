@@ -11,5 +11,6 @@ namespace EventManagementApplication.Business.Abstract
     {
         IEnumerable<Event> GetInactiveEventsByUserId(int userId);
         void ActivateEvent(int eventId, DateTime newDate, string newStartTime, string newEndTime);
+        IEnumerable<Event> GetAllByUserId(int id);
     }
 }

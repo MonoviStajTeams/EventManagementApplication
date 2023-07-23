@@ -43,7 +43,8 @@ namespace EventManagementApplication.Business.Concrete
 
         public IEnumerable<Event> GetAll()
         {
-            return _unitOfWork.Events.GetAllWithIncludes(x=>x.User);
+            return _unitOfWork.Events.GetAllWithIncludes(x => x.User);
+
         }
 
         public Event GetById(int id)
@@ -83,6 +84,13 @@ namespace EventManagementApplication.Business.Concrete
                 _unitOfWork.Events.Update(existingEvent);
                 _unitOfWork.Save();
             }
+        }
+
+
+        public IEnumerable<Event> GetAllByUserId(int id)
+        {
+            return _unitOfWork.Events.GetAllWithIncludes(x => x.User).Where(x=>x.UserId == id);
+
         }
 
     }

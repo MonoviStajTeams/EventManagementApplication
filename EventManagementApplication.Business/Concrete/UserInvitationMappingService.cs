@@ -59,5 +59,17 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.UserInvitationMappings.Update(entity);
             _unitOfWork.Save();
         }
+   
+        
+        public void AcceptEvent(int id)
+        {
+            var userInvitationMapping = _unitOfWork.UserInvitationMappings.GetById(id);
+
+            userInvitationMapping.Status = true;
+
+            _unitOfWork.UserInvitationMappings.Update(userInvitationMapping);
+            _unitOfWork.Save();
+
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace EventManagementApplication.Business.Abstract
 {
     public interface IUserInvitationMappingService : IGenericService<UserInvitationMapping>
     {
+        void AcceptEvent(int id);
     }
 }
