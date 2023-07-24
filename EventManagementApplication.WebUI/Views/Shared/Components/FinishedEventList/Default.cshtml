@@ -1,56 +1,44 @@
-﻿<div class="container-fluid text-center">
-    <h1>Finished Event List</h1>
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-                <div class="card-title">Event</div>
-                <div class="card-text">You have been invited to the event "Event Title 1" by User 1.</div>
-                <div class="card-footer">
-                    <div class="text-muted">Event Date: 2023-07-30</div>
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Event>
 
+<div class="col-lg-9 col-md-8 col-12">
+    <h2>Finished Events</h2>
+    <div class="row" id="eventContainer">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-6 col-md-6 col-12">
+                <!-- Start Single event Grid -->
+                <div class="single-event-grid">
+                    <div class="event-img">
+                        <a href="/Event/EventSingle/@item.Id">
+                            <img src="https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg" alt="#">
+                        </a>
+                    </div>
+                    <div class="event-content">
+                        <div class="meta-info">
+                            <a class="date mb-3" href="/Event/EventSingle/@item.Id">
+                                <i class="lni lni-timer"></i> @item.Date.ToString("dd.MM.yyyy")  @item.StartTime - @item.EndTime
+                            </a>
+                            <br>
+                            <a class="author" href="javascript:void(0)">
+                                <i class="lni lni-user"></i> @item.User.FirstName @item.User.LastName
+                            </a>
+                        </div>
+                        <h4>
+                            <a href="/Event/EventSingle/@item.Id">
+                                @item.Title
+                            </a>
+                        </h4>
+                        <p>
+                            @item.SubContent
+                        </p>
+                        <div class="button">
+                            <a href="/Event/EventSingle/@item.Id" class="btn">More</a>  <a class="btn" style="background-color: green; color: white;" disabled>Joined</a>
+
+                        </div>
+                    </div>
                 </div>
+                <!-- End Single event Grid -->
             </div>
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <!-- Yeni satır ekleyerek diğer kartı ortada listelemek için -->
-        <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-                <div class="card-title">Event</div>
-                <div class="card-text">You have been invited to the event "Event Title 2" by User 2.</div>
-                <div class="card-footer">
-                    <div class="text-muted">Event Date: 2023-08-10</div>
-
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
-
-
-<style>
-    .card {
-        margin-bottom: 20px;
-        border: 1px solid #eaeaea;
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-title {
-        font-weight: bold;
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-    }
-
-    .card-text {
-        margin-bottom: 10px;
-    }
-
-    .card-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>
