@@ -37,6 +37,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
+        [Route("AddEvent")]
         public IActionResult AddEvent(Event entity)
         {
             _eventService.Create(entity);
@@ -44,6 +45,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
+        [Route("UpdateEvents")]
         public IActionResult UpdateEvent(Event entity)
         {
             _eventService.Update(entity);
@@ -51,6 +53,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
+        [Route("DeleteEvent{id}")]
         public IActionResult DeleteEvent(int id)
         {
             _eventService.Delete(id);

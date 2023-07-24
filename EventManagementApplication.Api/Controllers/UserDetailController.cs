@@ -26,6 +26,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
+        [Route("AddUserDetail")]
         public IActionResult AddUserDetail(UserDetail userDetail)
         {
             _userDetailService.Create(userDetail);
@@ -33,6 +34,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
+        [Route("UpdateUserDetail")]
         public IActionResult UpdateUserDetail(UserDetail userDetail)
         {
             _userDetailService.Update(userDetail);
@@ -40,6 +42,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
+        [Route("DeleteUserDetail{id}")]
         public IActionResult DeleteUserDetail(int id)
         {
             _userDetailService.Delete(id);

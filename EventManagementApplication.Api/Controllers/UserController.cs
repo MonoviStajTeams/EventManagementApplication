@@ -37,6 +37,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
+        [Route("AddUser")]
         public IActionResult AddUser(User user)
         {
             _userService.Create(user);
@@ -44,6 +45,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
+        [Route("UpdateUser")]
         public IActionResult UpdateUser(User user)
         {
             _userService.Update(user);
@@ -51,6 +53,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
+        [Route("DeleteUser")]
         public IActionResult DeleteUser(int id)
         {
             _userService.Delete(id);
