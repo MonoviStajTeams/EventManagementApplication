@@ -3,6 +3,7 @@ using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventManagementApplication.WebUI.Controllers
 {
@@ -95,6 +96,11 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
         public IActionResult AcceptedEventViewUser()
+        {
+            return View();
+        }
+
+        public IActionResult FinishedEventViewUser()
         {
             return View();
         }

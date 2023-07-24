@@ -1,9 +1,7 @@
-﻿
-@{
-    ViewData["Title"] = "ProfileSettings";
+﻿@{
+    ViewData["Title"] = "FinishedEventViewUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <section class="dashboard section">
     <div class="container-fluid">
@@ -14,23 +12,23 @@
                     <div class="user-image">
                         <img src="https://via.placeholder.com/300x300" alt="#">
                         <h3>
-                           FirstName Lastname
+                            FirstName Lastname
                             <span><a href="javascript:void(0)">mail</a></span>
                         </h3>
                     </div>
                     <div class="dashboard-menu">
                         <ul>
-                            <li><a href="UserDashboard"><i class="lni lni-dashboard"></i> Dashboard</a></li>
+                            <li><a href="/User/UserDashboard"><i class="lni lni-dashboard"></i> Dashboard</a></li>
                             <li>
-                                <a class="active" href="/User/ProfileSettings">
+                                <a href="/User/ProfileSettings">
                                     <i class="lni lni-pencil-alt"></i>
                                     Edit Profile
                                 </a>
                             </li>
                             <li><a href="/Event/AcceptedEventViewUser"><i class="lni lni-bolt-alt"></i> My Events</a></li>
-                            <li><a href="/Event/FinishedEventViewUser"><i class="lni lni-bolt-alt"></i> Finished Events</a></li>
+                            <li><a class="active" href="/Event/FinishedEventViewUser"><i class="lni lni-bolt-alt"></i> Finished Events</a></li>
                             <li><a href="/Invitation/InvitationList"><i class="lni lni-heart"></i> My Invitations</a></li>
-       
+
                         </ul>
                         <div class="button">
                             <a class="btn" href="javascript:void(0)">Logout</a>
@@ -39,9 +37,7 @@
                 </div>
                 <!-- Start Dashboard Sidebar -->
             </div>
-           <div class="col-lg-9 col-mg-8 col-12">
-                @await Component.InvokeAsync("Settings")
-           </div>
+            @await Component.InvokeAsync("FinishedEventList")
         </div>
     </div>
 </section>
