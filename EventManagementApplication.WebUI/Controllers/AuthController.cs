@@ -28,12 +28,14 @@ namespace EventManagementApplication.WebUI.Controllers
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
             {
-                return RedirectToAction("Index", "Home");
+                ViewBag.ErrorMessage = "Email Adresi veya Şifre Yanlış.";
+                return View();
             }
 
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
+                HttpContext.Session.SetString("Email", userForLoginDto.Email!);
                 return RedirectToAction("Index", "Home");
             }
 

@@ -4,6 +4,7 @@ using EventManagementApplication.Core.Aspects.TransactionAspects;
 using EventManagementApplication.Core.Aspects.ValidationAspects;
 using EventManagementApplication.DataAccess.Abstract;
 using EventManagementApplication.Entities.Concrete;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,11 +64,14 @@ namespace EventManagementApplication.Business.Concrete
             return _unitOfWork.Users.GetClaims(user);
         }
 
-        [FluentValidateAspect(typeof(User))]
+
+
         public void Update(User entity)
         {
             _unitOfWork.Users.Update(entity);
             _unitOfWork.Save();
         }
+
+    
     }
 }

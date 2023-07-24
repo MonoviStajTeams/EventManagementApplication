@@ -33,23 +33,15 @@ namespace EventManagementApplication.WebUI.Controllers
             return RedirectToAction("UserDetailList", controllerName: "UserDetail");
         }
 
-        [HttpGet]
-        public IActionResult UpdateUserDetail()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public IActionResult UpdateUserDetail(UserDetail userDetail)
-        {
-            _userDetailService.Update(userDetail);
-            return RedirectToAction("UserDetailList", controllerName: "UserDetail");
-        }
+       
 
         public IActionResult DeleteUserDetail(int id)
         {
             _userDetailService.Delete(id);
             return RedirectToAction("UserDetailList", controllerName: "UserDetail");
         }
+
+
     }
 }

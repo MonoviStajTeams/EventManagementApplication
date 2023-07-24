@@ -1,4 +1,6 @@
-﻿<!-- Owl Carousel CSS -->
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Event>
+
+<!-- Owl Carousel CSS -->
 <link href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css" rel="stylesheet">
 
@@ -9,37 +11,22 @@
 <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
 
 
-<div class="container-fluid">
-    <h1>Newly Event List</h1>
-    <div class="owl-carousel owl-theme">
-        <div class="event-card">
-            <img src="https://picsum.photos/id/866/400/250" alt="Event 1">
-            <div class="card-body">
-                <h5 class="card-title">Event Title 1</h5>
-                <p class="card-text">Event description goes here.</p>
-            </div>
-        </div>
-        <div class="event-card">
-            <img src="https://picsum.photos/id/866/400/250" alt="Event 2">
-            <div class="card-body">
-                <h5 class="card-title">Event Title 2</h5>
-                <p class="card-text">Event description goes here.</p>
-            </div>
-        </div>
-        <div class="event-card">
-            <img src="https://picsum.photos/id/866/400/250" alt="Event 2">
-            <div class="card-body">
-                <h5 class="card-title">Event Title 2</h5>
-                <p class="card-text">Event description goes here.</p>
-            </div>
-        </div>
-        <div class="event-card">
-            <img src="https://picsum.photos/id/866/400/250" alt="Event 2">
-            <div class="card-body">
-                <h5 class="card-title">Event Title 2</h5>
-                <p class="card-text">Event description goes here.</p>
-            </div>
-        </div>
+<div class="container">
+    <h3><strong>Newly Event List</strong></h3>
+    <div class="owl-carousel owl-theme mt-4">
+        @foreach (var item in Model)
+        {
+            <a href="/Evetn/EventSinglr/@item.Id" style="color:#394867">
+                <div class="event-card">
+                    <img src="https://picsum.photos/id/866/400/250" alt="@item.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.SubContent</p>
+                    </div>
+                </div>
+            </a>
+        }
+        
     </div>
 </div>
 

@@ -61,7 +61,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 #endregion
 
 builder.Services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
-
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 
 #region Business Classes
@@ -108,7 +109,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(

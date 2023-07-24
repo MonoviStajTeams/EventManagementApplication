@@ -15,7 +15,7 @@ namespace EventManagementApplication.WebUI.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var eventList = _eventService.GetAll().Where(e => e.Status);
+            var eventList = _eventService.GetAll().Where(e => e.Status == true);
             return View(eventList);
         }
     }

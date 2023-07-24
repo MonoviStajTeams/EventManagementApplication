@@ -12,6 +12,12 @@
                     <div class="card-body">
                         <div class="title">
                             <h3>Sign In Now</h3>
+                            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                            {
+                                <div class="alert alert-danger">
+                                    @ViewBag.ErrorMessage
+                                </div>
+                            }
                         </div>
                         <div class="input-head">
                             <div class="form-group input-group">

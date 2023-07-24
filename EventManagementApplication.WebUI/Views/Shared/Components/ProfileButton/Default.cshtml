@@ -1,0 +1,20 @@
+﻿
+﻿@if (ViewBag.User)
+{
+<div class="button header-button">
+    <a href="/User/UserDashboard" class="btn">Profile</a>
+</div>
+
+}
+else{
+    <div class="login-button">
+        <ul>
+            <li>
+                <a href="/Auth/Login"><i class="lni lni-enter"></i> Login</a>
+            </li>
+            <li>
+                <a href="/Auth/Register"><i class="lni lni-user"></i> Register</a>
+            </li>
+        </ul>
+    </div>
+}

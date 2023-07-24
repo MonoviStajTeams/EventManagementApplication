@@ -9,5 +9,6 @@ namespace EventManagementApplication.DataAccess.Abstract
 {
     public interface IUserDetailRepository : IGenericRepository<UserDetail>
     {
+        UserDetail GetUserDetailByUserId(int userId);
     }
 }

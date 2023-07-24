@@ -1,5 +1,6 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Business.ValidationRules.FluentValidation;
+using EventManagementApplication.Core.Aspects.CacheAspects;
 using EventManagementApplication.Core.Aspects.LogAspects;
 using EventManagementApplication.Core.Aspects.TransactionAspects;
 using EventManagementApplication.Core.Aspects.ValidationAspects;
@@ -41,12 +42,15 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
+
+   
         public IEnumerable<Event> GetAll()
         {
             return _unitOfWork.Events.GetAllWithIncludes(x => x.User);
 
         }
 
+        
         public Event GetById(int id)
         {
             return _unitOfWork.Events.GetByIdWithIncludes(id,x=>x.User);

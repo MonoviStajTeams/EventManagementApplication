@@ -50,11 +50,16 @@ namespace EventManagementApplication.Business.Concrete
 
         }
 
-        [FluentValidateAspect(typeof(UserDetailValidator))]
         public void Update(UserDetail entity)
         {
             _unitOfWork.UserDetails.Update(entity);
             _unitOfWork.Save();
+        }
+
+
+        public UserDetail GetUserDetailByUserId(int id)
+        {
+            return _unitOfWork.UserDetails.GetUserDetailByUserId(id);
         }
     }
 }
