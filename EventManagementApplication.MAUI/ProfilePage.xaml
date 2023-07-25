@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:EventManagementApplication.MAUI"
+             x:Class="EventManagementApplication.MAUI.ProfilePage"
+             Title="Profile Settings">
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Profile Settings" FontSize="24" TextColor="Black" HorizontalOptions="Center" Margin="0,10,0,30" FontAttributes="Bold" />
+
+            <Image x:Name="profileImage" Source="https://via.placeholder.com/300x300" WidthRequest="250" HeightRequest="250" />
+
+            <Entry x:Name="firstNameEntry" Placeholder="First Name" Margin="0,0,0,10" />
+            <Entry x:Name="lastNameEntry" Placeholder="Last Name" Margin="0,0,0,10" />
+            <Entry x:Name="emailEntry" Placeholder="Email Address" Margin="0,0,0,10" />
+            <Entry x:Name="phoneNumberEntry" Placeholder="Phone Number" Margin="0,0,0,10" />
+
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                <Label Text="Profile Image*" VerticalOptions="Center" />
+                <Button x:Name="uploadImageButton" Text="Upload Image"  />
+            </StackLayout>
+
+            <Button Text="Update Profile" BackgroundColor="#081828" TextColor="White" Margin="0,10,0,0" />
+
+            <Label x:Name="profileUpdatedMessageLabel" Text="Profile updated!" IsVisible="False" TextColor="#081828" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

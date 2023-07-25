@@ -7,8 +7,8 @@
         <ScrollView>
             <StackLayout Padding="20">
                 <Label Text="Sign In Now" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
-                <Entry Placeholder="Enter your email" x:Name="Email" Margin="0, 10" />
-                <Entry Placeholder="Enter your password" x:Name="Password" IsPassword="True" Margin="0, 10" />
+                <Entry Placeholder="Email" x:Name="Email" Margin="0, 10" />
+                <Entry Placeholder="Password" x:Name="Password" IsPassword="True" Margin="0, 10" />
                 <Button Text="Sign In" BackgroundColor="#7E57FF" TextColor="White"  Margin="0, 20, 0, 10"/>
                 <Button Text="Forgot password?" TextColor="White" Margin="0, 5"/>
                 <Label Text="Don't have an account? " FontSize="14" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
