@@ -1,0 +1,37 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventManagementApplication.MAUI.UpdateEvent"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             Title="Update Event ">
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Update Event" FontSize="24" TextColor="Black" HorizontalOptions="Center" Margin="0,10,0,30"/>
+
+            <Entry x:Name="eventTitleEntry" Placeholder="Event Title" Margin="0,0,0,10" />
+            <Entry x:Name="eventDescriptionEntry" Placeholder="Event Description" Margin="0,0,0,10" />
+            <Entry x:Name="eventSubContentEntry" Placeholder="Event Sub Content" Margin="0,0,0,10" />
+
+            <DatePicker x:Name="eventDatePicker" Margin="0,0,0,10"/>
+
+
+
+            <TimePicker x:Name="eventStartTimePicker" Margin="0,0,0,10" />
+            <TimePicker x:Name="eventEndTimePicker" Margin="0,0,0,10" />
+
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                <Label Text="Event Status:" VerticalOptions="Center" />
+                <RadioButton x:Name="statusActiveRadioButton" VerticalOptions="Center" />
+                <Label Text="Active" VerticalOptions="Center" />
+                <RadioButton x:Name="statusInactiveRadioButton" VerticalOptions="Center" />
+                <Label Text="Inactive" VerticalOptions="Center" />
+            </StackLayout>
+
+
+            <Button Text="Update Event" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" />
+
+            <Label x:Name="eventUpdatedMessageLabel" Text="Event is updated!" IsVisible="False" TextColor="{DynamicResource SuccessColor}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
