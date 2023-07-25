@@ -26,6 +26,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
+        [Route("AddNotification")]
         public IActionResult AddNotification(Notification notification)
         {
             _notificationService.Create(notification);
@@ -33,6 +34,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
+        [Route("UpdateNotification")]
         public IActionResult UpdateNotification(Notification notification)
         {
             _notificationService.Update(notification);
@@ -40,6 +42,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
+        [Route("DeleteNotification{id}")]
         public IActionResult DeleteNotification(int id)
         {
             _notificationService.Delete(id);
