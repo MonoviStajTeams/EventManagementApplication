@@ -56,6 +56,9 @@
 	  <MauiXaml Update="AddEvent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="RegisterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="UpdateEvent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
