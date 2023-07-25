@@ -68,6 +68,9 @@
 	  <MauiXaml Update="UpdateEvent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="UpdateInvitation.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionEventManagementApplicationMAUIHideInfoBar="True" /></VisualStudio></ProjectExtensions>
