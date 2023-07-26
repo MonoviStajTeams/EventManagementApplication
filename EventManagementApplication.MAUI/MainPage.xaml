@@ -10,7 +10,7 @@
                 <Entry Placeholder="Email" x:Name="Email" Margin="0, 10" />
                 <Entry Placeholder="Password" x:Name="Password" IsPassword="True" Margin="0, 10" />
                 <Button Text="Sign In" BackgroundColor="#7E57FF" TextColor="White"  Margin="0, 20, 0, 10"/>
-                <Button Text="Forgot password?" TextColor="White" Margin="0, 5"/>
+                <Button Text="Forgot password?" TextColor="White" Clicked="ForgotPassword_Clicked" Margin="0, 5"/>
                 <Label Text="Don't have an account? " FontSize="14" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
                 <Button Text="Sign Up Here" BackgroundColor="#7E57FF" TextColor="White" Clicked="SignUp_Clicked"  Margin="0, 0, 0, 20"/>
             </StackLayout>

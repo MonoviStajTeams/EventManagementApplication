@@ -19,27 +19,23 @@
                         <img src="@Model.ProfileImagePath" style="width: 300px; height:300px" alt="#">
                     }
                 </div>
-                <form class="profile-setting-form" method="post" action="@Url.Action("ProfileSettings", "User")">
+
+                <form enctype="multipart/form-data" class="profile-setting-form" method="post" action="@Url.Action("ProfileSettings", "User") ">
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label>First Name*</label>
-                                @Html.TextBox("FirstName", null, new { @type = "text", @required = "required"})
+                                @Html.TextBox("FirstName", null, new { @type = "text", @required = "required", placeholder = ViewBag.User.FirstName })
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label>Last Name*</label>
-                                @Html.TextBox("LastName", null, new { @type = "text", @required = "required" })
+                                @Html.TextBox("LastName", null, new { @type = "text", @required = "required",placeholder = ViewBag.User.LastName })
                             </div>
                         </div>
                   
-                        <div class="col-lg-6 col-12">
-                            <div class="form-group">
-                                <label>Email Address*</label>
-                                @Html.TextBox("Email", null, new { @type = "text", @required = "required" })
-                            </div>
-                        </div>
+                 
                         <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label>Phone Number*</label>
