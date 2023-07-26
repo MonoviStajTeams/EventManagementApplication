@@ -7,14 +7,10 @@
 
 
 <section class="dashboard section">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             @await Component.InvokeAsync("UserDashboard")
-            <div class="col-lg-3 col-md-4 col-12">
-                <div class="sidebar-right-text">
-                    <h2>Content</h2>
-                </div>
-            </div>
+            @await Component.InvokeAsync("ActivityLog")
         </div>
     </div>
 </section>

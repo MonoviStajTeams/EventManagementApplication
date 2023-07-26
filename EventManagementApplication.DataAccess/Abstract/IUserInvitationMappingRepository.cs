@@ -9,5 +9,6 @@ namespace EventManagementApplication.DataAccess.Abstract
 {
     public interface IUserInvitationMappingRepository : IGenericRepository<UserInvitationMapping>
     {
+        IEnumerable<UserInvitationMapping> GetByUserId(int id);
     }
 }

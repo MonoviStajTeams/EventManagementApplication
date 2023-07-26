@@ -25,5 +25,7 @@ namespace EventManagementApplication.DataAccess.Concrete
 
             return lastInvitationId;
         }
+
+      
     }
 }

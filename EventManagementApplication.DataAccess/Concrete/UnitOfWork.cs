@@ -22,7 +22,7 @@ namespace EventManagementApplication.DataAccess.Concrete
             UserInvitationMappings = new UserInvitationMappingRepository(_dbContext);
             UserDetails = new UserDetailRepository(_dbContext);
             Users = new UserRepository(_dbContext);
-
+            Notifications = new NotificationRepository(_dbContext);
 
 
         }

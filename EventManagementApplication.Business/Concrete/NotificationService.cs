@@ -24,7 +24,6 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
-        [FluentValidateAspect(typeof(NotificationValidator))]
         public void Create(Notification entity)
         {
 
@@ -44,7 +43,7 @@ namespace EventManagementApplication.Business.Concrete
 
         public IEnumerable<Notification> GetAll()
         {
-            return _unitOfWork.Notifications.GetAll();
+            return _unitOfWork.Notifications.GetAllWithIncludes(x=>x.Invitation);
         }
 
         public Notification GetById(int id)

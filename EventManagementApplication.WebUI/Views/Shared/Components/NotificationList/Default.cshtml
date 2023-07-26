@@ -1,58 +1,23 @@
-﻿
+﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Notification>
 
-<div class="container-fluid text-center">
-    <h1>Notification List</h1>
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-                <div class="card-title">New Invitation</div>
-                <div class="card-text">You have been invited to the event "Event Title 1" by User 1.</div>
-                <div class="card-footer">
-                    <div class="text-muted">Event Date: 2023-07-30</div>
-                    <button class="btn btn-primary btn-sm">View Invitation</button>
-                </div>
-            </div>
-        </div>
+<div class="col-lg-6 col-md-12 col-12">
+    <!-- Start Activity Log -->
+    <div class="activity-log dashboard-block">
+        <h3 class="block-title">Invitation Notifications</h3>
+        <ul>
+      @foreach (var item in Model)
+            {
+                <li>
+                    <div class="log-icon">
+                        <i class="lni lni-alarm"></i>
+                    </div>
+                    <a href="/Invitation/InvitationDetails/@item.Id" class="title">@item.Invitation.Title!</a>
+                    <span class="time">@item.CreatedDate</span>
+                    <span class="remove"><a href="/Notification/DeleteNotification"><i class="lni lni-close"></i></a></span>
+                </li>
+            }
+            
+        </ul>
     </div>
-
-    <div class="row justify-content-center">
-        <!-- Yeni satır ekleyerek diğer kartı ortada listelemek için -->
-        <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-                <div class="card-title">New Invitation</div>
-                <div class="card-text">You have been invited to the event "Event Title 2" by User 2.</div>
-                <div class="card-footer">
-                    <div class="text-muted">Event Date: 2023-08-10</div>
-                    <button class="btn btn-primary btn-sm">View Invitation</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- End Activity Log -->
 </div>
-
-
-<style>
-    .card {
-        margin-bottom: 20px;
-        border: 1px solid #eaeaea;
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-title {
-        font-weight: bold;
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-    }
-
-    .card-text {
-        margin-bottom: 10px;
-    }
-
-    .card-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>

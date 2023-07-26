@@ -108,5 +108,19 @@ namespace EventManagementApplication.Business.Concrete
             return users;
         }
 
+        public IEnumerable<Invitation> GetInvitationsByUserId(int id)
+        {
+            var invitationMappings = _unitOfWork.UserInvitationMappings.GetByUserId(id);
+
+            var invitations = new List<Invitation>();
+
+            foreach (var invitationMapping in invitationMappings)
+            {
+                var invitation = _unitOfWork.Invitations.GetById(invitationMapping.InvitationId);
+                invitations.Add(invitation);
+            }
+
+            return invitations;
+        }
     }
 }

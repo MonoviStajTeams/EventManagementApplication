@@ -6,21 +6,22 @@
     <div class="dashboard-sidebar">
         <div class="user-image">
             <img src="https://via.placeholder.com/300x300" alt="#">
-            <h3>
+            <p>
                 @Model.FirstName @Model.LastName
-                <span>@Model.Mail</span>
-            </h3>
+                <span style="font-size:12px">@Model.Mail</span>
+            </p>
         </div>
         <div class="dashboard-menu">
             <ul>
-                <li><a href="UserDashboard"><i class="lni lni-dashboard"></i> Dashboard</a></li>
+                <li><a href="User/UserDashboard"><i class="lni lni-dashboard"></i> Dashboard</a></li>
                 <li>
-                    <a class="active" href="/User/ProfileSettings">
+                    <a href="/User/ProfileSettings">
                         <i class="lni lni-pencil-alt"></i>
                         Edit Profile
                     </a>
                 </li>
-                <li><a href="/Event/AcceptedEventViewUser"><i class="lni lni-bolt-alt"></i> My Events</a></li>
+                <li><a href="/Event/EventList"><i class="lni lni-bolt-alt"></i> My Events</a></li>
+                <li><a href="/Event/AcceptedEventViewUser"><i class="lni lni-bolt-alt"></i> Accepted Events</a></li>
                 <li><a href="/Event/FinishedEventViewUser"><i class="lni lni-bolt-alt"></i> Finished Events</a></li>
                 <li><a href="/Invitation/InvitationList"><i class="lni lni-heart"></i> My Invitations</a></li>
 

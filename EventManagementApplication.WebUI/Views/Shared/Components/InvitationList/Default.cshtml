@@ -1,28 +1,178 @@
 ﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Invitation>
-<h2>All Invitations</h2>
 
 
 
 
-<table>
-    <thead>
-        <tr>
-            <th>Invitation Title</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var invitation in Model)
-        {
-            <tr>
-                <td>@invitation.Title</td>
-                <td>
-                    <a href="@Url.Action("InvitationSingle", "Invitation", new { id = invitation.Id })">View</a>
-                    <a href="@Url.Action("UpdateInvitation", "Invitation", new { id = invitation.Id })">Edit</a>
-                    <a href="@Url.Action("DeleteInvitation", "Invitation", new { id = invitation.Id })">Delete</a>
-                </td>
-            </tr>
+<div class="container  text-center">
+    <div class="row">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Invitation Title</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @foreach (var invitation in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>@invitation.Title</td>
+                        <td class="table-actions">
+                            <a class="view" href="#" data-toggle="modal" data-target="#invitationModal-@invitation.Id">View</a>
+                            <a class="edit" href="@Url.Action("UpdateInvitation", "Invitation", new { id = invitation.Id })">Edit</a>
+                            <a class="delete" href="@Url.Action("DeleteInvitation", "Invitation", new { id = invitation.Id })">Delete</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <div class="modal fade" id="invitationModal-@invitation.Id" tabindex="-1" role="dialog" aria-labelledby="invitationModalLabel-@invitation.Id" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="invitationModalLabel-@invitation.Id">Invitation Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Add invitation details here -->
+                                <p><strong>Title:</strong> @invitation.Title</p>
+                                <!-- Add more details as needed -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </table>
+
+    </div>
+</div>
+
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-dialog {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+    .modal-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #081828;
+    }
+
+    .modal-body {
+        padding: 20px 0;
+    }
+
+        .modal-body p {
+            margin: 0;
+            font-size: 14px;
+            color: #081828;
         }
-    </tbody>
-</table>
 
+    .modal-footer {
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+        text-align: right;
+    }
+
+        .modal-footer button {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .modal-footer button.close-btn {
+                background-color: #FF9800;
+                margin-right: 10px;
+            }
+
+                .modal-footer button.close-btn:hover {
+                    background-color: #E69500;
+                }
+    /* Tablo tasarımı */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f1f1f1;
+    }
+
+    tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    /* Tablo butonları */
+    .table-actions a {
+        display: inline-block;
+        padding: 5px 10px;
+        margin-right: 5px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .table-actions a.view {
+            background-color: #5830E0;
+        }
+
+        .table-actions a.edit {
+            background-color: #FF9800;
+        }
+
+        .table-actions a.delete {
+            background-color: #E91E63;
+        }
+
+        .table-actions a:hover {
+            opacity: 0.8;
+        }
+
+</style>

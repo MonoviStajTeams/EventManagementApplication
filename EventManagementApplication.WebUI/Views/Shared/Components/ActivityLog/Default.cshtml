@@ -1,0 +1,71 @@
+﻿<div class="col-lg-9 col-md-8 col-12">
+    <div class="main-content">
+        <!-- Start Details Lists -->
+        <div class="details-lists">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Start Single List -->
+                    <div class="single-list">
+                        <div class="list-icon">
+                            <i class="lni lni-checkmark-circle"></i>
+                        </div>
+                        <h3>
+                            30
+                            <span>Total My Events </span>
+                        </h3>
+                    </div>
+                    <!-- End Single List -->
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Start Single List -->
+                    <div class="single-list two">
+                        <div class="list-icon">
+                            <i class="lni lni-bolt"></i>
+                        </div>
+                        <h3>
+                            25
+                            <span>Joined Events </span>
+                        </h3>
+                    </div>
+                    <!-- End Single List -->
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Start Single List -->
+                    <div class="single-list three">
+                        <div class="list-icon">
+                            <i class="lni lni-emoji-sad"></i>
+                        </div>
+                        <h3>
+                            45
+                            <span>Active My Event </span>
+                        </h3>
+                    </div>
+                    <!-- End Single List -->
+                </div>
+            </div>
+        </div>
+        <!-- End Details Lists -->
+        <div class="row">
+            @await Component.InvokeAsync("NotificationList")
+            <div class="col-lg-6 col-md-12 col-12">
+                <!-- Start Recent Items -->
+                <div class="recent-items dashboard-block">
+                    <h3 class="block-title">Recent Joined Events</h3>
+                    <ul>
+                        <li>
+                            <div class="image">
+                                <a href="javascript:void(0)"><img src="https://via.placeholder.com/100x100" alt="#"></a>
+                            </div>
+                            <a href="javascript:void(0)" class="title">Event Title</a>
+                            <span class="time">26.07.2023</span>
+                            <span class="remove"><a href="javascript:void(0)"><i class="lni lni-close"></i></a></span>
+                        </li>
+                      
+                    </ul>
+                </div>
+                <!-- End Recent Items -->
+            </div>
+        </div>
+    </div>
+</div>
+

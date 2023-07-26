@@ -1,17 +1,16 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ProfileSettings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<section class="dashboard section">
-    <div class="container-fluid">
+<section class="dashboard section ">
+    <div class="container">
         <div class="row">
             @await Component.InvokeAsync("UserDashboard")
-           <div class="col-lg-9 col-mg-8 col-12">
-                @await Component.InvokeAsync("Settings")
-           </div>
+
+            @await Component.InvokeAsync("Settings")
+
         </div>
     </div>
 </section>

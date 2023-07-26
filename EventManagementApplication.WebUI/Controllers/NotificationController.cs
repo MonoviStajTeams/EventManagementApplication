@@ -40,7 +40,7 @@ namespace EventManagementApplication.WebUI.Controllers
         public IActionResult DeleteNotification(int id)
         {
             _notificationService.Delete(id);
-            return RedirectToAction("NotificationList", "Notification");
+            return RedirectToAction("UserDashboard", "User");
         }
     }
 }
