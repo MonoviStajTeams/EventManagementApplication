@@ -21,7 +21,6 @@ namespace EventManagementApplication.Business.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-        [FluentValidateAspect(typeof(UserDetailValidator))]
         public void Create(UserDetail entity)
         {
 
