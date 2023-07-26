@@ -11,6 +11,9 @@
         {
             await Navigation.PushAsync(new RegisterPage());
         }
-
+        private async void ForgotPassword_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ForgotPasswordPage());
+        }
     }
 }
