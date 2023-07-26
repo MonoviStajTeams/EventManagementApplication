@@ -73,33 +73,39 @@ namespace EventManagementApplication.WebUI.Controllers
             var user = _userService.GetByMail(email!);
             user.FirstName = settingsDto.FirstName;
             user.LastName = settingsDto.LastName;
-            user.Mail = settingsDto.Email;
             _userService.Update(user);
 
 
-
-            var userDetail = _userDetailService.GetUserDetailByUserId(user.Id);
-
-            userDetail.PhoneNumber = settingsDto.PhoneNumber;
-
-            if (userDetail != null)
+            if (file != null && file.Length > 0)
             {
-                if (file != null && file.Length > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    var filePath = "images/user/" + fileName;
+                var fileName = Path.GetFileName(file.FileName);
+                var filePath = "images/user/" + fileName;
 
-                    using (var stream = new FileStream(Path.Combine("wwwroot", filePath), FileMode.Create))
+                using (var stream = new FileStream(Path.Combine("wwwroot", filePath), FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                var userDetail = _userDetailService.GetUserDetailByUserId(user.Id);
+                if (userDetail == null)
+                {
+                    var detail = new UserDetail
                     {
-                        await file.CopyToAsync(stream);
-                    }
+                        PhoneNumber = settingsDto.PhoneNumber,
+                        ProfileImagePath = filePath,
+                        UserId = user.Id,
+                    };
+                    _userDetailService.Create(detail);
+                }
+                else
+                {
+                    userDetail.PhoneNumber = settingsDto.PhoneNumber;
                     userDetail.ProfileImagePath = filePath;
+                    userDetail.UserId = user.Id;
+                    _userDetailService.Update(userDetail);
                 }
             }
-
-            _userDetailService.Update(userDetail);
-
-            return View();
+          
+            return RedirectToAction("ProfileSettings","User");
         }
 
 

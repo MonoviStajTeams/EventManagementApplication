@@ -34,4 +34,8 @@
     <ProjectReference Include="..\EventManagementApplication.Entities\EventManagementApplication.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\user\" />
+  </ItemGroup>
+
 </Project>
