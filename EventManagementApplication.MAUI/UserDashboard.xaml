@@ -1,0 +1,74 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="EventManagementApplication.MAUI.UserDashboard"
+             BackgroundColor="#F5F5F5">
+<ContentPage.Content>
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="10">
+            <StackLayout BackgroundColor="White" Padding="10" Orientation="Horizontal" Spacing="10">
+                <Image Source="https://via.placeholder.com/300x300" WidthRequest="80" HeightRequest="80" Aspect="AspectFill" />
+                <StackLayout>
+                    <Label Text="FirstName LastName" FontSize="18" FontAttributes="Bold" TextColor="Black" />
+                    <Label Text="Mail" FontSize="14" TextColor="Gray" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" Padding="10" Spacing="10">
+                <Label Text="Dashboard" FontSize="16" FontAttributes="Bold" TextColor="Black" />
+				<ListView>
+					<ListView.ItemsSource>
+						<x:Array Type="{x:Type ViewCell}">
+							<ViewCell>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Label Grid.Column="0" Text="Dashboard" />
+									
+								</Grid>
+							</ViewCell>
+							<ViewCell>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+									<Label Text="Edit Profile" />
+								</Grid>
+							</ViewCell>
+							<ViewCell>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Label Grid.Column="0" Text="My Events" />
+								</Grid>
+							</ViewCell>
+							<ViewCell>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Label Grid.Column="0" Text="Finished Events" />
+								</Grid>
+							</ViewCell>
+							<ViewCell>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Label Grid.Column="0" Text="My Invitations" />
+								</Grid>
+							</ViewCell>
+						</x:Array>
+					</ListView.ItemsSource>
+				</ListView>
+
+                <Button Text="Logout" BackgroundColor="#081828" TextColor="White" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage.Content>
+</ContentPage>

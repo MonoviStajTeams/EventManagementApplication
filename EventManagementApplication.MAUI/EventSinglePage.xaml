@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventManagementApplication.MAUI.EventSinglePage"
+             Title="EventSinglePage">
+
+    
+    <ScrollView>
+        <StackLayout Padding="16">
+
+            <Image Source="{Binding ImageUrl}" HorizontalOptions="CenterAndExpand" HeightRequest="100" />
+            <Label Text="Event Details" FontSize="Title" TextColor="White" HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Title}" FontSize="Large" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Description}" Margin="0,8,0,0" />
+            <Label Text="Date: " FontAttributes="Bold" />
+            <Label Text="{Binding Date}" />
+            <Label Text="Start Time: " FontAttributes="Bold" />
+            <Label Text="{Binding StartTime}" />
+            <Label Text="End Time: " FontAttributes="Bold" />
+            <Label Text="{Binding EndTime}" />
+            <Label Text="Type: " FontAttributes="Bold" />
+            <Label Text="{Binding Type}" />
+            <Label Text="Status: " FontAttributes="Bold" />
+            <Label Text="{Binding StatusText}" TextColor="{Binding StatusColor}" FontAttributes="Bold" />
+            <Label Text="Organizer: " FontAttributes="Bold" />
+            <Label Text="{Binding UserFullName}" />
+
+
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
