@@ -62,7 +62,7 @@ namespace EventManagementApplication.WebUI.Controllers
         public IActionResult DeleteInvitation(int id)
         {
             _invitationService.Delete(id);
-            return RedirectToAction("GetAllInvitation", "GetAllInvitation");
+            return RedirectToAction("InvitationList", "Invitation");
         }
 
         public IActionResult AddUsersInvitation(int id)

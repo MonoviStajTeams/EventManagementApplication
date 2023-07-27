@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<EventManagementApplication.Entities.Concrete.Invitation>
 
 
+<!-- Bootstrap CSS -->
 
 
 <div class="container  text-center">
@@ -36,9 +37,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!-- Add invitation details here -->
                                 <p><strong>Title:</strong> @invitation.Title</p>
-                                <!-- Add more details as needed -->
+                                <h3>@invitation.Event.Title</h3>
+                                <p>@invitation.Event.SubContent</p>
+                                <p>@invitation.Event.Date @invitation.Event.StartTime @invitation.Event.EndTime</p>
+                                <a href="/Event/EventSingle/@invitation.EventId">Event Details</a>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -52,6 +55,12 @@
 
     </div>
 </div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 
 
 <style>
