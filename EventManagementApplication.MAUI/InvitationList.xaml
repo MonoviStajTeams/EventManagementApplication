@@ -3,8 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.InvitationList">
 
+
     <ContentPage.Content>
         <StackLayout Padding="10">
+            <Label Text="Invitations" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 30, 0, 10"/>
+
             <CollectionView ItemsSource="{Binding Invitations}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

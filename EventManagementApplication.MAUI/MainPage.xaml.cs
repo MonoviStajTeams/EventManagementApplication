@@ -27,7 +27,7 @@ namespace EventManagementApplication.MAUI
 
         private async void ForgotPassword_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new InvitationList());
+            await Navigation.PushAsync(new ForgotPasswordPage());
         }
 
     }
