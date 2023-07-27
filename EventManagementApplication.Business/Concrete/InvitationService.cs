@@ -116,7 +116,7 @@ namespace EventManagementApplication.Business.Concrete
 
             foreach (var invitationMapping in invitationMappings)
             {
-                var invitation = _unitOfWork.Invitations.GetById(invitationMapping.InvitationId);
+                var invitation = _unitOfWork.Invitations.GetByIdWithIncludes(invitationMapping.InvitationId,x=>x.Event);
                 invitations.Add(invitation);
             }
 
