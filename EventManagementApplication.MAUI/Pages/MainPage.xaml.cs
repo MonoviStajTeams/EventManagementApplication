@@ -8,12 +8,6 @@ namespace EventManagementApplication.MAUI
 {
     public partial class MainPage : ContentPage
     {
-        private readonly IAuthService _authService;
-
-        public MainPage(IAuthService authService)
-        {
-            _authService = authService;
-        }
         public MainPage()
         {
             InitializeComponent();

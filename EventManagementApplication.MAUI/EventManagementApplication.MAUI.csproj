@@ -65,6 +65,9 @@
 	  <MauiXaml Update="Pages\AddInvitation.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\EventList.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\EventSinglePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
