@@ -52,12 +52,10 @@ namespace EventManagementApplication.MAUI.Services.Concrete
             response.EnsureSuccessStatusCode();
         }
 
-        // Custom method to extract the ID from the entity
+      
         private int GetId(T entity)
         {
-            // You need to implement this method according to your entity structure.
-            // This is just an example; you may need to adapt it to your models.
-            // For example: return entity.Id;
+            
             throw new NotImplementedException();
         }
     }
