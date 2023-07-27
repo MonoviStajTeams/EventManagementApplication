@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventManagementApplication.MAUI.MainPage">
+             x:Class="EventManagementApplication.MAUI.MainPage"
+             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.ViewModels"
+             x:DataType="vm:LoginViewModel"
+             Title="MainPage">
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
                 <Label Text="Sign In Now" FontSize="25" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
-                <Entry Placeholder="Email" TextColor="Black" x:Name="Email" Margin="0, 10" />
-                <Entry Placeholder="Password" x:Name="Password" IsPassword="True" Margin="0, 10" />
-                <Button Text="Sign In" BackgroundColor="#7E57FF" TextColor="White"  Margin="0, 20, 0, 10"/>
+                <Entry Placeholder="Email" Text= "{Binding email}" TextColor="Black" x:Name="Email" Margin="0, 10" />
+                <Entry Placeholder="Password" Text= "{Binding password}" x:Name="Password" IsPassword="True" Margin="0, 10" />
+                <Button Text="Sign In" BackgroundColor="#7E57FF" Command="{Binding FetchLoginInfo}" TextColor="White"  Margin="0, 20, 0, 10"/>
                 <Button Text="Forgot password?" TextColor="White"  Clicked="ForgotPassword_Clicked" Margin="0, 5"/>
                 <Label Text="Don't have an account? " FontSize="14" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
                 <Button Text="Sign Up Here" BackgroundColor="#7E57FF" TextColor="White" Clicked="SignUp_Clicked"  Margin="0, 0, 0, 20"/>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.MAUI.ViewModels
 {
-    public class EventViewModel : ObservableObject
+    public partial class EventViewModel : ObservableObject
     {
         [ObservableProperty]
         private string title;
