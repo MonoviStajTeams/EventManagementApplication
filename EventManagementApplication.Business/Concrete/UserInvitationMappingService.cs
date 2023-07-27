@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EventManagementApplication.Business.Concrete
 {
-    [TransactionScopeAspect]
+    
     public class UserInvitationMappingService : IUserInvitationMappingService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -21,7 +21,7 @@ namespace EventManagementApplication.Business.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-        [FluentValidateAspect(typeof(UserInvitationMappingValidator))]
+      
         public void Create(UserInvitationMapping entity)
         {
 
@@ -53,7 +53,7 @@ namespace EventManagementApplication.Business.Concrete
 
         }
 
-        [FluentValidateAspect(typeof(UserInvitationMappingValidator))]
+  
         public void Update(UserInvitationMapping entity)
         {
             _unitOfWork.UserInvitationMappings.Update(entity);

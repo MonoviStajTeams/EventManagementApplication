@@ -64,6 +64,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 #region Business Classes
 
 builder.Services.AddTransient(typeof(IEventService), typeof(EventService));
+builder.Services.AddTransient(typeof(IAuthService), typeof(AuthManager));
+builder.Services.AddTransient(typeof(ITokenHelper), typeof(JwtHelper));
 builder.Services.AddTransient(typeof(ILocationService), typeof(LocationService));
 builder.Services.AddTransient(typeof(INotificationService), typeof(NotificationService));
 builder.Services.AddTransient(typeof(IRoleService), typeof(RoleService));
@@ -71,6 +73,8 @@ builder.Services.AddTransient(typeof(IUserDetailService), typeof(UserDetailServi
 builder.Services.AddTransient(typeof(IUserService), typeof(UserService));
 builder.Services.AddTransient(typeof(IInvitationService), typeof(InvitationService));
 builder.Services.AddTransient(typeof(IUserInvitationMappingService), typeof(UserInvitationMappingService));
+
+
 #endregion
 
 

@@ -51,7 +51,6 @@ namespace EventManagementApplication.Business.Concrete
             return _unitOfWork.Notifications.GetById(id);
         }
 
-        [FluentValidateAspect(typeof(NotificationValidator))]
         public void Update(Notification entity)
         {
             _unitOfWork.Notifications.Update(entity);

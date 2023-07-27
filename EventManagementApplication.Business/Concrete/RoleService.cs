@@ -21,7 +21,6 @@ namespace EventManagementApplication.Business.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-        [FluentValidateAspect(typeof(RoleValidator))]
         public void Create(Role role)
         {
             _unitOfWork.Roles.Add(role);
@@ -49,7 +48,6 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
-        [FluentValidateAspect(typeof(RoleValidator))]
         public void Update(Role role)
         {
             _unitOfWork.Roles.Update(role);

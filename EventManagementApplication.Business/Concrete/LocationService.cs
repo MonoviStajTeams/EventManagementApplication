@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace EventManagementApplication.Business.Concrete
 {
 
-    [TransactionScopeAspect]
     public class LocationService : ILocationService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -23,7 +22,6 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        [FluentValidateAspect(typeof(LocationValidator))]
         public void Create(Location entity)
         {
 
@@ -54,7 +52,6 @@ namespace EventManagementApplication.Business.Concrete
             return _unitOfWork.Locations.GetById(id);
         }
 
-        [FluentValidateAspect(typeof(LocationValidator))]
         public void Update(Location entity)
         {
             _unitOfWork.Locations.Update(entity);
