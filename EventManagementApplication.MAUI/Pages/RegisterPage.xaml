@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.RegisterPage"
-             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.ViewModels.ViewModels"
+             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.ViewModels.RegisterViewModel"
              x:DataType="vm:RegisterViewModel"
-             Title="RegisterPage">
+             Title="Register Page">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
