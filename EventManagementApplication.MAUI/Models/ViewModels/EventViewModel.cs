@@ -65,6 +65,14 @@ namespace EventManagementApplication.MAUI.ViewModels
             var entity = new EventApiResponse
             {
                 Title = title,
+                Description = description,
+                SubContent = subcontent,
+                Type = type,
+                Date = date,
+                Status = status,
+                StartTime = starttime,
+                EndTime = endtime,
+                UserId = userId
             };
             _eventApiService.Create(entity);
         }
@@ -76,6 +84,14 @@ namespace EventManagementApplication.MAUI.ViewModels
             {
                 Title = title,
                 Description = description,
+                SubContent = subcontent,
+                Type = type,
+                Date = date,
+                Status = status,
+                StartTime = starttime,
+                EndTime = endtime,
+                UserId = userId 
+
             };
 
             _eventApiService.Update(entity);
