@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.RegisterPage"
-             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.ViewModels.RegisterViewModel"
+             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.ViewModels.ViewModels"
              x:DataType="vm:RegisterViewModel"
              Title="Register Page">
     <ContentPage.Content>
@@ -13,7 +13,7 @@
                 
                 <Entry Placeholder="Firstname" Text="{Binding Firstname}"  Margin="0, 10" />
                 <Entry Placeholder="Lastname" Text="{Binding Lastname}"   Margin="0, 10" />
-                <Entry Placeholder="Email" Text="{Binding Mail}"   Margin="0, 10" />
+                <Entry Placeholder="Email" Text="{Binding Mail}" Keyboard="Email"  Margin="0, 10" />
                 <Entry Placeholder="Password" Text="{Binding Password}"  IsPassword="True" Margin="0, 10" />
                 <Entry Placeholder="Confirm Password" Text="{Binding Confirmpassword}"   IsPassword="True" Margin="0, 10" />
                 <Button Text="Sign Up" BackgroundColor="#7E57FF" Command="{Binding RegisterCommandCommand}"  TextColor="White"  Margin="0, 20, 0, 10"/>

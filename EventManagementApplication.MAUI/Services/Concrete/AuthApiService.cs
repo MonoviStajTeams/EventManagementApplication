@@ -32,5 +32,10 @@ namespace EventManagementApplication.MAUI.Services.Concrete
             var response = await _httpClient.PostAsJsonAsync(_apiEndpoint, registerResponse);
             response.EnsureSuccessStatusCode();
         }
+        public async Task ForgotPassword(ForgotPasswordApiResponse forgotPasswordResponse)
+        {
+            var response = await _httpClient.PostAsJsonAsync(_apiEndpoint, forgotPasswordResponse);
+            response.EnsureSuccessStatusCode();
+        }
     }
 }

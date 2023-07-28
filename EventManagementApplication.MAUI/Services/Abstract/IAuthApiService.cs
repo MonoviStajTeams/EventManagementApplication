@@ -12,5 +12,7 @@ namespace EventManagementApplication.MAUI.Services.Abstract
     {
         Task Login(LoginApiResponse loginResponse);
         Task Register(RegisterApiResponse registerResponse);
+        Task ForgotPassword(ForgotPasswordApiResponse forgotPasswordResponse);
+           
     }
 }

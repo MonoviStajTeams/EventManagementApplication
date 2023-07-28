@@ -44,7 +44,7 @@ namespace EventManagementApplication.MAUI.ViewModels
                 Password = password
             };
 
-            await _authApiService.Login(entity);
+            await _authApiService.Login(entity).ConfigureAwait(false);
         }
 
     }
