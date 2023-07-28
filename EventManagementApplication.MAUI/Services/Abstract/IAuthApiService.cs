@@ -1,4 +1,5 @@
-﻿using EventManagementApplication.MAUI.ViewModels;
+﻿using EventManagementApplication.MAUI.Models.ApiModels;
+using EventManagementApplication.MAUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace EventManagementApplication.MAUI.Services.Abstract
 {
     public interface IAuthApiService 
     {
-
+        Task Login(LoginApiResponse loginResponse);
+        Task Register(RegisterApiResponse registerResponse);
     }
 }
