@@ -79,6 +79,7 @@ namespace EventManagementApplication.Business.Concrete
         public IDataResult<bool> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             var user = _userService.GetByMail(resetPasswordDto.Email);
+            
             if (user == null)
             {
                 return new ErrorDataResult<bool>("User not found.");

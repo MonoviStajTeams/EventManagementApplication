@@ -77,6 +77,8 @@ namespace EventManagementApplication.WebUI.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public IActionResult ForgotPassword(ResetPasswordDto resetPasswordDto)
         {
