@@ -28,7 +28,7 @@
             </StackLayout>
 
 
-            <Button Text="Update Event" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" />
+            <Button Text="Update Event" BackgroundColor="{DynamicResource PrimaryColor}" Command="UpdateEvent" TextColor="White" />
 
             <Label x:Name="eventUpdatedMessageLabel" Text="Event is updated!" IsVisible="False" TextColor="{DynamicResource SuccessColor}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 
