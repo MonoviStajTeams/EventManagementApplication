@@ -82,4 +82,4 @@ namespace EventManagementApplication.MAUI.ViewModels
         }
     }
 }
-}
+
