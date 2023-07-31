@@ -1,0 +1,40 @@
+<Page x:Class="YourNamespace.MyEvent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Title="MyEvent">
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="My Events" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
+
+            <CollectionView ItemsSource="{Binding MyEvents}" >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="10">
+
+                            <Frame>
+                               
+                                <Image Source="{Binding ImageUrl}" HeightRequest="200" Aspect="AspectFill" />
+                                <StackLayout Padding="10">
+                                    
+                                    <Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" />
+                                    <Label Text="{Binding SubContent}" FontSize="14" />
+                                    <Button Text="More" Clicked="OnEventClicked" CommandParameter="{Binding Id}" />
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+</Page>
+
