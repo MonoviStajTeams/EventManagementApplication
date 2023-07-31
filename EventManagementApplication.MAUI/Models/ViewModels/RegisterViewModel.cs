@@ -17,7 +17,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
         public RegisterViewModel()
         {
-            _authService = new AuthApiService(apiEndpoint: "auth");
+            _authService = new AuthApiService(apiEndpoint: "Auth");
         }
 
         [ObservableProperty]

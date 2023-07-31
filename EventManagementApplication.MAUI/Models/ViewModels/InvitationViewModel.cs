@@ -17,7 +17,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
         public InvitationViewModel()
         {
-            _invitationApiService = new InvitationApiService("invitation");
+            _invitationApiService = new InvitationApiService("Invitation");
         }
 
         [ObservableProperty]

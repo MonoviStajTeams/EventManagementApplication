@@ -19,7 +19,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
         public ForgotPasswordViewModel()
         {
-            _authService = new AuthApiService(apiEndpoint: "auth");
+            _authService = new AuthApiService(apiEndpoint: "Auth");
 
         }
 

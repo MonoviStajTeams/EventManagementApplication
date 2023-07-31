@@ -18,7 +18,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         private readonly IEventApiService _eventApiService;
         public EventViewModel()
         {
-            _eventApiService = new EventApiService("event");
+            _eventApiService = new EventApiService("Event");
             MyEvents = new ObservableCollection<EventApiResponse>();
             LoadMyEventsCommand = new AsyncRelayCommand(LoadMyEventsAsync);
         }
@@ -99,7 +99,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 Status = status,
                 StartTime = starttime,
                 EndTime = endtime,
-                UserId = userId 
+                UserId = userId
 
             };
 
@@ -110,6 +110,23 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         {
             var events = await _eventApiService.GetAll();
             MyEvents = new ObservableCollection<EventApiResponse>(events);
+        }
+
+        private async Task LoadEventDetailsAsync(int id)
+        {
+            var eventDetail = await _eventApiService.GetById(id);
+            var entity = new EventApiResponse
+            {
+                Title = eventDetail.Title,
+                Description = eventDetail.Description,
+                SubContent = eventDetail.SubContent,
+                Type = eventDetail.Type,
+                Date = eventDetail.Date,
+                Status = eventDetail.Status,
+                StartTime = eventDetail.StartTime,
+                EndTime = eventDetail.EndTime,
+                UserId = eventDetail.UserId
+            };
         }
     }
 }

@@ -8,6 +8,6 @@ namespace EventManagementApplication.MAUI
 {
     public class Constants
     {
-        public const string API_BASE_URL = "";
+        public const string API_BASE_URL = "https://localhost:7080/api/";
     }
 }
