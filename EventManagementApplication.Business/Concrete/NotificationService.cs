@@ -57,6 +57,9 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Save();
         }
 
+
+
+
         public void SendInvitationNotification(Invitation invitation, User user)
         {
 

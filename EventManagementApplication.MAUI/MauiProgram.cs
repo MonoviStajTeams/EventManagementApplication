@@ -1,4 +1,4 @@
-﻿using EventManagementApplication.MAUI.ViewModels.ViewModels;
+﻿using EventManagementApplication.MAUI.Models.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace EventManagementApplication.MAUI

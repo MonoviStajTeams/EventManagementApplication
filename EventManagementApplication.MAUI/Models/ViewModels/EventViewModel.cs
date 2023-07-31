@@ -5,22 +5,32 @@ using EventManagementApplication.MAUI.Services.Abstract;
 using EventManagementApplication.MAUI.Services.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventManagementApplication.MAUI.ViewModels
+namespace EventManagementApplication.MAUI.Models.ViewModels
 {
     public partial class EventViewModel : ObservableObject
     {
         private readonly IEventApiService _eventApiService;
-
         public EventViewModel()
         {
             _eventApiService = new EventApiService("event");
+            MyEvents = new ObservableCollection<EventApiResponse>();
+            LoadMyEventsCommand = new AsyncRelayCommand(LoadMyEventsAsync);
         }
 
+        private ObservableCollection<EventApiResponse> _myEvents;
+        public ObservableCollection<EventApiResponse> MyEvents
+        {
+            get => _myEvents;
+            set => SetProperty(ref _myEvents, value);
+        }
 
+        public IAsyncRelayCommand LoadMyEventsCommand { get; }
 
 
         [ObservableProperty]
@@ -31,7 +41,7 @@ namespace EventManagementApplication.MAUI.ViewModels
 
 
         [ObservableProperty]
-        private string subcontent;
+        private string subContent;
 
 
         [ObservableProperty]
@@ -44,6 +54,9 @@ namespace EventManagementApplication.MAUI.ViewModels
         private bool status;
 
         [ObservableProperty]
+        private bool imageUrl;
+
+        [ObservableProperty]
         private string starttime;
 
         [ObservableProperty]
@@ -52,16 +65,17 @@ namespace EventManagementApplication.MAUI.ViewModels
         [ObservableProperty]
         private int userId;
 
-
+        [ObservableProperty]
+        private IEnumerable<EventApiResponse> _events;
 
         [RelayCommand]
-        private async Task AddEvent()
+        private void AddEvent()
         {
             var entity = new EventApiResponse
             {
                 Title = title,
                 Description = description,
-                SubContent = subcontent,
+                SubContent = subContent,
                 Type = type,
                 Date = date,
                 Status = status,
@@ -73,13 +87,13 @@ namespace EventManagementApplication.MAUI.ViewModels
         }
 
         [RelayCommand]
-        private async Task UpdateEvent()
+        private void UpdateEvent()
         {
             var entity = new EventApiResponse
             {
                 Title = title,
                 Description = description,
-                SubContent = subcontent,
+                SubContent = subContent,
                 Type = type,
                 Date = date,
                 Status = status,
@@ -90,6 +104,12 @@ namespace EventManagementApplication.MAUI.ViewModels
             };
 
             _eventApiService.Update(entity);
+        }
+
+        private async Task LoadMyEventsAsync()
+        {
+            var events = await _eventApiService.GetAll();
+            MyEvents = new ObservableCollection<EventApiResponse>(events);
         }
     }
 }

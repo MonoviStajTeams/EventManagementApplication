@@ -3,9 +3,9 @@ using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.Business.Abstract;
 using System.Numerics;
 using Microsoft.Maui.Controls;
-using EventManagementApplication.MAUI.ViewModels.ViewModels;
+using EventManagementApplication.MAUI.Models.ViewModels;
 
-namespace EventManagementApplication.MAUI
+namespace EventManagementApplication.MAUI.Pages
 {
     public partial class MainPage : ContentPage
     {

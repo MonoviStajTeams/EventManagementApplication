@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventManagementApplication.MAUI.ViewModels
+namespace EventManagementApplication.MAUI.Models.ViewModels
 {
     public partial class NotificationViewModel : ObservableObject
     {

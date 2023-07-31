@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
-namespace EventManagementApplication.MAUI.ViewModels
+namespace EventManagementApplication.MAUI.Models.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
