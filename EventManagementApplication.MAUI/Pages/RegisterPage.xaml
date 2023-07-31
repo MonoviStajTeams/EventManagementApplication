@@ -9,17 +9,14 @@
         <ScrollView>
             <StackLayout Padding="20">
                 <Label Text="Sign Up Now" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
-                
-                
+
                 <Entry Placeholder="Firstname" Text="{Binding Firstname}"  Margin="0, 10" />
                 <Entry Placeholder="Lastname" Text="{Binding Lastname}"   Margin="0, 10" />
                 <Entry Placeholder="Email" Text="{Binding Mail}"   Margin="0, 10" />
                 <Entry Placeholder="Password" Text="{Binding Password}"  IsPassword="True" Margin="0, 10" />
                 <Entry Placeholder="Confirm Password" Text="{Binding Confirmpassword}"   IsPassword="True" Margin="0, 10" />
-                <Button Text="Sign Up" BackgroundColor="#7E57FF" Command="{Binding RegisterCommandCommand}"  TextColor="White"  Margin="0, 20, 0, 10"/>
-                
-               
-                
+                <Button Text="Sign Up" BackgroundColor="#7E57FF" Command="{Binding RegisterCommand}"  TextColor="White"  Margin="0, 20, 0, 10"/>
+             
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

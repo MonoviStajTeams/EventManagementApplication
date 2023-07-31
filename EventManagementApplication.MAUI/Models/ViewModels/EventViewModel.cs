@@ -53,11 +53,6 @@ namespace EventManagementApplication.MAUI.ViewModels
         private int userId;
 
 
-        [RelayCommand]
-        private async Task FetchEventInfo()
-        {
-
-        }
 
         [RelayCommand]
         private async Task AddEvent()
@@ -65,6 +60,7 @@ namespace EventManagementApplication.MAUI.ViewModels
             var entity = new EventApiResponse
             {
                 Title = title,
+                Description = description,
             };
             _eventApiService.Create(entity);
         }

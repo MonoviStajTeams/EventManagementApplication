@@ -35,8 +35,10 @@ namespace EventManagementApplication.MAUI.ViewModels.ViewModels
         [ObservableProperty]
         private string confirmpassword;
 
+
+
         [RelayCommand]
-        private async Task RegisterCommand()
+        private void Register()
         {
             var entity = new RegisterApiResponse
             {
@@ -46,7 +48,7 @@ namespace EventManagementApplication.MAUI.ViewModels.ViewModels
                 Password = password,
             };
 
-            await _authService.Register(entity).ConfigureAwait(false);
+            _authService.Register(entity);
         }
         
     }

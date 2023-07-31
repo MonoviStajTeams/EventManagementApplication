@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using EventManagementApplication.MAUI.ViewModels.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace EventManagementApplication.MAUI
 {
@@ -15,9 +16,9 @@ namespace EventManagementApplication.MAUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<RegisterViewModel>();
 
             return builder.Build();
         }

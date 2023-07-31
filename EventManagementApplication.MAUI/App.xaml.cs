@@ -1,12 +1,14 @@
-﻿namespace EventManagementApplication.MAUI
+﻿using EventManagementApplication.MAUI.ViewModels.ViewModels;
+
+namespace EventManagementApplication.MAUI
 {
     public partial class App : Application
     {
-        public App()
+        public App(RegisterViewModel rvm)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new RegisterPage(rvm);
         }
     }
 }
