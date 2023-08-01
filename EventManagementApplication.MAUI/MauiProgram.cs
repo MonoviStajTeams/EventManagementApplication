@@ -20,6 +20,9 @@ namespace EventManagementApplication.MAUI
             builder.Services.AddSingleton<RegisterPage>();
             builder.Services.AddSingleton<RegisterViewModel>();
 
+            builder.Services.AddSingleton<EventSinglePage>();
+            builder.Services.AddSingleton<EventViewModel>();
+
             return builder.Build();
         }
     }

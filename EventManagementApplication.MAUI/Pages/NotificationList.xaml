@@ -16,8 +16,7 @@
                                 <Label Text="{Binding User.FirstName}" VerticalOptions="Center" />
                                 <Label Text="{Binding User.LastName}" VerticalOptions="Center" />
                                 <StackLayout Orientation="Horizontal">
-                                    <Button Text="Update" Command="{Binding UpdateNotificationCommand}" />
-                                    <Button Text="Delete" Command="{Binding DeleteNotificationCommand}" />
+                                    <Button Text="Delete" Command="{Binding DeleteNotificationCommand}" CommandParameter="{Binding Id}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -26,5 +25,4 @@
             </ListView>
         </StackLayout>
     </ScrollView>
-
 </ContentPage>

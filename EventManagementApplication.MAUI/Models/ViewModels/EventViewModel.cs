@@ -112,7 +112,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             MyEvents = new ObservableCollection<EventApiResponse>(events);
         }
 
-        private async Task LoadEventDetailsAsync(int id)
+        private async Task<EventApiResponse> LoadEventDetailsAsync(int id)
         {
             var eventDetail = await _eventApiService.GetById(id);
             var entity = new EventApiResponse
@@ -127,6 +127,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 EndTime = eventDetail.EndTime,
                 UserId = eventDetail.UserId
             };
+
+            return entity;
         }
     }
 }

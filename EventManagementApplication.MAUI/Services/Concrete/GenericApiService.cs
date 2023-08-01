@@ -29,7 +29,8 @@ namespace EventManagementApplication.MAUI.Services.Concrete
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            var response = await _httpClient.GetAsync(_apiEndpoint);
+            var _httpClients = new HttpClient();
+            var response = await _httpClients.GetAsync("https://10.0.2.2:7080/api/Event/EventList");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<IEnumerable<T>>();
         }
