@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:EventManagementApplication.MAUI"
              x:Class="EventManagementApplication.MAUI.ProfilePage"
+             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
+             x:DataType="vm:UserDetailViewModel"
              Title="Profile Settings">
 
     <ScrollView>
