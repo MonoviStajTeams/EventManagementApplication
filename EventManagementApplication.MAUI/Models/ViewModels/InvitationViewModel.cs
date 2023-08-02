@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.MAUI.Models.ApiModels;
 using EventManagementApplication.MAUI.Services.Abstract;
 using EventManagementApplication.MAUI.Services.Concrete;
@@ -34,7 +35,15 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [RelayCommand]
         private async Task InvitationList()
         {
-
+            var entity = new InvitationApiResponse
+            {
+                Title = title,
+                Description = description,
+                UserId = userid,
+                EventId = eventid
+            };
+            _invitationApiService.GetAll();
+            //neye göre list yapacak bilmediğim için bu şekilde yaptım
         }
 
 
