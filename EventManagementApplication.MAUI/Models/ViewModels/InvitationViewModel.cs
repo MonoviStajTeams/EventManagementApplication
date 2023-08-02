@@ -25,18 +25,19 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
         [ObservableProperty]
         private string description;
-
-        [ObservableProperty]
+                [ObservableProperty]
         private int userid;
 
         [ObservableProperty]
         private int eventid;
 
         [RelayCommand]
-        private async Task FetchInvitationInfo()
+        private async Task InvitationList()
         {
 
         }
+
+
         [RelayCommand]
         private async Task AddInvitation()
         {
