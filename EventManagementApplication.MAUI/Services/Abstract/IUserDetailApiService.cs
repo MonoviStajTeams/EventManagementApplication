@@ -9,5 +9,6 @@ namespace EventManagementApplication.MAUI.Services.Abstract
 {
     public interface IUserDetailApiService : IGenericApiService<UserDetailApiResponse>
     {
+        Task<UserDetailApiResponse> GetUserDetailByUserIdAsync(int userId);
     }
 }

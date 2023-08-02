@@ -63,5 +63,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
             _invitationApiService.Update(entity);
         }
+    
+        
+        
     }
 }

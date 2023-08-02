@@ -9,5 +9,8 @@ namespace EventManagementApplication.MAUI.Services.Abstract
 {
     public interface INotificationApiService : IGenericApiService<NotificationApiResponse>
     {
+        Task SendInvitationNotificationAsync(InvitationApiResponse ınvitationApiResponse, int userId);
+        Task<IEnumerable<UserApiResponse>> GetUsersAsync();
+        Task SendReminderNotificationsAsync();
     }
 }

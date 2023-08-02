@@ -77,11 +77,53 @@ namespace EventManagementApplication.WebUI.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult ForgotPasswordSendMailCode(string mail)
+        {
+            _authService.SendMailCodeByResetPassword(mail);
+
+            return RedirectToAction("EntryCode", "Auth");
+        }
+
+        [HttpGet]
+        public IActionResult EntryCode()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EntryCode(string enteredCode)
+        {
+            var activated = _authService.VerifyActivationCode(enteredCode);
+
+            if (activated == true)
+            {
+                return RedirectToAction("ResetPassword","Auth");
+            }
+            
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
 
 
         [HttpPost]
-        public IActionResult ForgotPassword(ResetPasswordDto resetPasswordDto)
+        public IActionResult ResetPassword(string newPassword, string confirmPassword)
         {
+            var resetPasswordDto = new ResetPasswordDto 
+            {
+                Email = "mail" ,
+                NewPassword = newPassword ,
+                ConfirmPassword = confirmPassword,
+                Token = "token"
+            };
+
             var resetResult = _authService.ResetPassword(resetPasswordDto);
             if (resetResult.Success)
             {
@@ -91,6 +133,9 @@ namespace EventManagementApplication.WebUI.Controllers
             ModelState.AddModelError("", resetResult.Message);
             return View();
         }
+        
+
+       
        
     }
 }

@@ -97,5 +97,7 @@ namespace EventManagementApplication.Business.Concrete
 
         }
 
+
+        
     }
 }

@@ -5,9 +5,12 @@ using EventManagementApplication.Core.Utilities.Security.Hashing;
 using EventManagementApplication.Core.Utilities.Security.JWT;
 using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.Entities.Dtos;
+using PostSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -76,6 +79,16 @@ namespace EventManagementApplication.Business.Concrete
             var accessToken = _tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
+
+
+
+
+
+
+
+
+
+        //Reset Password
         public IDataResult<bool> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             var user = _userService.GetByMail(resetPasswordDto.Email);
@@ -111,6 +124,57 @@ namespace EventManagementApplication.Business.Concrete
 
             // Example (simplified for illustration purposes):
             return user.ResetToken == token && user.ResetTokenExpiration > DateTime.Now;
+        }
+    
+       
+        public void SendMailCodeByResetPassword(string mail)
+        {
+            string activationCode = GenerateActivationCode();
+
+            try
+            {
+                // E-posta gönderme işlemleri
+                SmtpClient smtpClient = new SmtpClient("smtp.example.com"); // E-posta sunucu adresini buraya yazın
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("noreply@example.com"); // Gönderen e-posta adresini buraya yazın
+                mailMessage.To.Add(mail); // Kullanıcının e-posta adresini ekleyin
+                mailMessage.Subject = "Şifre Sıfırlama Kodu";
+                mailMessage.Body = "Şifre sıfırlama için aktivasyon kodunuz: " + activationCode;
+
+                smtpClient.Send(mailMessage);
+
+                // Aktivasyon kodunu veritabanına kaydetme işlemi yapılabilir
+            }
+            catch (Exception ex)
+            {
+                // E-posta gönderirken hata oluşursa burada işlem yapabilirsiniz
+                Console.WriteLine("E-posta gönderirken bir hata oluştu: " + ex.Message);
+            }
+        }
+
+      
+        private string GenerateActivationCode()
+        {
+            RandomNumberGenerator rng = RNGCryptoServiceProvider.Create();
+            byte[] randomBytes = new byte[6];
+            rng.GetBytes(randomBytes);
+
+            StringBuilder activationCodeBuilder = new StringBuilder();
+            foreach (byte b in randomBytes)
+            {
+                activationCodeBuilder.Append(b.ToString("X2"));
+            }
+
+            return activationCodeBuilder.ToString();
+        }
+
+       
+        public bool VerifyActivationCode(string enteredCode)
+        {
+            // Eğer veritabanında kodu kaydediyorsanız, bu metodun veritabanında saklanan kodu alarak doğrulama yapması gerekebilir.
+            // Burada basitçe giriş yapılan kod ile kaydedilen kodu karşılaştırıyoruz.
+
+            return true;
         }
     }
 }

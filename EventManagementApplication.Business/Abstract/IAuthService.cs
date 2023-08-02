@@ -17,6 +17,7 @@ namespace EventManagementApplication.Business.Abstract
         IResult UserExists(string email);
         IDataResult<AccessToken> CreateAccessToken(User user);
         IDataResult<bool> ResetPassword(ResetPasswordDto resetPasswordDto);
-
+        void SendMailCodeByResetPassword(string mail);
+        bool VerifyActivationCode(string enteredCode);
     }
 }

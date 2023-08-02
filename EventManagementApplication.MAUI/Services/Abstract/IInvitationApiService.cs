@@ -9,5 +9,7 @@ namespace EventManagementApplication.MAUI.Services.Abstract
 {
     public interface IInvitationApiService : IGenericApiService<InvitationApiResponse>
     {
+        Task<int> GetLastInvitationIdAsync();
+        Task SendInvitationMailAsync(int invitationId);
     }
 }

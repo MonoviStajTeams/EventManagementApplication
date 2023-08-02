@@ -37,6 +37,9 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         private string title;
 
         [ObservableProperty]
+        private int id;
+
+        [ObservableProperty]
         private string description;
 
 
@@ -57,16 +60,18 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         private bool imageUrl;
 
         [ObservableProperty]
-        private string starttime;
+        private string startTime;
 
         [ObservableProperty]
-        private string endtime;
+        private string endTime;
 
         [ObservableProperty]
         private int userId;
 
         [ObservableProperty]
         private IEnumerable<EventApiResponse> _events;
+
+
 
         [RelayCommand]
         private void AddEvent()
@@ -112,23 +117,25 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             MyEvents = new ObservableCollection<EventApiResponse>(events);
         }
 
-        private async Task<EventApiResponse> LoadEventDetailsAsync(int id)
+        private async Task LoadEventDetailsAsync()
         {
             var eventDetail = await _eventApiService.GetById(id);
-            var entity = new EventApiResponse
-            {
-                Title = eventDetail.Title,
-                Description = eventDetail.Description,
-                SubContent = eventDetail.SubContent,
-                Type = eventDetail.Type,
-                Date = eventDetail.Date,
-                Status = eventDetail.Status,
-                StartTime = eventDetail.StartTime,
-                EndTime = eventDetail.EndTime,
-                UserId = eventDetail.UserId
-            };
 
-            return entity;
+
+
+            Title = eventDetail.Title;
+            Description = eventDetail.Description;
+            SubContent = eventDetail.SubContent;
+            Type = eventDetail.Type;
+            Date = eventDetail.Date;
+            Status = eventDetail.Status;
+            StartTime = eventDetail.StartTime;
+            EndTime = eventDetail.EndTime;
+            UserId = eventDetail.UserId;
+
+
+
+
         }
     }
 }

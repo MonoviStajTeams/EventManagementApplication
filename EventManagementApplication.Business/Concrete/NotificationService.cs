@@ -133,10 +133,7 @@ namespace EventManagementApplication.Business.Concrete
                    $"Etkinlik 2 saat içinde baþlayacak.";
         }
 
-        private void SendNotificationToUserByMail(User user, string notificationContent)
-        {
-            // Bildirim gönderme iþlemi burada mail ile yapýlabilir hem uygulama için hemde mail ile olmuþ olur
-        }
+      
 
 
 
