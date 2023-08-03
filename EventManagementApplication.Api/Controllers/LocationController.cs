@@ -17,7 +17,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpGet]
-        [Route("NotificationList")]
+        [Route("GetAll")]
         public IActionResult LocationList()
         {
             var locationlist = _locationService.GetAll();
@@ -26,7 +26,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
-        [Route("AddLocation")]
+        [Route("Create")]
         public IActionResult AddLocation(Location location)
         {
             _locationService.Create(location);
@@ -34,7 +34,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateLocation")]
+        [Route("Update")]
         public IActionResult UpdateLocation(Location location)
         {
             _locationService.Update(location);
@@ -42,7 +42,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteLocation{id}")]
+        [Route("Delete/{id}")]
         public IActionResult DeleteLocation(int id)
         {
             _locationService.Delete(id);

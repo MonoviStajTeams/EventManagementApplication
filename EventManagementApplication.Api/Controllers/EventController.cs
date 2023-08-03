@@ -18,7 +18,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpGet]
-        [Route("EventList")]
+        [Route("GetAll")]
         public IActionResult EventList()
         {
             var eventList = _eventService.GetAll();
@@ -27,7 +27,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpGet]
-        [Route("GetEventyId{id}")]
+        [Route("GetById/{id}")]
         public IActionResult GetEventById(int id)
         {
             var role = _eventService.GetById(id);
@@ -37,7 +37,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
-        [Route("AddEvent")]
+        [Route("Create")]
         public IActionResult AddEvent(Event entity)
         {
             _eventService.Create(entity);
@@ -45,7 +45,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateEvents")]
+        [Route("Update")]
         public IActionResult UpdateEvent(Event entity)
         {
             _eventService.Update(entity);
@@ -53,7 +53,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteEvent{id}")]
+        [Route("Delete/{id}")]
         public IActionResult DeleteEvent(int id)
         {
             _eventService.Delete(id);
@@ -62,7 +62,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpGet]
-        [Route("GetInactiveEvents{id}")]
+        [Route("GetInactiveEventsByUserId/{id}")]
         public IActionResult GetInactiveEventsByUserId(int id)
         {
             var eventList = _eventService.GetInactiveEventsByUserId(id);

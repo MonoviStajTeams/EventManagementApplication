@@ -5,6 +5,7 @@ using EventManagementApplication.MAUI.Services.Abstract;
 using EventManagementApplication.MAUI.Services.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,23 +19,41 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         public InvitationViewModel()
         {
             _invitationApiService = new InvitationApiService("Invitation");
+            MyInvitationList = new ObservableCollection<InvitationApiResponse>();
+            LoadMyEventsCommand = new AsyncRelayCommand(InvitationList);
+            InvitationList();
         }
+
+        private ObservableCollection<InvitationApiResponse> _myInvitations;
+        public ObservableCollection<InvitationApiResponse> MyInvitationList
+        {
+            get => _myInvitations;
+            set => SetProperty(ref _myInvitations, value);
+        }
+
+        public IAsyncRelayCommand LoadMyEventsCommand { get; }
+
 
         [ObservableProperty]
         private string title;
 
         [ObservableProperty]
         private string description;
-                [ObservableProperty]
+
+        [ObservableProperty]
         private int userid;
 
         [ObservableProperty]
         private int eventid;
 
-        [RelayCommand]
+        [ObservableProperty]
+        private string id;
+
+
         private async Task InvitationList()
         {
-
+            var invitations = await _invitationApiService.GetAll();
+            MyInvitationList = new ObservableCollection<InvitationApiResponse>(invitations);
         }
 
 
@@ -50,6 +69,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             };
             _invitationApiService.Create(entity);
         }
+       
         [RelayCommand]
         private async Task UpdateInvitation()
         {

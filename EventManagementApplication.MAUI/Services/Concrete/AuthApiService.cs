@@ -12,29 +12,27 @@ namespace EventManagementApplication.MAUI.Services.Concrete
     public class AuthApiService : IAuthApiService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiEndpoint;
 
-        public AuthApiService(string apiEndpoint)
+        public AuthApiService()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL);
-            _apiEndpoint = apiEndpoint;
+            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL + "/Auth");
         }
 
         public async Task Login(LoginApiResponse loginResponse)
         {
-            var response = await _httpClient.PostAsJsonAsync(_apiEndpoint, loginResponse);
+            var response = await _httpClient.PostAsJsonAsync("/Login", loginResponse);
             response.EnsureSuccessStatusCode();
         }
 
         public async Task Register(RegisterApiResponse registerResponse)
         {
-            var response = await _httpClient.PostAsJsonAsync(_apiEndpoint, registerResponse);
+            var response = await _httpClient.PostAsJsonAsync("/Register", registerResponse);
             response.EnsureSuccessStatusCode();
         }
         public async Task ForgotPassword(ForgotPasswordApiResponse forgotPasswordResponse)
         {
-            var response = await _httpClient.PostAsJsonAsync(_apiEndpoint, forgotPasswordResponse);
+            var response = await _httpClient.PostAsJsonAsync("/ForgotPassword", forgotPasswordResponse);
             response.EnsureSuccessStatusCode();
         }
     }

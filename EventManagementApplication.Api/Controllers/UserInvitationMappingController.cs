@@ -18,7 +18,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetById")]
+        [Route("GetById/{id}")]
         public IActionResult GetById(int id)
         {
             var userInvitationMappingServiceGetById = _userİnvitationMappingService.GetById(id);
@@ -32,21 +32,21 @@ namespace EventManagementApplication.Api.Controllers
             return Ok(userInvitationMappingServiceGetAll);
         }
         [HttpPost]
-        [Route("CreateMapping")]
+        [Route("Create")]
         public IActionResult CreateMapping(UserInvitationMapping userInvitationMapping)
         {
             _userİnvitationMappingService.Create(userInvitationMapping);
             return Ok();
         }
         [HttpPost]
-        [Route("UpdateMapping")]
+        [Route("Update")]
         public IActionResult UpdateMapping(UserInvitationMapping userInvitationMapping)
         {
             _userİnvitationMappingService.Update(userInvitationMapping);
             return Ok();
         }
         [HttpDelete]
-        [Route("DeleteMapping")]
+        [Route("Delete")]
         public IActionResult DeleteMapping(int id)
         {
             _userİnvitationMappingService.Delete(id);
@@ -58,7 +58,6 @@ namespace EventManagementApplication.Api.Controllers
         { 
             _userİnvitationMappingService.AcceptEvent(id);
             return Ok();
-            //reddetme için bir çözüm gerekiyor
         }
     }
 }

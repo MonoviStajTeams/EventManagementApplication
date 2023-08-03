@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManagementApplication.MAUI.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,20 @@ namespace EventManagementApplication.MAUI
 {
     public partial class EventList: ContentPage
     {
-        public EventList()
+        public EventList(EventViewModel evm)
         {
             InitializeComponent();
+            BindingContext = evm;
+        
+
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+         
+        }
+
         private void OnEventClicked(object sender, EventArgs e)
         {
             var button = (Button)sender;

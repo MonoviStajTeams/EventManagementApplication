@@ -14,9 +14,11 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
     public partial class RegisterViewModel : ObservableObject
     {
         private readonly IAuthApiService _authService;
+        private readonly IEventApiService _eventApiService;
         public RegisterViewModel()
         {
-            _authService = new AuthApiService(apiEndpoint: "Auth");
+            _authService = new AuthApiService();
+            _eventApiService = new EventApiService("Event");
         }
 
         [ObservableProperty]
@@ -48,6 +50,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             };
 
 
+            _eventApiService.GetAll();
 
             _authService.Register(entity);
         }
