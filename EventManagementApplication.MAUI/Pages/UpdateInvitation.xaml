@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.UpdateInvitation"
+             x:DataType="vm:InvitationViewModel"
              Title="UpdateInvitation">
     
         <ScrollView>
@@ -9,11 +10,14 @@
                 <Label Text="Update Invitation" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20" />
 
                 
-                <Entry x:Name="invitationTitle" Placeholder="Title" Margin="0,0,0,10" />
-                <Entry x:Name="invitationDescription" Placeholder="Description"  HeightRequest="100" Margin="0,0,0,10" />
+                <Entry x:Name="invitationTitle" Text="{Binding Title}" Placeholder="Title" Margin="0,0,0,10" />
+                <Entry x:Name="userId" Text ="{Binding UserId}" Placeholder="User Id" Margin="0,0,0,10" />
+                <Entry x:Name="eventId" Text ="{Binding EventId}" Placeholder="Event Id" Margin="0,0,0,10" />
+                <Entry x:Name="invitationDescription" Text="{Binding Description}" Placeholder="Description"  HeightRequest="100" Margin="0,0,0,10" />
+            
 
 
-                <Button Text="Update Invitation" Clicked="OnUpdateInvitationClicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" />
+            <Button Text="Update Invitation" Clicked="OnUpdateInvitationClicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" />
             </StackLayout>
         </ScrollView>
     
