@@ -133,8 +133,25 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             EndTime = eventDetail.EndTime;
             UserId = eventDetail.UserId;
 
+        }
 
+        [RelayCommand]
+        public void AcceptEvent()
+        {
+            var entity = new EventApiResponse
+            {
+                Title = title,
+                Description = description,
+                SubContent = subContent,
+                Type = type,
+                Date = date,
+                Status = status,                
+                UserId = userId
+            };
 
+            status = true;
+            
+            _eventApiService.Update(entity);
 
         }
     }
