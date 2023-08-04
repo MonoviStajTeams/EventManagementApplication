@@ -17,7 +17,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpGet]
-        [Route("UserDetailList")]
+        [Route("GetAll")]
         public IActionResult UserDetailList()
         {
             var userDetailList = _userDetailService.GetAll();
@@ -26,7 +26,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
-        [Route("AddUserDetail")]
+        [Route("Create")]
         public IActionResult AddUserDetail(UserDetail userDetail)
         {
             _userDetailService.Create(userDetail);
@@ -34,7 +34,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateUserDetail")]
+        [Route("Update")]
         public IActionResult UpdateUserDetail(UserDetail userDetail)
         {
             _userDetailService.Update(userDetail);
@@ -42,7 +42,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteUserDetail{id}")]
+        [Route("Delete/{id}")]
         public IActionResult DeleteUserDetail(int id)
         {
             _userDetailService.Delete(id);

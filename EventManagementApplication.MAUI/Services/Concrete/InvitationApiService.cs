@@ -18,27 +18,27 @@ namespace EventManagementApplication.MAUI.Services.Concrete
         public InvitationApiService(string apiEndpoint) : base(apiEndpoint)
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL);
-            _apiEndpoint = apiEndpoint;
+            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL + $"{apiEndpoint}");
+
         }
 
         public async Task<int> GetLastInvitationIdAsync()
         {
-            var response = await _httpClient.GetAsync($"{_apiEndpoint}/GetLastInvitationId");
+            var response = await _httpClient.GetAsync("/GetLastInvitationId");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<int>();
         }
 
         public async Task SendInvitationMailAsync(int invitationId)
         {
-            var response = await _httpClient.GetAsync($"{_apiEndpoint}/SendInvitationMail/{invitationId}");
+            var response = await _httpClient.GetAsync("/SendInvitationMail/{invitationId}");
             response.EnsureSuccessStatusCode();
             
         }
 
         public async Task<InvitationApiResponse> GetInvitationByUserId(int userId)
         {
-            var response = await _httpClient.GetAsync($"{_apiEndpoint}/GetInvitationByUserId/{userId}");
+            var response = await _httpClient.GetAsync($"/GetInvitationByUserId/{userId}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<InvitationApiResponse>();
         }

@@ -18,7 +18,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpGet]
-        [Route("UserList")]
+        [Route("GetAll")]
         public IActionResult UserList()
         {
             var userList = _userService.GetAll();
@@ -27,7 +27,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpGet]
-        [Route("GetUserId{id}")]
+        [Route("GetUserById/{id}")]
         public IActionResult GetUserById(int id)
         {
             var user = _userService.GetById(id);
@@ -37,7 +37,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
-        [Route("AddUser")]
+        [Route("Create")]
         public IActionResult AddUser(User user)
         {
             _userService.Create(user);
@@ -45,7 +45,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateUser")]
+        [Route("Update")]
         public IActionResult UpdateUser(User user)
         {
             _userService.Update(user);
@@ -53,7 +53,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteUser")]
+        [Route("Delete/{id}")]
         public IActionResult DeleteUser(int id)
         {
             _userService.Delete(id);

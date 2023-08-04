@@ -15,8 +15,9 @@ namespace EventManagementApplication.Api.Controllers
         {
             _invitationService = invitationService;
         }
+
         [HttpGet]
-        [Route("GetAllInvitation")]
+        [Route("GetAll")]
         public IActionResult GetAllInvitation()
         {
             var invitationList = _invitationService.GetAll();
@@ -24,7 +25,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetInvitation{id}")]
+        [Route("GetById/{id}")]
         public IActionResult InvitationSingle(int id)
         {
             var invitatiın = _invitationService.GetById(id);
@@ -32,7 +33,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
-        [Route("AddInvitation")]
+        [Route("Create")]
         public IActionResult AddInvitation(Invitation entity)
         {
             _invitationService.Create(entity);
@@ -41,7 +42,7 @@ namespace EventManagementApplication.Api.Controllers
 
         //?
         [HttpPost]
-        [Route("GetAllInvitation")]
+        [Route("Update")]
         public IActionResult UpdateEvent(Invitation entity)
         {
             _invitationService.Update(entity);
@@ -49,7 +50,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
-        [Route("DeleteInvitation")]
+        [Route("Delete")]
         public IActionResult DeleteInvitation(int id)
         {
             _invitationService.Delete(id);

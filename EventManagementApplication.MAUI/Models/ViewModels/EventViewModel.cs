@@ -21,6 +21,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             _eventApiService = new EventApiService("Event");
             MyEvents = new ObservableCollection<EventApiResponse>();
             LoadMyEventsCommand = new AsyncRelayCommand(LoadMyEventsAsync);
+            GetEventByIdCommand = new AsyncRelayCommand(GetEventById);
+            LoadMyEventsAsync();
         }
 
         private ObservableCollection<EventApiResponse> _myEvents;
@@ -31,6 +33,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         }
 
         public IAsyncRelayCommand LoadMyEventsCommand { get; }
+        public IAsyncRelayCommand GetEventByIdCommand { get; }
 
 
         [ObservableProperty]
@@ -68,8 +71,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [ObservableProperty]
         private int userId;
 
-        [ObservableProperty]
-        private IEnumerable<EventApiResponse> _events;
+        
 
 
 
@@ -84,8 +86,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 Type = type,
                 Date = date,
                 Status = status,
-                StartTime = starttime,
-                EndTime = endtime,
+                StartTime = startTime,
+                EndTime = endTime,
                 UserId = userId
             };
             _eventApiService.Create(entity);
@@ -102,8 +104,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 Type = type,
                 Date = date,
                 Status = status,
-                StartTime = starttime,
-                EndTime = endtime,
+                StartTime = startTime,
+                EndTime = endTime,
                 UserId = userId
 
             };
@@ -111,17 +113,17 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             _eventApiService.Update(entity);
         }
 
-        private async Task LoadMyEventsAsync()
+        
+        public async Task LoadMyEventsAsync()
         {
             var events = await _eventApiService.GetAll();
             MyEvents = new ObservableCollection<EventApiResponse>(events);
         }
 
-        private async Task LoadEventDetailsAsync()
+
+        private async Task GetEventById()
         {
             var eventDetail = await _eventApiService.GetById(id);
-
-
 
             Title = eventDetail.Title;
             Description = eventDetail.Description;

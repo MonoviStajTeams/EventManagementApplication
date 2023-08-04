@@ -121,7 +121,7 @@ namespace EventManagementApplication.Business.Concrete
                 _unitOfWork.Notifications.Add(notification);
                 _unitOfWork.Save();
 
-                SendNotificationToUserByMail(user, GetReminderNotificationContent(ev));
+                
             }
         }
 

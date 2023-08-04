@@ -17,7 +17,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpGet]
-        [Route("NotificationList")]
+        [Route("GetAll")]
         public IActionResult NotificationList()
         {
             var notificationList = _notificationService.GetAll();
@@ -26,7 +26,7 @@ namespace EventManagementApplication.Api.Controllers
 
 
         [HttpPost]
-        [Route("AddNotification")]
+        [Route("Create")]
         public IActionResult AddNotification(Notification notification)
         {
             _notificationService.Create(notification);
@@ -34,7 +34,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateNotification")]
+        [Route("Update")]
         public IActionResult UpdateNotification(Notification notification)
         {
             _notificationService.Update(notification);
@@ -42,7 +42,7 @@ namespace EventManagementApplication.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteNotification{id}")]
+        [Route("Delete/{id}")]
         public IActionResult DeleteNotification(int id)
         {
             _notificationService.Delete(id);

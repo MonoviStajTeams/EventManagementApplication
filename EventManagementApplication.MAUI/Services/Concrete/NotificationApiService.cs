@@ -17,19 +17,19 @@ namespace EventManagementApplication.MAUI.Services.Concrete
         public NotificationApiService(string apiEndpoint) : base(apiEndpoint)
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL);
-            _apiEndpoint = apiEndpoint;
+            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL + $"{apiEndpoint}");
+           
         }
 
         public async Task SendInvitationNotificationAsync(InvitationApiResponse ınvitationApiResponse, int userId)
         {
-            var response = await _httpClient.GetAsync($"{_apiEndpoint}/SendInvitationNotification/{ınvitationApiResponse}/{userId}");
+            var response = await _httpClient.GetAsync($"/SendInvitationNotification/{ınvitationApiResponse}/{userId}");
             response.EnsureSuccessStatusCode();
         }
 
         public async Task<IEnumerable<UserApiResponse>> GetUsersAsync()
         {
-            var response = await _httpClient.GetAsync($"{_apiEndpoint}/GetUsers");
+            var response = await _httpClient.GetAsync("/GetUsers");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<IEnumerable<UserApiResponse>>();
         }
@@ -37,7 +37,7 @@ namespace EventManagementApplication.MAUI.Services.Concrete
 
         public async Task SendReminderNotificationsAsync()
         {
-            var response = await _httpClient.GetAsync($"{_apiEndpoint}/SendReminderNotifications");
+            var response = await _httpClient.GetAsync("/SendReminderNotifications");
             response.EnsureSuccessStatusCode();
         }
 

@@ -17,13 +17,12 @@ namespace EventManagementApplication.MAUI.Services.Concrete
         public UserDetailApiService(string apiEndpoint) : base(apiEndpoint)
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL);
-            _apiEndpoint = apiEndpoint;
+            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL + $"{apiEndpoint}");
         }
 
         public async Task<UserDetailApiResponse> GetUserDetailByUserIdAsync(int userId)
         {
-            var response = await _httpClient.GetAsync($"{_apiEndpoint}/GetUserDetailByUserId/{userId}");
+            var response = await _httpClient.GetAsync($"/GetUserDetailByUserId/{userId}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<UserDetailApiResponse>();
         }

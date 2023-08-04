@@ -80,7 +80,7 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult ForgotPasswordSendMailCode(string mail)
         {
-            _authService.SendMailCodeByResetPassword(mail);
+            //_authService.SendMailCodeByResetPassword(mail);
 
             return RedirectToAction("EntryCode", "Auth");
         }

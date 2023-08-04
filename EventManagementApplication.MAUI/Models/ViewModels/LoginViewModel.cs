@@ -20,7 +20,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
         public LoginViewModel()
         {
-            _authApiService = new AuthApiService("User");
+            _authApiService = new AuthApiService();
         }
 
         [ObservableProperty]
