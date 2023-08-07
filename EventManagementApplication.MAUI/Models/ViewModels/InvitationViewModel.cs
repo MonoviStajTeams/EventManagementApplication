@@ -42,10 +42,10 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         private string description;
 
         [ObservableProperty]
-        private int userid;
+        private int userId;
 
         [ObservableProperty]
-        private int eventid;
+        private int eventId;
 
         [ObservableProperty]
         private string id;
@@ -65,8 +65,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             {
                 Title = title,
                 Description = description,
-                UserId = userid,
-                EventId = eventid
+                UserId = userId,
+                EventId = eventId
             };
             _invitationApiService.Create(entity);
         }
@@ -78,8 +78,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             {
                 Title = title,
                 Description = description,
-                UserId = userid,
-                EventId = eventid
+                UserId = userId,
+                EventId = eventId
             };
 
             _invitationApiService.Update(entity);

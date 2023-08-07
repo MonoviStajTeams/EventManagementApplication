@@ -133,22 +133,33 @@ namespace EventManagementApplication.Business.Concrete
 
             try
             {
-                // E-posta gönderme işlemleri
-                SmtpClient smtpClient = new SmtpClient("smtp.example.com"); // E-posta sunucu adresini buraya yazın
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("noreply@example.com"); // Gönderen e-posta adresini buraya yazın
-                mailMessage.To.Add(mail); // Kullanıcının e-posta adresini ekleyin
-                mailMessage.Subject = "Şifre Sıfırlama Kodu";
-                mailMessage.Body = "Şifre sıfırlama için aktivasyon kodunuz: " + activationCode;
+
+                //Mail Helper methodu olarak düzenlenecek
+
+                SmtpClient smtpClient = new SmtpClient("mail.yipadanismanlik.com", 465);
+
+                smtpClient.EnableSsl = true;
+                smtpClient.Timeout = 10000;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new System.Net.NetworkCredential("test@yipadanismanlik.com", "monovi1234");
+
+                string subject = "Şifre Sıfırlama Kodu";
+                string body = "Şifre sıfırlama için aktivasyon kodunuz: " + activationCode;  //Mail body kısmı düzenlenecek
+
+                var mailMessage = new MailMessage("test@yipadanismanlik.com", "test@yipadanismanlik.com", subject,body);
+               
 
                 smtpClient.Send(mailMessage);
 
-                // Aktivasyon kodunu veritabanına kaydetme işlemi yapılabilir
+
+
+                // Aktivasyon kodu sorulacak
             }
             catch (Exception ex)
             {
-                // E-posta gönderirken hata oluşursa burada işlem yapabilirsiniz
-                Console.WriteLine("E-posta gönderirken bir hata oluştu: " + ex.Message);
+
+                throw new Exception("E-posta gönderirken bir hata oluştu: " + ex.Message);
             }
         }
 
@@ -171,8 +182,7 @@ namespace EventManagementApplication.Business.Concrete
        
         public bool VerifyActivationCode(string enteredCode)
         {
-            // Eğer veritabanında kodu kaydediyorsanız, bu metodun veritabanında saklanan kodu alarak doğrulama yapması gerekebilir.
-            // Burada basitçe giriş yapılan kod ile kaydedilen kodu karşılaştırıyoruz.
+            
 
             return true;
         }

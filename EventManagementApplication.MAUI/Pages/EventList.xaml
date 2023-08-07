@@ -26,7 +26,7 @@
                             <Image Source="https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg" HeightRequest="200" Aspect="AspectFill" />
                             <Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" />
                             <Label Text="{Binding SubContent}" FontSize="14" />
-                            <Button Text="More" Command="{Binding  GetEventByIdCommand}" CommandParameter="{Binding Id}" />
+                            <Button Text="More" CommandParameter="{Binding Id}" Clicked="OnEventClicked" />
 
 
                         </StackLayout>
