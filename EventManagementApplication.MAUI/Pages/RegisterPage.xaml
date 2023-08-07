@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
              x:DataType="vm:RegisterViewModel"
              Title="Register Page">
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
