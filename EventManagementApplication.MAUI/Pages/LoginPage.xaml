@@ -32,7 +32,7 @@
                 </Frame>
 
 
-                <Button Text="Sign Up" BackgroundColor="#7E57FF"  TextColor="White" Margin="0, 20, 0, 10"/>
+                <Button Text="Sign Up" BackgroundColor="#7E57FF" Command="{Binding LoginCommand}" TextColor="White" Margin="0, 20, 0, 10"/>
 
                 <Label Text="Already have an account?" FontSize="14" TextColor="#081828" HorizontalOptions="Center" Margin="0, 35, 0, 0">
                     <Label.FormattedText>

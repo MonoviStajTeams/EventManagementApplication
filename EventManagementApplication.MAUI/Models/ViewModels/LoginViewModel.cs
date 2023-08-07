@@ -30,13 +30,10 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         private string password;
 
 
-        [RelayCommand]
-        private async Task FetchLoginInfo()
-        {
+    
 
-        }
         [RelayCommand]
-        private async Task LoginUser()
+        private async Task Login()
         {
             var entity = new LoginApiResponse
             {
@@ -44,7 +41,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 Password = password
             };
 
-            await _authApiService.Login(entity).ConfigureAwait(false);
+            await _authApiService.Login(entity);
         }
 
     }

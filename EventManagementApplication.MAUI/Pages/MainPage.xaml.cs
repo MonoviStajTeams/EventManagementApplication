@@ -9,17 +9,17 @@ namespace EventManagementApplication.MAUI.Pages
 {
     public partial class MainPage : ContentPage
     {
-
-        public MainPage()
+        private readonly RegisterViewModel _rvm;
+        public MainPage(RegisterViewModel rvm)
         {
             InitializeComponent();
-            
+            _rvm = rvm;
         }
 
 
         private async void SignUp_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ForgotPasswordPage());
+            await Navigation.PushAsync(new RegisterPage(_rvm));
         }
 
         private async void ForgotPassword_Clicked(object sender, EventArgs e)

@@ -1,11 +1,14 @@
+using EventManagementApplication.MAUI.Models.ViewModels;
+
 namespace EventManagementApplication.MAUI.Pages;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+	public LoginPage(LoginViewModel lvm)
 	{
 		InitializeComponent();
-	}
+        BindingContext = lvm;
+    }
 
 
     //private void NavigateToRegisterPage()

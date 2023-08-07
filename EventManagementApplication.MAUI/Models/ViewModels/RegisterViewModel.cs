@@ -53,8 +53,6 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             };
 
 
-            _eventApiService.GetAll();
-
             _authService.Register(entity);
         }
         
