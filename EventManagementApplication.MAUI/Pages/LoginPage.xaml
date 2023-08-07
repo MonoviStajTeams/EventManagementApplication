@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventManagementApplication.MAUI.Pages.LoginPage"
+              xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
+             x:DataType="vm:LoginViewModel"
+             Title="LoginPage">
+    <ContentPage.Resources>
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="PlaceholderColor" Value="Gray" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#F4F7FA">
+            <StackLayout Padding="50">
+                <Label Text="Sign In Now" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 20, 0, 40"/>
+
+           
+                <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
+                    <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email" Style="{StaticResource EntryStyle}" />
+                </Frame>
+
+                <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
+                    <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" Style="{StaticResource EntryStyle}" />
+                </Frame>
+
+
+                <Button Text="Sign Up" BackgroundColor="#7E57FF"  TextColor="White" Margin="0, 20, 0, 10"/>
+
+                <Label Text="Already have an account?" FontSize="14" TextColor="#081828" HorizontalOptions="Center" Margin="0, 35, 0, 0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Don't you have an account" />
+                            <Span Text="Sign up" TextColor="#7E57FF" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

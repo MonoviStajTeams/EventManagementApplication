@@ -1,13 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EventManagementApplication.MAUI.Models.ApiModels;
+using EventManagementApplication.MAUI.Pages;
 using EventManagementApplication.MAUI.Services.Abstract;
 using EventManagementApplication.MAUI.Services.Concrete;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EventManagementApplication.MAUI.Models.ViewModels
 {
@@ -36,7 +39,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [ObservableProperty]
         private string confirmpassword;
 
-
+      
 
         [RelayCommand]
         private void Register()
