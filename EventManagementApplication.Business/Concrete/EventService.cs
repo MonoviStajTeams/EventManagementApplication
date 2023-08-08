@@ -75,14 +75,14 @@ namespace EventManagementApplication.Business.Concrete
 
 
         // reactivate events
-        public void ActivateEvent(int eventId, DateTime newDate, string newStartTime, string newEndTime)
+        public void ActivateEvent(Event events)
         {
-            var existingEvent = _unitOfWork.Events.GetById(eventId);
+            var existingEvent = _unitOfWork.Events.GetById(events.Id);
             if (existingEvent != null)
             {
-                existingEvent.Date = newDate;
-                existingEvent.StartTime = newStartTime;
-                existingEvent.EndTime = newEndTime;
+                existingEvent.Date = events.Date;
+                existingEvent.StartTime = events.StartTime;
+                existingEvent.EndTime = events.EndTime;
                 existingEvent.Status = true;
 
                 _unitOfWork.Events.Update(existingEvent);
