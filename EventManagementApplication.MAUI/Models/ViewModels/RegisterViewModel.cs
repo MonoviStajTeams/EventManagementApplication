@@ -4,6 +4,7 @@ using EventManagementApplication.MAUI.Models.ApiModels;
 using EventManagementApplication.MAUI.Pages;
 using EventManagementApplication.MAUI.Services.Abstract;
 using EventManagementApplication.MAUI.Services.Concrete;
+using EventManagementApplication.MAUI.Validators;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,11 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
     public partial class RegisterViewModel : ObservableObject
     {
         private readonly IAuthApiService _authService;
-        private readonly IEventApiService _eventApiService;
+        private readonly RegisterViewModelValidator _validator;
         public RegisterViewModel()
         {
             _authService = new AuthApiService();
-            _eventApiService = new EventApiService("Event");
+            _validator = new RegisterViewModelValidator();
         }
 
         [ObservableProperty]
@@ -39,7 +40,6 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [ObservableProperty]
         private string confirmpassword;
 
-      
 
         [RelayCommand]
         private void Register()
@@ -52,9 +52,31 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 Password = password,
             };
 
+            var validationResult = _validator.Validate(this);
 
-            _authService.Register(entity);
+            if (validationResult.IsValid)
+            {
+                _authService.Register(entity);
+            }
+            else
+            {
+                StringBuilder errorMessageBuilder = new StringBuilder();
+                foreach (var error in validationResult.Errors)
+                {
+                    errorMessageBuilder.AppendLine(error.ErrorMessage);
+                }
+
+                ErrorMessages = errorMessageBuilder.ToString();
+            }
         }
-        
+
+        private string errorMessages;
+        public string ErrorMessages
+        {
+            get => errorMessages;
+            set => SetProperty(ref errorMessages, value);
+        }
     }
+
+}
 }

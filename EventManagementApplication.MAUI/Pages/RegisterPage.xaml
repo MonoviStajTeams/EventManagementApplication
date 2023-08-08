@@ -22,28 +22,32 @@
         <ScrollView BackgroundColor="#F4F7FA">
             <StackLayout Padding="50">
                 <Label Text="Sign Up Now" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 20, 0, 40"/>
-
+                <Label Text="{Binding ErrorMessages}" TextColor="Red" Margin="0, 10, 0, 0" />
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White">
-                    <Entry Placeholder="Firstname"  Text="{Binding Firstname}" Style="{StaticResource EntryStyle}" />
+                    <Entry Placeholder="Firstname" Text="{Binding Firstname}" Style="{StaticResource EntryStyle}" />
                 </Frame>
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     <Entry Placeholder="Lastname" Text="{Binding Lastname}" Style="{StaticResource EntryStyle}" />
                 </Frame>
+             
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     <Entry Placeholder="Email" Text="{Binding Mail}" Keyboard="Email" Style="{StaticResource EntryStyle}" />
                 </Frame>
+               
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" Style="{StaticResource EntryStyle}" />
                 </Frame>
+            
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     <Entry Placeholder="Confirm Password" Text="{Binding Confirmpassword}" IsPassword="True" Style="{StaticResource EntryStyle}" />
                 </Frame>
+              
 
-                <Button Text="Sign Up" BackgroundColor="#7E57FF" Command="{Binding RegisterCommand}" TextColor="White" Margin="0, 20, 0, 10"/>
+                <Button Text="Sign Up" BackgroundColor="#7E57FF" Command="{Binding RegisterCommand}" TextColor="White" Margin="0, 20, 0, 10" />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="0, 35, 0, 0">
                     <Label Text="Already have an account?" FontSize="14" TextColor="#081828" />

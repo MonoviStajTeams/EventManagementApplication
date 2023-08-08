@@ -29,8 +29,14 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [ObservableProperty]
         private string password;
 
+        private string errorMessages;
+        public string ErrorMessages
+        {
+            get => errorMessages;
+            set => SetProperty(ref errorMessages, value);
+        }
 
-    
+
 
         [RelayCommand]
         private async Task Login()
@@ -41,8 +47,24 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 Password = password
             };
 
-            await _authApiService.Login(entity);
+            var validationResult = _validator.Validate(this);
+
+            if (validationResult.IsValid)
+            {
+                await _authApiService.Login(entity);
+            }
+            else
+            {
+                StringBuilder errorMessageBuilder = new StringBuilder();
+                foreach (var error in validationResult.Errors)
+                {
+                    errorMessageBuilder.AppendLine(error.ErrorMessage);
+                }
+
+                ErrorMessages = errorMessageBuilder.ToString();
+            }
         }
+
 
     }
 }

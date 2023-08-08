@@ -21,8 +21,9 @@
         <ScrollView BackgroundColor="#F4F7FA">
             <StackLayout Padding="50">
                 <Label Text="Sign In Now" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 20, 0, 40"/>
+                <Label Text="{Binding ErrorMessages}" TextColor="Red" Margin="0, 10, 0, 0" />
 
-           
+
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email" Style="{StaticResource EntryStyle}" />
                 </Frame>
