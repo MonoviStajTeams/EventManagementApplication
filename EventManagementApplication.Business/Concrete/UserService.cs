@@ -72,11 +72,7 @@ namespace EventManagementApplication.Business.Concrete
             _unitOfWork.Save();
         }
 
-        public IEnumerable<User> GetUsers()
-        {
-            var users = _unitOfWork.Users.GetAll();
-            return users;
-        }
+       
 
 
     }

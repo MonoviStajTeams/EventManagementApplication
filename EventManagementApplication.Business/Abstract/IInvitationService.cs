@@ -12,5 +12,6 @@ namespace EventManagementApplication.Business.Abstract
         int GetLastInvitationId();
         IEnumerable<User> GetUsers();
         IEnumerable<Invitation> GetInvitationsByUserId(int id);
+        void SendInvitationMail(int invitationId);
     }
 }

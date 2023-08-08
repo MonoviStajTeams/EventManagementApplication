@@ -9,10 +9,7 @@ namespace EventManagementApplication.Business.Abstract
 {
     public interface INotificationService : IGenericService<Notification>
     {
-        void Create(Notification entity);
-        void Delete(int id);
-        IEnumerable<Notification> GetAll();
-        Notification GetById(int id);
-        void Update(Notification entity);
+        void SendInvitationNotification(Invitation invitation, User user);
+        void SendReminderNotifications();
     }
 }

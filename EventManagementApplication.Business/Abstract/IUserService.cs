@@ -12,6 +12,5 @@ namespace EventManagementApplication.Business.Abstract
         List<OperationClaim> GetClaims(User user);
         
         User GetByMail(string mail);
-        IEnumerable<User> GetUsers();
     }
 }
