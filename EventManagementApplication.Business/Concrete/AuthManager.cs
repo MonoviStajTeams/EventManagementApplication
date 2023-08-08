@@ -82,12 +82,6 @@ namespace EventManagementApplication.Business.Concrete
 
 
 
-
-
-
-
-
-
         //Reset Password
         public IDataResult<bool> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
@@ -152,7 +146,11 @@ namespace EventManagementApplication.Business.Concrete
 
                 smtpClient.Send(mailMessage);
 
+                var user = _userService.GetByMail(mail);
 
+                user.ResetCode = activationCode;
+
+                _userService.Update(user);
 
                 // Aktivasyon kodu sorulacak
             }
@@ -180,11 +178,17 @@ namespace EventManagementApplication.Business.Concrete
         }
 
        
-        public bool VerifyActivationCode(string enteredCode)
+        public bool VerifyActivationCode(string enteredCode,int userId)
         {
-            
+            var resetCodeUser = _userService.GetById(userId);
 
+            if (enteredCode == resetCodeUser.ResetCode)
+            {
             return true;
+
+            }
+
+            return false;
         }
     }
 }

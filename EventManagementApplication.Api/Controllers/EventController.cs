@@ -19,7 +19,7 @@ namespace EventManagementApplication.Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public IActionResult EventList()
+        public IActionResult GetAll()
         {
             var eventList = _eventService.GetAll();
             return Ok(eventList);
@@ -33,8 +33,6 @@ namespace EventManagementApplication.Api.Controllers
             var role = _eventService.GetById(id);
             return Ok(role);
         }
-
-
 
         [HttpPost]
         [Route("Create")]
@@ -69,6 +67,25 @@ namespace EventManagementApplication.Api.Controllers
             return Ok(eventList);
         }
 
-       
+        [HttpPost]
+        [Route("ActivateEvent")]
+
+        public IActionResult ActivateEvent(Event eventEntity)
+        {
+            _eventService.ActivateEvent(eventEntity);
+            return Ok();
+        }
+
+
+        [HttpGet]
+        [Route("GetAllByUserId/{id}")]
+
+        public IActionResult GetAllByUserId(int id)
+        {
+            var getEvent = _eventService.GetAllByUserId(id);
+            return Ok(getEvent);
+        }
+
+
     }
 }

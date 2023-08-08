@@ -48,5 +48,15 @@ namespace EventManagementApplication.Api.Controllers
             _userDetailService.Delete(id);
             return Ok();
         }
+
+
+        [HttpGet]
+        [Route("GetUserDetailByUserId/{id}")]
+        public IActionResult GetUserDetailByUserId(int id)
+        {
+            var userDetailList = _userDetailService.GetUserDetailByUserId(id);
+            return Ok(userDetailList);
+        }
+
     }
 }

@@ -18,7 +18,7 @@ namespace EventManagementApplication.Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public IActionResult GetAllInvitation()
+        public IActionResult GetAll()
         {
             var invitationList = _invitationService.GetAll();
             return Ok(invitationList);
@@ -26,7 +26,7 @@ namespace EventManagementApplication.Api.Controllers
 
         [HttpGet]
         [Route("GetById/{id}")]
-        public IActionResult InvitationSingle(int id)
+        public IActionResult GetById(int id)
         {
             var invitatiın = _invitationService.GetById(id);
             return Ok(invitatiın);
@@ -34,7 +34,7 @@ namespace EventManagementApplication.Api.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult AddInvitation(Invitation entity)
+        public IActionResult Add(Invitation entity)
         {
             _invitationService.Create(entity);
             return Ok();
@@ -43,7 +43,7 @@ namespace EventManagementApplication.Api.Controllers
         //?
         [HttpPost]
         [Route("Update")]
-        public IActionResult UpdateEvent(Invitation entity)
+        public IActionResult Update(Invitation entity)
         {
             _invitationService.Update(entity);
             return Ok();
@@ -55,6 +55,38 @@ namespace EventManagementApplication.Api.Controllers
         {
             _invitationService.Delete(id);
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("SendInvitationMail/{id}")]
+        public IActionResult SendInvitationMail(int id)
+        {
+            _invitationService.SendInvitationMail(id);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("GetLastInvitationId")]
+        public IActionResult GetLastInvitationId()
+        {
+            var lastId = _invitationService.GetLastInvitationId();
+            return Ok(lastId);
+        }
+
+        [HttpGet]
+        [Route("GetUsers")]
+        public IActionResult GetUsers()
+        {
+            var users = _invitationService.GetUsers();
+            return Ok(users);
+        }
+
+        [HttpGet]
+        [Route("GetInvitationsByUserId/{id}")]
+        public IActionResult GetInvitationsByUserId(int id)
+        {
+            var invitations = _invitationService.GetInvitationsByUserId(id);
+            return Ok(invitations);
         }
     }
 }

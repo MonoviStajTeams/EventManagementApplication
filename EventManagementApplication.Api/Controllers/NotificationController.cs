@@ -1,5 +1,6 @@
 ﻿using EventManagementApplication.Business.Abstract;
 using EventManagementApplication.Entities.Concrete;
+using EventManagementApplication.Entities.dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,6 +47,28 @@ namespace EventManagementApplication.Api.Controllers
         public IActionResult DeleteNotification(int id)
         {
             _notificationService.Delete(id);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("SendInvitationNotification")]
+        public IActionResult SendInvitationNotification([FromBody] InvitationUserModel model)
+        {
+            if (model == null || model.Invitation == null || model.User == null)
+            {
+                return BadRequest("Invitation and user data must be provided.");
+            }
+
+            _notificationService.SendInvitationNotification(model.Invitation, model.User);
+            return Ok();
+        }
+
+
+        [HttpGet]
+        [Route("SendReminderNotifications")]
+        public IActionResult SendReminderNotifications()
+        {
+            _notificationService.SendReminderNotifications();
             return Ok();
         }
     }
