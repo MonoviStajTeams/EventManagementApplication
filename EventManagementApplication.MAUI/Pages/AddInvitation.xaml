@@ -1,19 +1,49 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.AddInvitation"
              Title="AddInvitation">
-   
-        <ScrollView>
-            <StackLayout Padding="20">
-                <Label Text="Add Invitation" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,20,20" />
 
-                <Entry Placeholder="Başlık" x:Name="Title" Margin="0,0,20,20" />
+    <ContentPage.Resources>
+        
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="PlaceholderColor" Value="Gray" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            
+        </Style>
+    </ContentPage.Resources>
 
-                <Editor Placeholder="Açıklama" x:Name="Description" HeightRequest="100" />
+    <ContentPage.Content>
+        
+        <ScrollView BackgroundColor="#F4F7FA">
+            
+            <StackLayout Padding="20" Spacing="15">
+                
+                <Label Text="Add Invitation" FontSize="24" TextColor="Black" HorizontalOptions="Center" />
 
-                <Button Text="Add Invitation" Clicked="OnAddInvitationClicked" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" />
+                <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White">
+                    
+                    <Entry Placeholder="Başlık" x:Name="Title" Style="{StaticResource EntryStyle}" />
+                    
+                </Frame>
+
+                <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
+                    
+                    <Editor Placeholder="Açıklama" x:Name="Description" HeightRequest="100" />
+                    
+                </Frame>
+
+                <Button Text="Add Invitation" Clicked="OnAddInvitationClicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" Margin="0, 20, 0, 10" />
+                
             </StackLayout>
+            
         </ScrollView>
-   
+        
+    </ContentPage.Content>
+        
 </ContentPage>
