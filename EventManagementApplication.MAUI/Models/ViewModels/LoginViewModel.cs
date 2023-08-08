@@ -4,6 +4,7 @@ using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.MAUI.Models.ApiModels;
 using EventManagementApplication.MAUI.Services.Abstract;
 using EventManagementApplication.MAUI.Services.Concrete;
+using EventManagementApplication.MAUI.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
     public partial class LoginViewModel : ObservableObject
     {
         private readonly IAuthApiService _authApiService;
-
+        private readonly LoginViewModelValidator _validator;
         public LoginViewModel()
         {
             _authApiService = new AuthApiService();

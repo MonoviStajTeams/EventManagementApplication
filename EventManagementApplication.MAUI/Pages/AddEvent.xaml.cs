@@ -5,7 +5,7 @@
         public AddEvent()
         {
             InitializeComponent();
-           
+
         }
         private async void AddEvent_Clicked(object sender, EventArgs e)
         {
