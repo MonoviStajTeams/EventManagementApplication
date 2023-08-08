@@ -21,7 +21,6 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             _eventApiService = new EventApiService("Event");
             MyEvents = new ObservableCollection<EventApiResponse>();
             LoadMyEventsCommand = new AsyncRelayCommand(LoadMyEventsAsync);
-            GetEventByIdCommand = new AsyncRelayCommand(GetEventById);
             LoadMyEventsAsync();
         }
 
@@ -33,7 +32,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         }
 
         public IAsyncRelayCommand LoadMyEventsCommand { get; }
-        public IAsyncRelayCommand GetEventByIdCommand { get; }
+      
 
 
         [ObservableProperty]
@@ -120,10 +119,10 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             MyEvents = new ObservableCollection<EventApiResponse>(events);
         }
 
-
-        private async Task GetEventById()
+        [RelayCommand]
+        public async Task GetEventById(int eventId)
         {
-            var eventDetail = await _eventApiService.GetById(id);
+            var eventDetail = await _eventApiService.GetById(eventId);
 
             Title = eventDetail.Title;
             Description = eventDetail.Description;

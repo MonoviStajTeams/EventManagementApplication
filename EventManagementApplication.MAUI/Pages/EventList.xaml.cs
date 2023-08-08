@@ -29,9 +29,11 @@ namespace EventManagementApplication.MAUI
             var eventId = (int)button.CommandParameter;
 
             var eventSinglePage = new EventSinglePage();
-            eventSinglePage.BindingContext = eventId;
+            eventSinglePage.BindingContext = new EventViewModel { Id = eventId };
 
             Navigation.PushAsync(eventSinglePage);
         }
+
+
     }
 }

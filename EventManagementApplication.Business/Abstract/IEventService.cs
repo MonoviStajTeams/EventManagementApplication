@@ -10,7 +10,7 @@ namespace EventManagementApplication.Business.Abstract
     public interface IEventService : IGenericService<Event>
     {
         IEnumerable<Event> GetInactiveEventsByUserId(int userId);
-        void ActivateEvent(int eventId, DateTime newDate, string newStartTime, string newEndTime);
+        void ActivateEvent(Event events);
         IEnumerable<Event> GetAllByUserId(int id);
     }
 }

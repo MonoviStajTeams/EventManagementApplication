@@ -4,6 +4,7 @@ using EventManagementApplication.MAUI.Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,5 +26,16 @@ namespace EventManagementApplication.MAUI.Services.Concrete
             response.EnsureSuccessStatusCode();
         }
 
+        public async Task GetInactiveEventsByUserId(int userId)
+        {
+            var response = await _httpClient.GetAsync($"/GetInactiveEventsByUserId/{userId}");
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task ActivateEvent(EventApiResponse eventResponse)
+        {
+            var response = await _httpClient.PostAsJsonAsync($"/ActivateEvent/",eventResponse);
+            response.EnsureSuccessStatusCode();
+        }
     }
 }

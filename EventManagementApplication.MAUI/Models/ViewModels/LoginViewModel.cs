@@ -4,6 +4,7 @@ using EventManagementApplication.Entities.Concrete;
 using EventManagementApplication.MAUI.Models.ApiModels;
 using EventManagementApplication.MAUI.Services.Abstract;
 using EventManagementApplication.MAUI.Services.Concrete;
+using EventManagementApplication.MAUI.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
     public partial class LoginViewModel : ObservableObject
     {
         private readonly IAuthApiService _authApiService;
-
+        private readonly LoginViewModelValidator _validator;
         public LoginViewModel()
         {
             _authApiService = new AuthApiService();
@@ -29,14 +30,17 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [ObservableProperty]
         private string password;
 
-
-        [RelayCommand]
-        private async Task FetchLoginInfo()
+        private string errorMessages;
+        public string ErrorMessages
         {
-
+            get => errorMessages;
+            set => SetProperty(ref errorMessages, value);
         }
+
+
+
         [RelayCommand]
-        private async Task LoginUser()
+        private async Task Login()
         {
             var entity = new LoginApiResponse
             {
@@ -44,8 +48,24 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
                 Password = password
             };
 
-            await _authApiService.Login(entity).ConfigureAwait(false);
+            var validationResult = _validator.Validate(this);
+
+            if (validationResult.IsValid)
+            {
+                await _authApiService.Login(entity);
+            }
+            else
+            {
+                StringBuilder errorMessageBuilder = new StringBuilder();
+                foreach (var error in validationResult.Errors)
+                {
+                    errorMessageBuilder.AppendLine(error.ErrorMessage);
+                }
+
+                ErrorMessages = errorMessageBuilder.ToString();
+            }
         }
+
 
     }
 }
