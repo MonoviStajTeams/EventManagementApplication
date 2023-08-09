@@ -1,39 +1,42 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.EventList"
-                xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
+             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
              x:DataType="vm:EventViewModel"
              xmlns:local="clr-namespace:EventManagementApplication.MAUI">
 
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <StackLayout Padding="20" Spacing="10">
 
-            <Label Text="Event List" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
+            <Label Text="Event List"
+                   FontSize="25"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="0, 40, 0, 10"/>
 
-            <CollectionView ItemsSource="{Binding MyEvents}" Grid.Row="1">
+            <CollectionView ItemsSource="{Binding MyEvents}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Margin="10">
+                        <StackLayout Spacing="10">
 
-                            <Image Source="https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg" HeightRequest="200" Aspect="AspectFill" />
-                            <Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" />
-                            <Label Text="{Binding SubContent}" FontSize="14" />
-                            <Button Text="More" CommandParameter="{Binding Id}" Clicked="OnEventClicked" />
-
+                            
+                            <Label Text="{Binding Title}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding SubContent}"
+                                   FontSize="14" />
+                            <Button Text="More"
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding Source={x:Reference local:EventListPage}, Path=BindingContext.MoreCommand}" />
 
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 
 </ContentPage>
