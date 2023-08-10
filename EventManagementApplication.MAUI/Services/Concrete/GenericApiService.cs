@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace EventManagementApplication.MAUI.Services.Concrete
         public GenericApiService(string apiEndpoint)
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL + $"{apiEndpoint}");
+            //_httpClient.BaseAddress = new Uri(Constants.API_BASE_URL + $"{apiEndpoint}");
         }
 
         public async Task<T> GetById(int id)
@@ -29,7 +31,9 @@ namespace EventManagementApplication.MAUI.Services.Concrete
         {
             try
             {
-                var response = await _httpClient.GetAsync(_httpClient.BaseAddress + "/GetAll");
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri("http://10.0.2.2:5072/api/Event/GetAll");
+                var response = await httpClient.GetAsync(_httpClient.BaseAddress);
 
                 response.EnsureSuccessStatusCode();
 

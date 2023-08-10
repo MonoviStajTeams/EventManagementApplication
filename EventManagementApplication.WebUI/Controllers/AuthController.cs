@@ -1,4 +1,5 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Dtos;
 using EventManagementApplication.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace EventManagementApplication.WebUI.Controllers
     public class AuthController : Controller
     {
         private IAuthService _authService;
+        private readonly IUserService _userService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IUserService userService)
         {
             _authService = authService;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -94,7 +97,10 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult EntryCode(string enteredCode)
         {
-            var activated = _authService.VerifyActivationCode(enteredCode);
+            string email = HttpContext.Session.GetString("Email")!;
+
+            var user = _userService.GetByMail(email!);
+            var activated = _authService.VerifyActivationCode(enteredCode,user.Id);
 
             if (activated == true)
             {

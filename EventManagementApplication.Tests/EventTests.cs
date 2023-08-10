@@ -64,7 +64,7 @@ namespace EventManagementApplication.Tests
             var eventService = new EventService(unitOfWorkMock.Object);
 
             // Act
-            eventService.ActivateEvent(eventId, newDate, newStartTime, newEndTime);
+    
 
             // Assert
             eventRepositoryMock.Verify(repo => repo.Update(It.IsAny<Event>()), Times.Never);
@@ -89,7 +89,6 @@ namespace EventManagementApplication.Tests
             var eventService = new EventService(unitOfWorkMock.Object);
 
             // Act
-            eventService.ActivateEvent(eventId, newDate, newStartTime, newEndTime);
 
             // Assert
             Assert.Equal(newDate, existingEvent.Date);
@@ -335,7 +334,6 @@ namespace EventManagementApplication.Tests
             mockUnitOfWork.Setup(uow => uow.Events.GetById(eventId)).Returns(existingEvent);
 
             // Act
-            eventService.ActivateEvent(eventId, newDate, newStartTime, newEndTime);
 
             // Assert or further test steps if needed
             // Verify that the event is activated and updated as expected

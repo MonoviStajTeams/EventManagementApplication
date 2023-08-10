@@ -9,7 +9,7 @@ namespace EventManagementApplication.MAUI
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new UpdateEvent(evm));
+            MainPage = new NavigationPage(new EventList(evm));
         }
     }
 }
