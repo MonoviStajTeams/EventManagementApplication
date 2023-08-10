@@ -9,6 +9,7 @@ using PostSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
@@ -39,10 +40,10 @@ namespace EventManagementApplication.Business.Concrete
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = true,
-                ResetToken ="test",
+                ResetToken = "test",
                 ResetTokenExpiration = DateTime.Now.AddDays(2)
-                
-               
+
+
             };
             _userService.Create(user);
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
@@ -86,7 +87,7 @@ namespace EventManagementApplication.Business.Concrete
         public IDataResult<bool> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             var user = _userService.GetByMail(resetPasswordDto.Email);
-            
+
             if (user == null)
             {
                 return new ErrorDataResult<bool>("User not found.");
@@ -119,8 +120,8 @@ namespace EventManagementApplication.Business.Concrete
             // Example (simplified for illustration purposes):
             return user.ResetToken == token && user.ResetTokenExpiration > DateTime.Now;
         }
-    
-       
+
+
         public void SendMailCodeByResetPassword(string mail)
         {
             string activationCode = GenerateActivationCode();
@@ -128,23 +129,70 @@ namespace EventManagementApplication.Business.Concrete
             try
             {
 
-                //Mail Helper methodu olarak düzenlenecek
-
-                SmtpClient smtpClient = new SmtpClient("mail.yipadanismanlik.com", 465);
-
-                smtpClient.EnableSsl = true;
-                smtpClient.Timeout = 10000;
-                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new System.Net.NetworkCredential("test@yipadanismanlik.com", "monovi1234");
-
                 string subject = "Şifre Sıfırlama Kodu";
-                string body = "Şifre sıfırlama için aktivasyon kodunuz: " + activationCode;  //Mail body kısmı düzenlenecek
+                string body = $@"
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }}
+        .container {{
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }}
+        .title {{
+            font-size: 24px;
+            color: #7E57FF;
+            text-align: center;
+            margin-bottom: 20px;
+        }}
+        .content {{
+            font-size: 16px;
+            color: #333;
+        }}
+        .activation-code {{
+            background-color: #7E57FF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }}
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='title'>Şifre Sıfırlama Aktivasyon Kodu</div>
+        <div class='content'>
+            Şifre sıfırlama için aşağıdaki aktivasyon kodunu kullanabilirsiniz:<br>
+            <span class='activation-code'>{activationCode}</span>
+        </div>
+    </div>
+</body>
+</html>";
 
-                var mailMessage = new MailMessage("test@yipadanismanlik.com", "test@yipadanismanlik.com", subject,body);
-               
 
-                smtpClient.Send(mailMessage);
+                using (var client = new SmtpClient())
+                {
+                    client.Port = 587;
+                    client.Host = "mail.bytesynthix.com";
+                    client.EnableSsl = false;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential("test@bytesynthix.com", "142536oA.12");
+
+                    MailMessage mailMessage = new MailMessage("test@bytesynthix.com", "oguzhanagir4@gmail.com", subject, body);
+
+                    mailMessage.IsBodyHtml = true;
+                    client.Send(mailMessage);
+                }
 
                 var user = _userService.GetByMail(mail);
 
@@ -161,7 +209,7 @@ namespace EventManagementApplication.Business.Concrete
             }
         }
 
-      
+
         private string GenerateActivationCode()
         {
             RandomNumberGenerator rng = RNGCryptoServiceProvider.Create();
@@ -177,14 +225,14 @@ namespace EventManagementApplication.Business.Concrete
             return activationCodeBuilder.ToString();
         }
 
-       
-        public bool VerifyActivationCode(string enteredCode,int userId)
+
+        public bool VerifyActivationCode(string enteredCode, int userId)
         {
             var resetCodeUser = _userService.GetById(userId);
 
             if (enteredCode == resetCodeUser.ResetCode)
             {
-            return true;
+                return true;
 
             }
 

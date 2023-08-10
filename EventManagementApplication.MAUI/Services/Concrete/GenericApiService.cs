@@ -12,17 +12,19 @@ namespace EventManagementApplication.MAUI.Services.Concrete
 {
     public class GenericApiService<T> : IGenericApiService<T>
     {
-        private readonly HttpClient _httpClient;
+        private readonly string _apiEndPoint;
 
         public GenericApiService(string apiEndpoint)
         {
-            _httpClient = new HttpClient();
+            _apiEndPoint = apiEndpoint;
             //_httpClient.BaseAddress = new Uri(Constants.API_BASE_URL + $"{apiEndpoint}");
         }
 
         public async Task<T> GetById(int id)
         {
-            var response = await _httpClient.GetAsync($"/GetById/{id}");
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri($"https://bytesynthix.com/api/{_apiEndPoint}/GetById/{id}");
+            var response = await httpClient.GetAsync(httpClient.BaseAddress);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<T>();
         }
@@ -32,8 +34,8 @@ namespace EventManagementApplication.MAUI.Services.Concrete
             try
             {
                 var httpClient = new HttpClient();
-                httpClient.BaseAddress = new Uri("http://10.0.2.2:5072/api/Event/GetAll");
-                var response = await httpClient.GetAsync(_httpClient.BaseAddress);
+                httpClient.BaseAddress = new Uri($"https://bytesynthix.com/api/{_apiEndPoint}/GetAll");
+                var response = await httpClient.GetAsync(httpClient.BaseAddress);
 
                 response.EnsureSuccessStatusCode();
 
@@ -44,7 +46,6 @@ namespace EventManagementApplication.MAUI.Services.Concrete
                 else
                 {
                     // API'den başarısız yanıt alındı.
-                    // İstenilen işlemi yapabilir veya uygun bir hata mesajı döndürebilirsiniz.
                     throw new Exception("API'den başarısız yanıt alındı.");
                 }
             }
@@ -63,19 +64,25 @@ namespace EventManagementApplication.MAUI.Services.Concrete
 
         public async Task Create(T entity)
         {
-            var response = await _httpClient.PostAsJsonAsync("/Create", entity);
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri($"https://bytesynthix.com/api/{_apiEndPoint}/Create");
+            var response = await httpClient.PostAsJsonAsync(httpClient.BaseAddress, entity);
             response.EnsureSuccessStatusCode();
         }
 
         public async Task Update(T entity)
         {
-            var response = await _httpClient.PutAsJsonAsync($"/Update/", entity);
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri($"https://bytesynthix.com/api/{_apiEndPoint}/Update");
+            var response = await httpClient.PutAsJsonAsync(httpClient.BaseAddress, entity);
             response.EnsureSuccessStatusCode();
         }
 
         public async Task Delete(int id)
         {
-            var response = await _httpClient.DeleteAsync($"/Delete/{id}");
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri($"https://bytesynthix.com/api/{_apiEndPoint}/Delete/{id}");
+            var response = await httpClient.DeleteAsync(httpClient.BaseAddress);
             response.EnsureSuccessStatusCode();
         }
 
