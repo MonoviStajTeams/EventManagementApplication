@@ -18,6 +18,7 @@ namespace EventManagementApplication.Api.Controllers
             _authService = authService;
         }
 
+
         [HttpPost("Login")]
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
