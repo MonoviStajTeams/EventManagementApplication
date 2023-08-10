@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'monovieventapi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A72CC3103E0D410AAACDAFFF63F4CD49 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7D2FE75FA18448A7A72F943D247DF956 }}
           package: .
