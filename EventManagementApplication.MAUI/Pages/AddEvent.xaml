@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventManagementApplication.MAUI.Pages.AddEventPage"
+             x:Class="EventManagementApplication.MAUI.Pages.AddEvent"
              xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
              x:DataType="vm:EventViewModel"
-             Title="Add Event">
+             Title="AddEvent">
+
 
     <ContentPage.Resources>
         <Style x:Key="EntryStyle" TargetType="Entry">
@@ -47,12 +49,13 @@
                     <Label Text="Inactive" VerticalOptions="Center" />
                 </StackLayout>
 
-                <Button Text="Add Event" Clicked="AddEvent_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" Margin="0, 20, 0, 10" />
+                <Button Text="Add Event" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" Margin="0, 20, 0, 10" />
 
                 <Label x:Name="eventCreatedMessageLabel" Text="Event is created!" IsVisible="False" TextColor="{DynamicResource SuccessColor}" HorizontalOptions="Center" />
 
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
+
 </ContentPage>
 

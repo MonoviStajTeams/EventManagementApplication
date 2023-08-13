@@ -1,39 +1,59 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.EventList"
-                xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
+             xmlns:vm="clr-namespace:EventManagementApplication.MAUI.Models.ViewModels"
              x:DataType="vm:EventViewModel"
              xmlns:local="clr-namespace:EventManagementApplication.MAUI">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <StackLayout Padding="20" Spacing="10">
 
-            <Label Text="Event List" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 40, 0, 10"/>
+            
 
-            <CollectionView ItemsSource="{Binding MyEvents}" Grid.Row="1">
+            <Label Text="Event List"
+                   FontSize="25"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="0, 10"/>
+
+            <CollectionView ItemsSource="{Binding MyEvents}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Margin="10">
-
-                            <Image Source="https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg" HeightRequest="200" Aspect="AspectFill" />
-                            <Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" />
-                            <Label Text="{Binding SubContent}" FontSize="14" />
-                            <Button Text="More" CommandParameter="{Binding Id}" Clicked="OnEventClicked" />
-
-
+                        <StackLayout Spacing="20" Padding="15">
+                            <Image Source="https://monovi.com.tr/img/logo/monovi-logo-grey.png"  
+                   Aspect="AspectFit"
+                   HeightRequest="100"
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="0, 40, 0, 10"/>
+                            <Label Text="{Binding Title}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding SubContent}"
+                                   FontSize="14" />
+                            <Button Text="More"
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding Source={x:Reference local:EventListPage}, Path=BindingContext.MoreCommand}" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
-
 </ContentPage>

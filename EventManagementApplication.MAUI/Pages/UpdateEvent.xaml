@@ -2,36 +2,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApplication.MAUI.UpdateEvent"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
-             Title="Update Event ">
+             Title="Update Event">
 
-    <ScrollView>
-        <StackLayout Padding="20">
-            <Label Text="Update Event" FontSize="24" TextColor="Black" HorizontalOptions="Center" Margin="0,10,0,30"/>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="10">
 
-            <Entry x:Name="eventTitleEntry" Placeholder="Event Title" Margin="0,0,0,10" />
-            <Entry x:Name="eventDescriptionEntry" Placeholder="Event Description" Margin="0,0,0,10" />
-            <Entry x:Name="eventSubContentEntry" Placeholder="Event Sub Content" Margin="0,0,0,10" />
+                <Label Text="Update Event"
+                       FontSize="24"
+                       TextColor="Black"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"/>
 
-            <DatePicker x:Name="eventDatePicker" Margin="0,0,0,10"/>
+                <Entry x:Name="eventTitleEntry"
+                       Placeholder="Event Title" />
 
+                <Entry x:Name="eventDescriptionEntry"
+                       Placeholder="Event Description" />
 
+                <Entry x:Name="eventSubContentEntry"
+                       Placeholder="Event Sub Content" />
 
-            <TimePicker x:Name="eventStartTimePicker" Margin="0,0,0,10" />
-            <TimePicker x:Name="eventEndTimePicker" Margin="0,0,0,10" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Event Date:"
+                           VerticalOptions="Center"
+                           Margin="0,0,10,0" />
+                    <DatePicker x:Name="eventDatePicker" />
+                </StackLayout>
 
-            <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
-                <Label Text="Event Status:" VerticalOptions="Center" />
-                <RadioButton x:Name="statusActiveRadioButton" VerticalOptions="Center" />
-                <Label Text="Active" VerticalOptions="Center" />
-                <RadioButton x:Name="statusInactiveRadioButton" VerticalOptions="Center" />
-                <Label Text="Inactive" VerticalOptions="Center" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Start Time:"
+                           VerticalOptions="Center"
+                           Margin="0,0,10,0" />
+                    <TimePicker x:Name="eventStartTimePicker" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="End Time:"
+                           VerticalOptions="Center"
+                           Margin="0,0,10,0" />
+                    <TimePicker x:Name="eventEndTimePicker" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="20">
+                    <RadioButton x:Name="statusActiveRadioButton"
+                                 VerticalOptions="Center" />
+                    <Label Text="Active"
+                           VerticalOptions="Center" />
+                    <RadioButton x:Name="statusInactiveRadioButton"
+                                 VerticalOptions="Center" />
+                    <Label Text="Inactive"
+                           VerticalOptions="Center" />
+                </StackLayout>
+
+                <Button Text="Update Event"
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        TextColor="White"
+                        HorizontalOptions="CenterAndExpand"
+                        Command="{Binding UpdateCommand}" />
+
+                <Label x:Name="eventUpdatedMessageLabel"
+                       Text="Event is updated!"
+                       IsVisible="False"
+                       TextColor="{DynamicResource SuccessColor}"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand" />
+
             </StackLayout>
-
-
-            <Button Text="Update Event" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" />
-
-            <Label x:Name="eventUpdatedMessageLabel" Text="Event is updated!" IsVisible="False" TextColor="{DynamicResource SuccessColor}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-
-        </StackLayout>
-    </ScrollView>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

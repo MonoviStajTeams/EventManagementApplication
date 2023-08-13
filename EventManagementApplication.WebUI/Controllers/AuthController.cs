@@ -1,4 +1,6 @@
 ﻿using EventManagementApplication.Business.Abstract;
+using EventManagementApplication.Business.Concrete;
+using EventManagementApplication.Entities.dtos;
 using EventManagementApplication.Entities.Dtos;
 using EventManagementApplication.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +12,12 @@ namespace EventManagementApplication.WebUI.Controllers
     public class AuthController : Controller
     {
         private IAuthService _authService;
+        private readonly IUserService _userService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IUserService userService)
         {
             _authService = authService;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -80,26 +84,33 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult ForgotPasswordSendMailCode(string mail)
         {
+          
             _authService.SendMailCodeByResetPassword(mail);
 
-            return RedirectToAction("EntryCode", "Auth");
+            return RedirectToAction("EntryCode", "Auth", new { email = mail});
         }
 
         [HttpGet]
-        public IActionResult EntryCode()
+        public IActionResult EntryCode(string email)
         {
+            ViewBag.Mail = email;
             return View();
         }
 
         [HttpPost]
-        public IActionResult EntryCode(string enteredCode)
+        public IActionResult EntryCodePost(EntryCodeDto entryCodeDto)
         {
-            var activated = _authService.VerifyActivationCode(enteredCode);
+            
+
+            var user = _userService.GetByMail(entryCodeDto.Mail);
+            var activated = _authService.VerifyActivationCode(entryCodeDto.ResetCode,user.Id);
 
             if (activated == true)
             {
+
                 return RedirectToAction("ResetPassword","Auth");
             }
+            
             
             return View();
         }
@@ -108,6 +119,7 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpGet]
         public IActionResult ResetPassword()
         {
+
             return View();
         }
 
@@ -116,9 +128,10 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpPost]
         public IActionResult ResetPassword(string newPassword, string confirmPassword)
         {
+            string email = HttpContext.Session.GetString("Email")!;
             var resetPasswordDto = new ResetPasswordDto 
             {
-                Email = "mail" ,
+                Email = email,
                 NewPassword = newPassword ,
                 ConfirmPassword = confirmPassword,
                 Token = "token"

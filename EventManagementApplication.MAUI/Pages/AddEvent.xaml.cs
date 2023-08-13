@@ -1,15 +1,12 @@
-﻿namespace EventManagementApplication.MAUI
-{
-    public partial class AddEvent : ContentPage
-    {
-        public AddEvent()
-        {
-            InitializeComponent();
+using EventManagementApplication.MAUI.Models.ViewModels;
 
-        }
-        private async void AddEvent_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new UpdateEvent());
-        }
-    }
+namespace EventManagementApplication.MAUI.Pages;
+
+public partial class AddEvent : ContentPage
+{
+	public AddEvent(EventViewModel evm)
+	{
+		InitializeComponent();
+		BindingContext = evm;
+	}
 }

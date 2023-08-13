@@ -22,7 +22,6 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
-        [FluentValidateAspect(typeof(InvitationValidator))]
         public void Create(Invitation entity)
         {
             _unitOfWork.Invitations.Add(entity);
@@ -48,7 +47,6 @@ namespace EventManagementApplication.Business.Concrete
         {
             return _unitOfWork.Invitations.GetById(id);
         }
-        [FluentValidateAspect(typeof(InvitationValidator))]
         public void Update(Invitation entity)
         {
             _unitOfWork.Invitations.Update(entity);
