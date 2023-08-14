@@ -5,19 +5,32 @@
              x:DataType="vm:InvitationViewModel">
 
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Label Text="Invitations" FontSize="25" FontAttributes="Bold" TextColor="#081828" HorizontalOptions="Center" Margin="0, 30, 0, 10"/>
+        <StackLayout Padding="20" Spacing="10">
+
+            <Label Text="Invitations"
+                   FontSize="25"
+                   FontAttributes="Bold"
+                   TextColor="#081828"
+                   HorizontalOptions="Center"
+                   Margin="0, 30, 0, 10"/>
 
             <CollectionView ItemsSource="{Binding MyInvitationList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding Title}" />
-                            <Button Grid.Column="1" Text="View" CommandParameter="{Binding Id}"  />
+                            <Label Grid.Column="0"
+                                   Text="{Binding Title}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Button Grid.Column="1"
+                                    Text="View"
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding Source={x:Reference PageName}, Path=BindingContext.ViewCommand}"
+                                    HorizontalOptions="End" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
