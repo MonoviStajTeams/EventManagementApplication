@@ -12,6 +12,10 @@ namespace EventManagementApplication.MAUI
         {
             InitializeComponent();
         }
+        private async void BacktoMainPageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
 
     }
 }

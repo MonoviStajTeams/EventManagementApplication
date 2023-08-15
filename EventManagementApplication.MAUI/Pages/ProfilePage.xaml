@@ -33,25 +33,25 @@
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White">
                     
-                    <Entry x:Name="firstNameEntry" Placeholder="First Name" Text="{Binding FirstName}" Style="{StaticResource EntryStyle}" />
+                    <Entry x:Name="firstNameEntry" Placeholder="First Name" Text="{Binding Firstname}" Style="{StaticResource EntryStyle}" />
                     
                 </Frame>
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     
-                    <Entry x:Name="lastNameEntry" Placeholder="Last Name" Text="{Binding LastName}" Style="{StaticResource EntryStyle}" />
+                    <Entry x:Name="lastNameEntry" Placeholder="Last Name" Text="{Binding Lastname}" Style="{StaticResource EntryStyle}" />
                     
                 </Frame>
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     
-                    <Entry x:Name="emailEntry" Placeholder="Email Address" Text="{Binding Email}" Style="{StaticResource EntryStyle}" />
+                    <Entry x:Name="emailEntry" Placeholder="Email Address" Text="{Binding Mail}" Style="{StaticResource EntryStyle}" />
                     
                 </Frame>
 
                 <Frame Padding="5" CornerRadius="10" BorderColor="#7E57FF" BackgroundColor="White" Margin="0, 10">
                     
-                    <Entry x:Name="phoneNumberEntry" Placeholder="Phone Number" Text="{Binding PhoneNumber}" Style="{StaticResource EntryStyle}" />
+                    <Entry x:Name="phoneNumberEntry" Placeholder="Phone Number" Text="{Binding Phonenumber}" Style="{StaticResource EntryStyle}" />
                     
                 </Frame>
 

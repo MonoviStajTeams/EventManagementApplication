@@ -63,5 +63,6 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
             await _notificationApiService.Delete(id).ConfigureAwait(false);
         }
+
     }
 }

@@ -6,4 +6,9 @@ public partial class ForgotPasswordPage : ContentPage
     {
         InitializeComponent();
     }
+
+    private async void BacktoMainPageClicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
 }

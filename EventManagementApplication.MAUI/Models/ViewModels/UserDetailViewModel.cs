@@ -29,6 +29,15 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [ObservableProperty]
         private int id;
 
+        [ObservableProperty]
+        private string firstname;
+
+        [ObservableProperty]
+        private string lastname;
+
+        [ObservableProperty]
+        private string mail;
+
         private Task<ApiModels.UserDetailApiResponse> GetUserDetail()
         {
             var userDetail = _userDetailApiService.GetById(id);

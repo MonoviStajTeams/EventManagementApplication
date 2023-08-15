@@ -26,6 +26,22 @@ namespace EventManagementApplication.MAUI.Pages
         {
             await Navigation.PushAsync(new ForgotPasswordPage());
         }
+        private async void ProfilePageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfilePage());
+        }
+
+        private async void MyEventPageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MyEvent());
+        }
+
+        private async void ForgotPasswordPageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ForgotPasswordPage());
+        }
+
+
 
     }
 }
