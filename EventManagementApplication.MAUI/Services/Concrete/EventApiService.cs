@@ -37,5 +37,11 @@ namespace EventManagementApplication.MAUI.Services.Concrete
             var response = await _httpClient.PostAsJsonAsync($"/ActivateEvent/",eventResponse);
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task GetByType(string type)
+        {
+            var response = await _httpClient.GetAsync($"/GetByType/{type}");
+            response.EnsureSuccessStatusCode();
+        }
     }
 }
