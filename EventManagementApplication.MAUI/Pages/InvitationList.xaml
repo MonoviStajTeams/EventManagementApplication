@@ -31,6 +31,12 @@
                                     CommandParameter="{Binding Id}"
                                     Command="{Binding Source={x:Reference PageName}, Path=BindingContext.ViewCommand}"
                                     HorizontalOptions="End" />
+
+                            <Button Grid.Column="1"
+                                    Text="View"
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding DeleteInvitationCommand}"
+                                    HorizontalOptions="End" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -16,6 +16,10 @@
 
             <Label Text="Event" FontAttributes="Bold" />
             
+            <Button Text="Accept" Command="{Binding AcceptInvitationCommand}"  BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" Margin="0, 20, 0, 10" />
+
+            <Button Text="Cancel" Command="{Binding CancelInvitationCommand}" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" Margin="0, 20, 0, 10" />
+
         </StackLayout>
     </ScrollView>
 </ContentPage>

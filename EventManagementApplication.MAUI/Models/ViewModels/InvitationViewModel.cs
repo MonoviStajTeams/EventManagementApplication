@@ -22,6 +22,9 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             _invitationApiService = new InvitationApiService("Invitation");
             MyInvitationList = new ObservableCollection<InvitationApiResponse>();
             LoadMyEventsCommand = new AsyncRelayCommand(InvitationList);
+            AcceptInvitationCommand = new AsyncRelayCommand(AcceptInvitation);
+            CancelInvitationCommand = new AsyncRelayCommand(CancelInvitation);
+            DeleteInvitationCommand = new AsyncRelayCommand(DeleteInvitation);
             InvitationList();
         }
 
@@ -33,10 +36,15 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         }
 
         public IAsyncRelayCommand LoadMyEventsCommand { get; }
+        public IAsyncRelayCommand AcceptInvitationCommand { get; }
+        public IAsyncRelayCommand CancelInvitationCommand { get; }
+        public IAsyncRelayCommand DeleteInvitationCommand { get; }
 
 
         [ObservableProperty]
         private string title;
+  
+
 
         [ObservableProperty]
         private string description;
@@ -48,7 +56,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         private int eventId;
 
         [ObservableProperty]
-        private string id;
+        private int id;
 
 
         private async Task InvitationList()
@@ -84,8 +92,25 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
             _invitationApiService.Update(entity);
         }
-    
-        
-        
+
+        [RelayCommand]
+        private async Task DeleteInvitation()
+        {
+            await _invitationApiService.Delete(Id);
+        }
+
+        [RelayCommand]
+        private async Task AcceptInvitation()
+        {
+
+        }
+
+        [RelayCommand]
+        private async Task CancelInvitation()
+        {
+
+        }
+
+
     }
 }
