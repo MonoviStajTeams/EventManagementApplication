@@ -44,7 +44,7 @@ namespace EventManagementApplication.Business.Concrete
 
 
    
-        public IEnumerable<Event> GetAll()
+        public IEnumerable<Event> GetByType()
         {
             return _unitOfWork.Events.GetAllWithIncludes(x => x.User);
 
@@ -89,6 +89,12 @@ namespace EventManagementApplication.Business.Concrete
                 _unitOfWork.Save();
             }
         }
+
+        public IEnumerable<Event> GetByType(string type)
+        {
+            return _unitOfWork.Events.GetAll().Where(x => x.Type == type);
+        }
+
 
 
         public IEnumerable<Event> GetAllByUserId(int id)

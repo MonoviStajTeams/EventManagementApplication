@@ -6,4 +6,8 @@ public partial class MyEvent : ContentPage
 	{
 		InitializeComponent();
 	}
+    private async void BacktoMainPageClicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
 }

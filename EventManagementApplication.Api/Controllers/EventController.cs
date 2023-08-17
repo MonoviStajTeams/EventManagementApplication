@@ -21,10 +21,16 @@ namespace EventManagementApplication.Api.Controllers
         [Route("GetAll")]
         public IActionResult GetAll()
         {
-            var eventList = _eventService.GetAll();
+            var eventList = _eventService.GetByType();
             return Ok(eventList);
         }
-
+        [HttpGet]
+        [Route("GetByType")]
+        public IActionResult GetByType(string type)
+        {
+            var typeEventList = _eventService.GetByType(type);
+            return Ok(typeEventList);
+        }
 
         [HttpGet]
         [Route("GetById/{id}")]
