@@ -22,6 +22,8 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             MyEvents = new ObservableCollection<EventApiResponse>();
             LoadMyEventsCommand = new AsyncRelayCommand(LoadMyEventsAsync);
             LoadMyEventsAsync();
+            GetByTypeCommand = new AsyncRelayCommand(GetByTypeAsync);
+            GetByTypeAsync();
         }
 
         private ObservableCollection<EventApiResponse> _myEvents;
@@ -154,6 +156,13 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             
             _eventApiService.Update(entity);
 
+        }
+
+        [RelayCommand]
+        public async Task GetByTypeAsync(string type)
+        {
+            var events = await _eventApiService.GetByTypeAsync();
+            MyEvents = new ObservableCollection<EventApiResponse>(events);
         }
     }
 }
