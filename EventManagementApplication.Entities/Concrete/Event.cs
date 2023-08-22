@@ -18,6 +18,7 @@ namespace EventManagementApplication.Entities.Concrete
         public bool Status { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+        public string Image { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }

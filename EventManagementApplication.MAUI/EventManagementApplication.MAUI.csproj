@@ -66,9 +66,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Models\ViewModels\CategoryView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\AddEvent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

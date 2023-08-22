@@ -10,10 +10,11 @@ namespace EventManagementApplication.WebUI.Controllers
     public class EventController : Controller
     {
         private readonly IEventService _eventService;
-
-        public EventController(IEventService eventService)
+        private readonly IUserService _userService;
+        public EventController(IEventService eventService, IUserService userService)
         {
             _eventService = eventService;
+            _userService = userService;
         }
 
         public IActionResult Index()
@@ -50,8 +51,23 @@ namespace EventManagementApplication.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddEvent(Event entity)
+        public async Task<IActionResult> AddEvent(Event entity, IFormFile file)
         {
+            if (file != null && file.Length > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var filePath = "images/" + fileName;
+
+                using (var stream = new FileStream(Path.Combine("wwwroot", filePath), FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                entity.Image = filePath;
+            }
+            string email = HttpContext.Session.GetString("Email")!;
+
+            var user = _userService.GetByMail(email!);
+            entity.UserId = user.Id;
             _eventService.Create(entity);
             return RedirectToAction("Index", "Event");
         }

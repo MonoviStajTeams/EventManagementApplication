@@ -8,10 +8,11 @@ namespace EventManagementApplication.WebUI.Controllers
     public class InvitationController : Controller
     {
         private readonly IInvitationService _invitationService;
-
-        public InvitationController(IInvitationService invitationService)
+        private readonly IUserService _userService;
+        public InvitationController(IInvitationService invitationService, IUserService userService)
         {
             _invitationService = invitationService;
+            _userService = userService;
         }
 
         public IActionResult InvitationList()
@@ -39,6 +40,10 @@ namespace EventManagementApplication.WebUI.Controllers
         {
             var lastInvitationId = _invitationService.GetLastInvitationId();
             entity.Id = lastInvitationId;
+            string email = HttpContext.Session.GetString("Email")!;
+
+            var user = _userService.GetByMail(email!);
+            entity.UserId = user.Id;
             _invitationService.Create(entity);
             
             return RedirectToAction("AddUsersInvitation", "Invitation" , new {id = lastInvitationId });

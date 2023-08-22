@@ -93,19 +93,17 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             _invitationApiService.Update(entity);
         }
 
-        [RelayCommand]
+        
         private async Task DeleteInvitation()
         {
             await _invitationApiService.Delete(Id);
         }
 
-        [RelayCommand]
         private async Task AcceptInvitation()
         {
 
         }
 
-        [RelayCommand]
         private async Task CancelInvitation()
         {
 
