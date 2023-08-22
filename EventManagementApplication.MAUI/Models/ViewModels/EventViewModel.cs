@@ -161,7 +161,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [RelayCommand]
         public async Task GetByTypeAsync(string type)
         {
-            var events = await _eventApiService.GetByTypeAsync();
+            var events = await _eventApiService.GetByType(type);
             MyEvents = new ObservableCollection<EventApiResponse>(events);
         }
     }
