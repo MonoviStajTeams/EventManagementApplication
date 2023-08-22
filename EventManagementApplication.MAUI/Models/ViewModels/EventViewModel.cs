@@ -22,6 +22,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
             MyEvents = new ObservableCollection<EventApiResponse>();
             LoadMyEventsCommand = new AsyncRelayCommand(LoadMyEventsAsync);
             LoadMyEventsAsync();
+
             GetByTypeCommand = new AsyncRelayCommand(GetByTypeAsync);
             GetByTypeAsync();
         }
@@ -34,6 +35,7 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         }
 
         public IAsyncRelayCommand LoadMyEventsCommand { get; }
+        public IAsyncRelayCommand GetByTypeCommand { get; }
       
 
 
@@ -72,7 +74,6 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
         [ObservableProperty]
         private int userId;
 
-        
 
 
 
@@ -158,11 +159,21 @@ namespace EventManagementApplication.MAUI.Models.ViewModels
 
         }
 
-        [RelayCommand]
-        public async Task GetByTypeAsync(string type)
+
+
+        public async Task GetByTypeAsync()
         {
-            var events = await _eventApiService.GetByType(type);
-            MyEvents = new ObservableCollection<EventApiResponse>(events);
+            if (Type == null)
+            {
+                var events = await _eventApiService.GetAll();
+                MyEvents = new ObservableCollection<EventApiResponse>(events);
+            }
+            else
+            {
+                var events = await _eventApiService.GetByType(Type);
+                MyEvents = new ObservableCollection<EventApiResponse>(events);
+            }
+            
         }
     }
 }

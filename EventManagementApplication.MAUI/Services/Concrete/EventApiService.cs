@@ -38,10 +38,11 @@ namespace EventManagementApplication.MAUI.Services.Concrete
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task GetByType(string type)
+        public async Task<IEnumerable<EventApiResponse>> GetByType(string type)
         {
             var response = await _httpClient.GetAsync($"/GetByType/{type}");
             response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<IEnumerable<EventApiResponse>>();
         }
     }
 }

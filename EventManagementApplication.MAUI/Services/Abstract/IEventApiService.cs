@@ -9,6 +9,6 @@ namespace EventManagementApplication.MAUI.Services.Abstract
 {
     public interface IEventApiService : IGenericApiService<EventApiResponse>
     {
-        Task GetByType(string type);
+        Task<IEnumerable<EventApiResponse>> GetByType(string type);
     }
 }
