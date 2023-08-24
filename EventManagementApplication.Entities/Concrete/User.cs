@@ -22,6 +22,7 @@ namespace EventManagementApplication.Entities.Concrete
         public string ResetToken { get; set; }
         public DateTime ResetTokenExpiration { get; set; }
 
+        public ICollection<UserInvitationMapping> UserInvitationMappings { get; set; }
         public User()
         {
             RoleId = 1;

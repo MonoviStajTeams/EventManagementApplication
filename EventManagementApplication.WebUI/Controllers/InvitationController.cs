@@ -2,6 +2,7 @@
 using EventManagementApplication.Business.Concrete;
 using EventManagementApplication.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EventManagementApplication.WebUI.Controllers
 {
@@ -9,10 +10,12 @@ namespace EventManagementApplication.WebUI.Controllers
     {
         private readonly IInvitationService _invitationService;
         private readonly IUserService _userService;
-        public InvitationController(IInvitationService invitationService, IUserService userService)
+        private readonly IEventService _eventService;
+        public InvitationController(IInvitationService invitationService, IUserService userService, IEventService eventService)
         {
             _invitationService = invitationService;
             _userService = userService;
+            _eventService = eventService;
         }
 
         public IActionResult InvitationList()
@@ -32,6 +35,20 @@ namespace EventManagementApplication.WebUI.Controllers
         [HttpGet]
         public IActionResult AddInvitation()
         {
+            string email = HttpContext.Session.GetString("Email")!;
+
+            var user = _userService.GetByMail(email!);
+
+            var eventListByUser = _eventService.GetAllByUserId(user.Id);
+
+            List<SelectListItem> events = (from x in  eventListByUser
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.Title,
+                                                   Value = x.Id.ToString()
+                                               }).ToList();
+            ViewBag.Events = events;
+
             return View();
         }
 
@@ -53,6 +70,19 @@ namespace EventManagementApplication.WebUI.Controllers
         public IActionResult UpdateInvitation(int id)
         {
             var invitation = _invitationService.GetById(id);
+            string email = HttpContext.Session.GetString("Email")!;
+
+            var user = _userService.GetByMail(email!);
+
+            var eventListByUser = _eventService.GetAllByUserId(user.Id);
+
+            List<SelectListItem> events = (from x in eventListByUser
+                                           select new SelectListItem
+                                           {
+                                               Text = x.Title,
+                                               Value = x.Id.ToString()
+                                           }).ToList();
+            ViewBag.Events = events;
             return View(invitation);
         }
 

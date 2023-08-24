@@ -43,7 +43,8 @@ namespace EventManagementApplication.WebUI.Controllers
                 var userInvitationMapping = new UserInvitationMapping
                 {
                     InvitedId = userId,
-                    InvitationId = model.InvitationId
+                    InvitationId = model.InvitationId,
+                    Status = true
                 };
                 _userInvitationMappingService.Create(userInvitationMapping);
             }

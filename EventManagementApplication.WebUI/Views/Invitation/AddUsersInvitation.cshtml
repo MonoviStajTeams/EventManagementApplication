@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "AddUsersInvitation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -46,6 +45,12 @@
                     </tbody>
                 </table>
             </div>
+            <label>Uygulama İçin Bildirim</label>
+            <input type="checkbox" name="appNotif" class="btn btn-primary mt-4" />
+            <label>Mail Bildirim</label>
+            <input type="checkbox" name="mailNotif" class="btn btn-primary mt-4"/>
+
+
             <button class="btn btn-primary mt-4" onclick="selectAll()">Tümünü Seç</button>
             <button class="btn btn-primary mt-4" onclick="selectClear()">Tümünü Temizle</button>
             <button class="btn btn-primary mt-4" onclick="addAllUsers()">Kullanıcıları Davet Et</button>
@@ -91,14 +96,14 @@
             }
         }
 
-        const invitationId = @ViewBag.InvitationId; 
+        const invitationId = @ViewBag.InvitationId;
 
         fetch('/UserInvitationMapping/AddUserInvitationMapping', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ userIds: selectedUsers, invitationId: invitationId }) 
+            body: JSON.stringify({ userIds: selectedUsers, invitationId: invitationId })
         })
             .then(response => response.json())
             .then(data => {
