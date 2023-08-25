@@ -12,6 +12,7 @@ namespace EventManagementApplication.Business.Abstract
         IEnumerable<Event> GetInactiveEventsByUserId(int userId);
         IEnumerable<Event> GetByType(string type);
         void ActivateEvent(Event events);
+        void RepeatEvent(Event entity, string startdate, string enddate, DateTime time);
         IEnumerable<Event> GetAllByUserId(int id);
     }
 }
