@@ -9,4 +9,6 @@ public partial class AddEvent : ContentPage
 		InitializeComponent();
 		BindingContext = evm;
 	}
+
+
 }

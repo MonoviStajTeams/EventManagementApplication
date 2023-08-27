@@ -13,5 +13,7 @@ namespace EventManagementApplication.Business.Abstract
         IEnumerable<User> GetUsers();
         IEnumerable<Invitation> GetInvitationsByUserId(int id);
         void SendInvitationMail(int invitationId);
+        void AcceptInvitation(int userId, int invitationId);
+        void RejectInvitation(int userId, int invitationId);
     }
 }

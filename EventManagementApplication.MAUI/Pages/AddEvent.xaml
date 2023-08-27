@@ -50,7 +50,7 @@
                 </StackLayout>
 
                 <Button Text="Add Event" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="White" Margin="0, 20, 0, 10" />
-
+                
                 <Label x:Name="eventCreatedMessageLabel" Text="Event is created!" IsVisible="False" TextColor="{DynamicResource SuccessColor}" HorizontalOptions="Center" />
 
             </StackLayout>

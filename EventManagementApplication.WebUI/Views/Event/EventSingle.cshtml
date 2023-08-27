@@ -22,6 +22,27 @@
                 </span>
             </p>
             <p class="card-text">Organizer: @Model.User.FirstName @Model.User.LastName</p>
+
+            <div class="button text-center">
+                <a class="btn btn-success" href="#" id="acceptButton">Accept Invitation</a>
+                <a class="btn btn-danger" href="#" id="rejectButton">Refuse Invitation</a>
+            </div>
+            <script>
+
+                // Acccept Button scrpşt
+                $("#acceptButton").on("click", function (e) {
+                    e.preventDefault();
+                    $("form").attr("action", "@Url.Action("AcceptInvitation", "Invitation", new { id = Model.Id })");
+                    $("form").submit();
+                });
+
+                // Refuse Button script
+                $("#rejectButton").on("click", function (e) {
+                    e.preventDefault();
+                    $("form").attr("action", "@Url.Action("RejectInvitation", "Invitation", new { id = Model.Id })");
+                    $("form").submit();
+                });
+            </script>
         </div>
     </div>
 </div>

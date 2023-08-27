@@ -106,6 +106,20 @@ namespace EventManagementApplication.WebUI.Controllers
             ViewBag.Users = _invitationService.GetUsers();
             return View();
         }
-      
+
+        [HttpPost]
+        public IActionResult AcceptInvitation(int id)
+        {
+            //  Accept Invitation
+            return RedirectToAction("InvitationList");
+        }
+
+        [HttpPost]
+        public IActionResult RejectInvitation(int id)
+        {
+            // Refuse Invitation
+            return RedirectToAction("InvitationList");
+        }
+
     }
 }

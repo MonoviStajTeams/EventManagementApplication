@@ -120,5 +120,20 @@ namespace EventManagementApplication.Business.Concrete
 
             return invitations;
         }
+
+        public void AcceptInvitation(int userId, int invitationId)
+        {
+            var mapping = _unitOfWork.UserInvitationMappings.GetByUserId(userId).FirstOrDefault(x => x.InvitationId == invitationId);
+            mapping!.Status = true;
+            _unitOfWork.UserInvitationMappings.Update(mapping!);
+            _unitOfWork.Save();
+        }
+
+        public void RejectInvitation(int userId, int invitationId)
+        {
+            var mapping = _unitOfWork.UserInvitationMappings.GetByUserId(userId).FirstOrDefault(x => x.InvitationId == invitationId);
+            _unitOfWork.UserInvitationMappings.Remove(mapping!);
+            _unitOfWork.Save();
+        }
     }
 }
