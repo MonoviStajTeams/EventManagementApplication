@@ -104,23 +104,20 @@ namespace EventManagementApplication.Business.Concrete
         }
 
 
-        public void RepeatEvent(Event entity , string startdate,string enddate, DateTime time)
+        public void RepeatEvent(string Title, string newStartDate, string newEndDate, DateTime newTime)
         {
-            var repeatevent= GetById(entity.Id);
+            var repeatevent = _unitOfWork.Events.GetAll().Where(x => x.Title == Title).FirstOrDefault();
+
             if (repeatevent != null)
             {
-                entity.StartTime = startdate;
-                entity.EndTime = enddate;
-                entity.Status = true;
-                entity.Date = time;
-                
+                repeatevent.StartTime = newStartDate;
+                repeatevent.EndTime = newEndDate;
+                repeatevent.Date = newTime;
 
-                _unitOfWork.Events.Update(entity);
+                _unitOfWork.Events.Update(repeatevent);
                 _unitOfWork.Save();
-
             }
-            
-    }
+        }
 
     }
 }

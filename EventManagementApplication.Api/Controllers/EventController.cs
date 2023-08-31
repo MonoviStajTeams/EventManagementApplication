@@ -95,9 +95,9 @@ namespace EventManagementApplication.Api.Controllers
         [HttpPost]
         [Route("RepeatEvent")]
 
-        public IActionResult RepeatEvent(Event entity, string startdate, string enddate, DateTime time)
+        public IActionResult RepeatEvent(string Title, string newStartDate, string newEndDate, DateTime newTime)
         {
-            _eventService.RepeatEvent(entity, startdate, enddate, time);
+            _eventService.RepeatEvent(Title, newStartDate, newEndDate, newTime);
             return Ok();
         }
     }
