@@ -5,11 +5,11 @@ namespace EventManagementApplication.MAUI
 {
     public partial class App : Application
     {
-        public App(InvitationViewModel evm)
+        public App(InvitationViewModel ivm)
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new UserDashboard());
+            MainPage = new NavigationPage(new AddInvitation(ivm));
         }
     }
 }

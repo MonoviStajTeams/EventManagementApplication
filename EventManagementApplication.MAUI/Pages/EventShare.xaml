@@ -28,7 +28,7 @@
             <Button Text="Share"
                     BackgroundColor="{DynamicResource PrimaryColor}"
                     TextColor="White"
-                    Command="{Binding ShareCommand}"
+                    
                     HorizontalOptions="Center" />
 
         </StackLayout>
